@@ -1,0 +1,6 @@
+mantid-2.6.1-win64.exe
+mantid-2.6.1-win32.exe
+mantid-2.6.1-SnowLeopard.dmg
+mantid-2.6.1-1.el6.x86_64.rpm
+mantid-2.6.1-1_amd64.deb
+mantid-2.6.1-Source.tar.gz
