@@ -1,0 +1,4 @@
+#Generated site
+static/*.html
+*~
+*.swp
