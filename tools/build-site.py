@@ -38,7 +38,7 @@ def getOSName(buildname):
   osname = "unknown"
   if "win64" in buildname or "Windows-64bit" in buildname: osname = "windows"
   elif "win32" in buildname or "Windows-32bit" in buildname: osname = "win32"
-  elif "MountainLion" in buildname: osname = "osx"
+  elif "MountainLion" in buildname: osname = "mac"
   elif "SnowLeopard" in buildname: osname = "snow-leopard"
   elif ".rpm" in buildname: osname = "red-hat"
   elif ".deb" in buildname or "Linux" in buildname: osname = "ubuntu"
