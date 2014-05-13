@@ -109,7 +109,7 @@ a:hover { text-decoration: underline; }
   border-bottom: 1px solid #DCDCDC;
 }
 
-#gridcontainer p { font-size: .875em; }
+#gridcontainer p { font-size: 1em; }
 
 .button {
   margin: 0 auto;
