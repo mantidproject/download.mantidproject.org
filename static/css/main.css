@@ -81,7 +81,8 @@ header[role="banner"] h1 {
 
 /*-------------------- $SPACING --------------------*/
 
-h1,h2,p { margin-bottom: .6em; }
+h1,h2 { margin-bottom: .6em; }
+p { margin-bottom: 1em; }
 
 header[role="banner"] h1 { margin-bottom: .2em; }
 
@@ -100,6 +101,14 @@ a {
 a:hover { text-decoration: underline; }
 
 /*-------------------- $DOWNLOADS --------------------*/
+.alternatives {
+  text-align: left;
+  margin-bottom: 1em;
+}
+
+#latest p, #latest ul {
+  text-align: center;
+}
 
 #gridcontainer {
   margin: 0 auto;
@@ -130,9 +139,10 @@ a:hover { text-decoration: underline; }
   text-decoration: none;
 }
 
-#samples li { margin-left: 2em; }
-
-#previous { text-align: right; }
+#previous {
+  text-align: right;
+  font-weight: 700;
+}
 
 .column {
   vertical-align: top;
@@ -150,10 +160,7 @@ a:hover { text-decoration: underline; }
   padding: 1em;
 }
 
-.alternatives {
-  text-align: left;
-  margin-bottom: 1em;
-}
+.column li { display: block; margin-left: 2em;}
 
 /*-------------------- $ARCHIVES --------------------*/
 
@@ -170,7 +177,7 @@ a:hover { text-decoration: underline; }
 /*-------------------- $MEDIA QUERIES ------------------*/
 
 @media only screen and (max-width: 60em) {
-  .minor {
+  .column {
     display: block;
     width: 50%;
     margin: 0 auto;
@@ -180,6 +187,6 @@ a:hover { text-decoration: underline; }
 }
 
 @media only screen and (max-width: 45em){
-  .minor { width: 90%; }
+  .column { width: 90%; }
   h1 { font-size: 2em; }
 }

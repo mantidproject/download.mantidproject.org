@@ -18,7 +18,7 @@
     <section id="gridcontainer">
       <article id="paraview" class="column">
         <h2>Paraview {{ paraviewVersion }}</h2>
-        <p>You may need to install a compatible version for Mantid.</p>
+        <p>Paraview is required to use VATES features.</p>
         <a href="#" class="button">Download Paraview for </a>
         <p>Alternative downloads:</p>
         <ul class="alternatives">{% for key,value in paraviewBuildNames|dictsort() %}
@@ -27,7 +27,7 @@
       </article>
       <article id="samples" class="column">
         <h2>Sample datasets</h2>
-        <p>The datasets below contain example data for Mantid:</p>
+        <p>Sample datasets for use in Mantid:</p>
         <ul>
           <li><a href="http://sourceforge.net/projects/mantid/files/Sample%20Data/SampleData-Muon.zip/download">Muon data</a></li>
           <li><a href="http://sourceforge.net/projects/mantid/files/Sample%20Data/WorkshopData.zip/download">Training data</a></li>
@@ -36,8 +36,8 @@
         </ul>
       </article>
       <article id="nightly" class="column">
-        <h2>Nightly release</h2>
-        <p>You can view the changes made in the <a href="http://mantidproject.github.io/news/">recent news</a>.</p>
+        <h2>Nightly build &ndash; {{ releases[0]['date']}}</h2>
+        <p>You can view changes made in the <a href="http://mantidproject.github.io/news/">recent news</a>.</p>
         <a href="#" class="button">Download Mantid for </a>
         <p>Alternative downloads:</p>
         <ul class="alternatives">{% for key,value in releases[0]['buildInfo']|dictsort() %}
