@@ -10,7 +10,8 @@ def releases():
   releaseDir = THIS_DIR + "/../releases"
   releases = [] # Stores build info for each release in the "releases" folder
 
-  for fileName in os.listdir(releaseDir):
+  releaseFiles = [fileName for fileName in os.listdir(releaseDir) if "paraview" not in fileName]
+  for fileName in releaseFiles:
     release = {}
     release['version'], release['date'] = os.path.splitext(fileName)[0].split("-",1) # Split filename into version/date
     # Read the buildInfo names of each file/release
@@ -22,20 +23,33 @@ def releases():
     releases.append(release)
   return sorted(releases, key=lambda k : k['date'],reverse=True)
 
+def latestParaview():
+  paraviewFilenames = {} # Use a dict to store related OS name
+  # Obtain the latest version of paraview
+  with open(THIS_DIR + "/../releases/paraview/paraview.txt","r") as paraviewReleases:
+    version = paraviewReleases.readline().split(",")[1].rstrip()
+  # Obtain the build names for the latest version of paraview
+  with open(THIS_DIR + "/../releases/paraview/paraview-" + version + ".txt") as latestParaview:
+    for buildName in latestParaview:
+      paraviewFilenames[getOSName(buildName)] = buildName.rstrip()
+  return version, paraviewFilenames
+
 def getOSName(buildname):
   osname = "unknown"
-  if "win64" in buildname: osname = "windows"
-  elif "win32" in buildname: osname = "windows-32"
+  if "win64" in buildname or "Windows-64bit" in buildname: osname = "windows"
+  elif "win32" in buildname or "Windows-32bit" in buildname: osname = "win32"
   elif "MountainLion" in buildname: osname = "osx"
   elif "SnowLeopard" in buildname: osname = "snow-leopard"
   elif ".rpm" in buildname: osname = "red-hat"
-  elif ".deb" in buildname: osname = "ubuntu"
+  elif ".deb" in buildname or "Linux" in buildname: osname = "ubuntu"
   elif "tar.gz" in buildname: osname = "source"
   return osname
 
 if __name__ == "__main__":
   # Build information for each release file in the "releases" folder
   releases = releases()
+  # Note: [0] is version, and [1] is buildnames.
+  latestParaview = latestParaview()
 
   # Variables to output on the archives page
   archiveVars = { "title" : "Mantid archive downloads",
@@ -45,6 +59,8 @@ if __name__ == "__main__":
 
   downloadVars = { "title" : "Mantid downloads",
                  "description" : "Download the latest release of Mantid.",
+                 "paraviewVersion" : latestParaview[0],
+                 "paraviewBuildNames" : latestParaview[1],
                  "releases" : releases[0:2] # Only use first (nightly) and second (latest)
                  }
 

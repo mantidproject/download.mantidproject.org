@@ -17,9 +17,13 @@
   </section>
     <section id="gridcontainer">
       <article id="paraview" class="column">
-        <h2>Paraview {{paraview }}</h2>
+        <h2>Paraview {{ paraviewVersion }}</h2>
         <p>You may need to install a compatible version for Mantid.</p>
         <a href="#" class="button">Download Paraview for </a>
+        <p>Alternative downloads:</p>
+        <ul class="alternatives">{% for key,value in paraviewBuildNames|dictsort() %}
+          <li><a class="{{ key }}" href="{{ "http://sourceforge.net/projects/mantid/files/ParaView/" ~ paraviewVersion ~ "/" ~ value ~ "/download" }}">{{ key.title().replace("-"," ") }}</a></li>{% endfor %}
+        </ul>
       </article>
       <article id="samples" class="column">
         <h2>Sample datasets</h2>
