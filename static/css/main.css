@@ -1,0 +1,185 @@
+/*-------------------- $RESET --------------------*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section,
+.button, #previous  { /* download elements */
+  display: block;
+}
+
+body { line-height: 1; }
+ol, ul { list-style: none; }
+
+/*-------------------- $STRUCTURE --------------------*/
+
+.wrapper {
+  max-width: 30em;
+  margin: 0 auto;
+  padding: 1em;
+}
+
+li {
+  display: inline-block;
+  margin-right: 6px;
+  margin:0 0 10px 5px;
+  padding:0 0 0 10px;
+  background:url("../img/bullet.png") left no-repeat;
+}
+
+header[role="banner"] {
+  text-align: center;
+  margin: 1em;
+}
+
+/*-------------------- $TYPEOGRAPY --------------------*/
+
+a, p { font-family: 'Droid Sans', sans-serif; }
+
+h1,h2 {
+  font-family: 'Droid Serif', serif;
+  border-bottom: 1px solid #DCDCDC;
+}
+
+h1 { font-size: 2.8em; }
+
+h2 { font-size: 1.75em; }
+
+p {
+  font-size: 1.2em;
+  line-height: 1.6;
+}
+
+h1, h2, header[role="banner"], .button {
+  font-weight: 700;
+}
+
+header[role="banner"] h1 {
+  font-size: 4.2em;
+  border-bottom: 0;
+}
+
+/*-------------------- $SPACING --------------------*/
+
+h1,h2,p { margin-bottom: .6em; }
+
+header[role="banner"] h1 { margin-bottom: .2em; }
+
+/*-------------------- $LINKS & $COLOURS --------------------*/
+
+html {
+  background: whiteSmoke;
+  color: #222;
+}
+
+a {
+  color: #009933;
+  text-decoration: none;
+}
+
+a:hover { text-decoration: underline; }
+
+/*-------------------- $DOWNLOADS --------------------*/
+
+#gridcontainer {
+  margin: 0 auto;
+  max-width: 1080px;
+  padding-top: 1em;
+  border-top: 1px solid #DCDCDC;
+  border-bottom: 1px solid #DCDCDC;
+}
+
+#gridcontainer p { font-size: .875em; }
+
+.button {
+  margin: 0 auto;
+  background-color: #009933;
+  color: whiteSmoke;
+  text-align: center;
+  width: 65%;
+  padding: 1.6em 1em;
+  margin-bottom: 1em;
+
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+}
+
+.button:hover {
+  background-color: #448844;
+  text-decoration: none;
+}
+
+#samples li { margin-left: 2em; }
+
+#previous { text-align: right; }
+
+.column {
+  vertical-align: top;
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+
+  font-size: 14px;
+  padding: 1em;
+  width: 30%;
+}
+
+.column .button {
+  width: 80%;
+  padding: 1em;
+}
+
+.alternatives {
+  text-align: left;
+  margin-bottom: 1em;
+}
+
+/*-------------------- $ARCHIVES --------------------*/
+
+#container {
+  max-width: 40em;
+  margin: 0 auto;
+  padding: 1em;
+}
+
+.release {
+ padding: 1em;
+}
+
+/*-------------------- $MEDIA QUERIES ------------------*/
+
+@media only screen and (max-width: 60em) {
+  .minor {
+    display: block;
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  h1 { font-size: 2.8em; }
+}
+
+@media only screen and (max-width: 45em){
+  .minor { width: 90%; }
+  h1 { font-size: 2em; }
+}

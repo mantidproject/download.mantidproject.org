@@ -1,8 +1,8 @@
 {% extends "base.html" %}
-{% block content %}<div class="latest">
+{% block content %}<div id="container">
   <h1>Previous releases</h1>{% for release in releases %}
-  <h2><a href="{{ "http://www.mantidproject.org/Release_Notes_" ~ release['version'] }}">Release {{ release['version'] }} - {{ release['date'] }}</a></h2>
-  <ul class="release">{% for key,value in release['buildInfo'].iteritems() %}
+  <h2 id="{{ release['version']}}"><a href="{{ "http://www.mantidproject.org/Release_Notes_" ~ release['version'] }}">Release {{ release['version'] }} - {{ release['date'] }}</a></h2>
+  <ul class="release">{% for key,value in release['buildInfo']|dictsort() %}
     <li><a class="{{ key }}" href="{{ "http://sourceforge.net/projects/mantid/files/" ~ release['version'][0:3] ~ "/" ~ value ~ "/download" }}">{{ key.title().replace("-"," ") }}</a></li>{% endfor %}
   </ul>{% endfor %}
 </div>{% endblock %}

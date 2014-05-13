@@ -5,7 +5,7 @@
 {% block content %}  <header role="banner">
     <h1>Mantid downloads</h1>
   </header>
-  <div class="latest">
+  <section id="latest" class="wrapper">
     <h1>Latest release ({{ releases[1]['version'] }})</h1>
     <p>You can view the changes made in the <a href={{ "http://www.mantidproject.org/Release_Notes_" ~ releases[1]['version'] }}>release notes</a> or view <a href="./instructions.html">installation instructions</a> for your system.</p>
     <a href="#" class="button">Download Mantid for </a>
@@ -14,16 +14,14 @@
       <li><a class="{{ key }}" href="{{ "http://sourceforge.net/projects/mantid/files/" ~ releases[1]['version'][0:3] ~ "/" ~ value ~ "/download" }}">{{ key.title().replace("-"," ") }}</a></li>{% endfor %}
     </ul>
     <a href="./archives.html" id="previous">Previous releases</a>
-  </div>
-    <div>
-      <div class="paraview">
-        <h2>Paraview 3.98.1</h2>
+  </section>
+    <section id="gridcontainer">
+      <article id="paraview" class="column">
+        <h2>Paraview {{paraview }}</h2>
         <p>You may need to install a compatible version for Mantid.</p>
         <a href="#" class="button">Download Paraview for </a>
-        <p>You can also download Mantid for</p>
-        <p>OSX, Red hat/Fedora or Windows Vista/7/8 64-bit</p>
-      </div>
-      <div class="samples">
+      </article>
+      <article id="samples" class="column">
         <h2>Sample datasets</h2>
         <p>The datasets below contain example data for Mantid:</p>
         <ul>
@@ -32,8 +30,8 @@
           <li><a href="http://sourceforge.net/projects/mantid/files/Sample%20Data/SampleData-ISIS.zip/download">ISIS data</a></li>
           <li><a href="#">ORNL data</a></li>
         </ul>
-      </div>
-      <div class="nightly">
+      </article>
+      <article id="nightly" class="column">
         <h2>Nightly release</h2>
         <p>You can view the changes made in the <a href="http://mantidproject.github.io/news/">recent news</a>.</p>
         <a href="#" class="button">Download Mantid for </a>
@@ -41,5 +39,5 @@
         <ul class="alternatives">{% for key,value in releases[0]['buildInfo']|dictsort() %}
           <li><a class="{{ key }}" href="{{ "http://sourceforge.net/projects/mantid/files/Nightly/" ~ value ~ "/download" }}">{{ key.title().replace("-"," ") }}</a></li>{% endfor %}
         </ul>
-      </div>
-    </div>{% endblock %}
+      </article>
+    </section>{% endblock %}
