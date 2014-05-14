@@ -17,12 +17,12 @@
   </section>
     <section id="gridcontainer">
       <article id="paraview" class="column">
-        <h2>Paraview {{ paraviewVersion }}</h2>
+        <h2>Paraview {{ paraview_version }}</h2>
         <p>Paraview is required to use VATES features.</p>
         <a href="#" class="button">Download Paraview for </a>
         <p>Alternative downloads:</p>
-        <ul class="alternatives">{% for key,value in paraviewBuildNames|dictsort() %}
-          <li><a class="{{ key }}" href="{{ "http://sourceforge.net/projects/mantid/files/ParaView/" ~ paraviewVersion ~ "/" ~ value ~ "/download" }}">{{ value|get_osx_code_name if 'dmg' in value else key.title().replace("-"," ") }}</a></li>{% endfor %}
+        <ul class="alternatives">{% for key,value in paraview_build_names|dictsort() %}
+          <li><a class="{{ key }}" href="{{ "http://sourceforge.net/projects/mantid/files/ParaView/" ~ paraview_version ~ "/" ~ value ~ "/download" }}">{{ value|get_osx_code_name if 'dmg' in value else key.title().replace("-"," ") }}</a></li>{% endfor %}
         </ul>
       </article>
       <article id="samples" class="column">

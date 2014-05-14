@@ -11,7 +11,7 @@ PARAVIEW_DIR = os.path.join(RELEASE_DIR, "paraview/")
 
 def mantid_releases():
   """
-  Reads and stores release information for each release file in the releases folder.
+  Reads and stores release information for each release file in the releases folder. This includes the nightly build.
 
   Returns:
     list: A list that contains dictionaries of release information for each release. The list is sorted by release date.
@@ -47,8 +47,7 @@ def latest_paraview_release():
   Returns:
     list: The build names for the latest version of paraview.
   """
-  build_names = {} # Use a dict to store related OS name
-  # Obtain the build names for the latest version of paraview
+  build_names = {}
   filename = "paraview-" + latest_paraview_version() + ".txt"
   with open(os.path.join(PARAVIEW_DIR, filename), "r") as latest_release:
     for build_name in latest_release:
@@ -107,8 +106,8 @@ if __name__ == "__main__":
 
   downloadVars = { "title" : "Mantid downloads",
                  "description" : "Download the latest release of Mantid.",
-                 "paraviewVersion" : latest_paraview_version(),
-                 "paraviewBuildNames" : latest_paraview,
+                 "paraview_version" : latest_paraview_version(),
+                 "paraview_build_names" : latest_paraview,
                  "releases" : mantid_releases[0:2] # Only use first (nightly) and second (latest)
                  }
 
