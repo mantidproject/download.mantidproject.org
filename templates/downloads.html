@@ -10,8 +10,8 @@
     <p>You can view the changes made in the <a href={{ "http://www.mantidproject.org/Release_Notes_" ~ releases[1]['version'] }}>release notes</a> or view <a href="./instructions.html">installation instructions</a> for your system.</p>
     <a href="#" class="button">Download Mantid for </a>
     <p>Alternative downloads:</p>
-    <ul class="alternatives">{% for key,value in releases[1]['buildInfo']|dictsort() %}
-      <li><a class="{{ key }}" href="{{ "http://sourceforge.net/projects/mantid/files/" ~ releases[1]['version'][0:3] ~ "/" ~ value ~ "/download" }}">{{ value|getOSXCodeName if 'dmg' in value else key.title().replace("-"," ") }}</a></li>{% endfor %}
+    <ul class="alternatives">{% for key,value in releases[1]['build_names']|dictsort() %}
+      <li><a class="{{ key }}" href="{{ "http://sourceforge.net/projects/mantid/files/" ~ releases[1]['version'][0:3] ~ "/" ~ value ~ "/download" }}">{{ value|get_osx_code_name if 'dmg' in value else key.title().replace("-"," ") }}</a></li>{% endfor %}
     </ul>
     <a href="./archives.html" id="previous">Previous releases</a>
   </section>
@@ -22,7 +22,7 @@
         <a href="#" class="button">Download Paraview for </a>
         <p>Alternative downloads:</p>
         <ul class="alternatives">{% for key,value in paraviewBuildNames|dictsort() %}
-          <li><a class="{{ key }}" href="{{ "http://sourceforge.net/projects/mantid/files/ParaView/" ~ paraviewVersion ~ "/" ~ value ~ "/download" }}">{{ value|getOSXCodeName if 'dmg' in value else key.title().replace("-"," ") }}</a></li>{% endfor %}
+          <li><a class="{{ key }}" href="{{ "http://sourceforge.net/projects/mantid/files/ParaView/" ~ paraviewVersion ~ "/" ~ value ~ "/download" }}">{{ value|get_osx_code_name if 'dmg' in value else key.title().replace("-"," ") }}</a></li>{% endfor %}
         </ul>
       </article>
       <article id="samples" class="column">
@@ -32,7 +32,7 @@
           <li><a href="http://sourceforge.net/projects/mantid/files/Sample%20Data/SampleData-Muon.zip/download">Muon data</a></li>
           <li><a href="http://sourceforge.net/projects/mantid/files/Sample%20Data/WorkshopData.zip/download">Training data</a></li>
           <li><a href="http://sourceforge.net/projects/mantid/files/Sample%20Data/SampleData-ISIS.zip/download">ISIS data</a></li>
-          <li><a href="#">ORNL data</a></li>
+          <li><a href="http://sourceforge.net/projects/mantid/files/Sample%20Data/SampleData-ORNL.zip/download">ORNL data</a></li>
         </ul>
       </article>
       <article id="nightly" class="column">
@@ -40,8 +40,8 @@
         <p>You can view changes made in the <a href="http://mantidproject.github.io/news/">recent news</a>.</p>
         <a href="#" class="button">Download Mantid for </a>
         <p>Alternative downloads:</p>
-        <ul class="alternatives">{% for key,value in releases[0]['buildInfo']|dictsort() %}
-          <li><a class="{{ key }}" href="{{ "http://sourceforge.net/projects/mantid/files/Nightly/" ~ value ~ "/download" }}">{{ value|getOSXCodeName if 'dmg' in value else key.title().replace("-"," ") }}</a></li>{% endfor %}
+        <ul class="alternatives">{% for key,value in releases[0]['build_names']|dictsort() %}
+          <li><a class="{{ key }}" href="{{ "http://sourceforge.net/projects/mantid/files/Nightly/" ~ value ~ "/download" }}">{{ value|get_osx_code_name if 'dmg' in value else key.title().replace("-"," ") }}</a></li>{% endfor %}
         </ul>
       </article>
     </section>{% endblock %}
