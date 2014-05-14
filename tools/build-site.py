@@ -9,6 +9,13 @@ ROOT_DIR = os.path.join(os.path.dirname(__file__) + "../")
 RELEASE_DIR = os.path.join(ROOT_DIR,"releases/")
 PARAVIEW_DIR = os.path.join(RELEASE_DIR, "paraview/")
 
+SAMPLES_DATASETS = {
+  "ISIS" : "http://sourceforge.net/projects/mantid/files/Sample%20Data/SampleData-ISIS.zip/download",
+  "Muon" : "http://sourceforge.net/projects/mantid/files/Sample%20Data/SampleData-Muon.zip/download",
+  "ORNL" : "http://sourceforge.net/projects/mantid/files/Sample%20Data/SampleData-ORNL.zip/download",
+  "Training" :"http://sourceforge.net/projects/mantid/files/Sample%20Data/WorkshopData.zip/download"
+}
+
 def mantid_releases():
   """
   Reads and stores release information for each release file in the releases folder. This includes the nightly build.
@@ -106,6 +113,7 @@ if __name__ == "__main__":
 
   downloadVars = { "title" : "Mantid downloads",
                  "description" : "Download the latest release of Mantid.",
+                 "sample_datasets" : SAMPLES_DATASETS,
                  "paraview_version" : latest_paraview_version(),
                  "paraview_build_names" : latest_paraview,
                  "releases" : mantid_releases[0:2] # Only use first (nightly) and second (latest)

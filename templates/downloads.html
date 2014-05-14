@@ -28,11 +28,8 @@
       <article id="samples" class="column">
         <h2>Sample datasets</h2>
         <p>Sample datasets for use in Mantid:</p>
-        <ul>
-          <li><a href="http://sourceforge.net/projects/mantid/files/Sample%20Data/SampleData-Muon.zip/download">Muon data</a></li>
-          <li><a href="http://sourceforge.net/projects/mantid/files/Sample%20Data/WorkshopData.zip/download">Training data</a></li>
-          <li><a href="http://sourceforge.net/projects/mantid/files/Sample%20Data/SampleData-ISIS.zip/download">ISIS data</a></li>
-          <li><a href="http://sourceforge.net/projects/mantid/files/Sample%20Data/SampleData-ORNL.zip/download">ORNL data</a></li>
+        <ul> {% for name,downloadurl in sample_datasets|dictsort() %}
+          <li><a href="{{ downloadurl }}">{{ name }}</a></li>{% endfor %}
         </ul>
       </article>
       <article id="nightly" class="column">
