@@ -5,26 +5,50 @@ import jinja2
 import os
 import re
 
+# Repo folder structure
 ROOT_DIR = os.path.join(os.path.dirname(__file__) + "../")
 RELEASE_DIR = os.path.join(ROOT_DIR,"releases/")
 PARAVIEW_DIR = os.path.join(RELEASE_DIR, "paraview/")
-
+# General globals
+MANTID_NEWS = "http://mantidproject.github.io/news/"
+RELEASE_NOTES = "http://www.mantidproject.org/Release_Notes_"
+# Download specific variables
+SOURCEFORGE_FILES = "http://sourceforge.net/projects/mantid/files/"
+SOURCEFORGE_NIGHTLY = SOURCEFORGE_FILES + "Nightly/"
+SOURCEFORGE_SAMPLES = SOURCEFORGE_FILES + "Sample%20Data/"
+SOURCEFORGE_PARAVIEW = SOURCEFORGE_FILES + "ParaView/"
+# Must be in the name : downloadurl format.
 SAMPLES_DATASETS = {
-  "ISIS" : "http://sourceforge.net/projects/mantid/files/Sample%20Data/SampleData-ISIS.zip/download",
-  "Muon" : "http://sourceforge.net/projects/mantid/files/Sample%20Data/SampleData-Muon.zip/download",
-  "ORNL" : "http://sourceforge.net/projects/mantid/files/Sample%20Data/SampleData-ORNL.zip/download",
-  "Training" :"http://sourceforge.net/projects/mantid/files/Sample%20Data/WorkshopData.zip/download"
+  "ISIS" : SOURCEFORGE_SAMPLES + "SampleData-ISIS.zip/download",
+  "Muon" : SOURCEFORGE_SAMPLES + "SampleData-Muon.zip/download",
+  "ORNL" : SOURCEFORGE_SAMPLES + "SampleData-ORNL.zip/download",
+  "Training" : SOURCEFORGE_SAMPLES + "WorkshopData.zip/download"
 }
 
 def mantid_releases():
   """
-  Reads and stores release information for each release file in the releases folder. This includes the nightly build.
+  Reads and stores release information for each release file in the releases folder. This does not include the nightly build.
 
   Returns:
     list: A list that contains dictionaries of release information for each release. The list is sorted by release date.
+
+    Example of list structure:
+
+    [
+      {
+        "date" : "2014-02-28",
+        "version" : "3.1.1",
+        "build_info" : {
+          "windows" : "http://sourceforge.net/projects/mantid/files/3.1/mantid-3.1.1-win64.exe/download",
+          "..." : "...", # Shortened for simplicity
+          "ubuntu" : "http://sourceforge.net/projects/mantid/files/3.1/mantid_3.1.1-1_amd64.deb/download"
+        }
+      }
+      ...
+    ]
   """
   releases = []
-  release_files = [name for name in os.listdir(RELEASE_DIR) if "paraview" not in name]
+  release_files = [name for name in os.listdir(RELEASE_DIR) if "paraview" not in name and "nightly" not in name]
   for file_name in release_files:
     release = {}
     release['version'], release['date'] = os.path.splitext(file_name)[0].split("-",1)
@@ -32,10 +56,29 @@ def mantid_releases():
     with open(os.path.join(RELEASE_DIR,file_name), 'r') as content:
       build_names = {}
       for build_name in content:
-        build_names[get_os_name(build_name)] = build_name.rstrip()
-      release['build_names'] = build_names
-    releases.append(release)
+        # Stores the OS and related download URL to a dict, e.g. mac : http://...
+        build_names[get_os_name(build_name)] = get_download_url(build_name,release['version'],"release")
+      release['build_info'] = build_names
+      releases.append(release)
   return sorted(releases, key=lambda k : k['date'],reverse=True)
+
+def nightly_release():
+  """
+  Reads and stores release information for the nightly build from the nightly text file in the releases folder.
+
+  Return:
+    dict: A dictionary containing release information for the nightly build.
+    A similar format (see inner dict) of mantid_releases above is returned.
+  """
+  release_info = {}
+  filename = [name for name in os.listdir(RELEASE_DIR) if "nightly" in name]
+  release_info['version'], release_info['date'] = os.path.splitext(filename[0])[0].split("-",1)
+  with open(os.path.join(RELEASE_DIR, filename[0]), "r") as content:
+    build_names = {}
+    for build_name in content:
+      build_names[get_os_name(build_name)] = get_download_url(build_name, latest_paraview_version(), "nightly")
+    release_info['build_info'] = build_names
+  return release_info
 
 def latest_paraview_version():
   """
@@ -55,10 +98,11 @@ def latest_paraview_release():
     list: The build names for the latest version of paraview.
   """
   build_names = {}
-  filename = "paraview-" + latest_paraview_version() + ".txt"
-  with open(os.path.join(PARAVIEW_DIR, filename), "r") as latest_release:
-    for build_name in latest_release:
-      build_names[get_os_name(build_name)] = build_name.rstrip()
+  version = latest_paraview_version()
+  filename = "paraview-" + version + ".txt"
+  with open(os.path.join(PARAVIEW_DIR, filename), "r") as content:
+    for build_name in content:
+      build_names[get_os_name(build_name)] = get_download_url(build_name, version,"paraview")
   return build_names
 
 def get_os_name(build_name):
@@ -81,6 +125,26 @@ def get_os_name(build_name):
   elif "tar.gz" in build_name: osname = "source"
   return osname
 
+def get_download_url(build_name, version, build_option):
+  """
+  Builds a download url for a given mantid buildname.
+
+  Args:
+    buildname (str): The Mantid build name from a release file, e.g. mantid-3.1.1-win64.exe
+    version (str): The version of the release, e.g. 3.1.1
+    build_option (str): Used to determine the type of URL to build.
+
+  Returns:
+    The download url for a given build.
+  """
+  build_name = build_name.rstrip() + "/download"
+  if build_option is "nightly":
+    return SOURCEFORGE_NIGHTLY + build_name
+  elif build_option is "paraview":
+    return SOURCEFORGE_PARAVIEW + version + "/" + build_name
+  else:
+    return SOURCEFORGE_FILES + version[0:3] + "/" + build_name
+
 def get_osx_code_name(url):
   """
   Obtains the OSX code name from a given download url.
@@ -102,21 +166,23 @@ def get_osx_code_name(url):
 if __name__ == "__main__":
   # Build information for each release file in the "releases" folder
   mantid_releases = mantid_releases()
-  # Note: [0] is version, and [1] is build_names.
-  latest_paraview = latest_paraview_release()
 
   # Variables to output on the archives page
   archiveVars = { "title" : "Mantid archive downloads",
                 "description" : "Downloads for current and previous releases of Mantid.",
-                "releases" : mantid_releases[1:] # Remove nightly (first item) build from releases
+                "release_notes" : RELEASE_NOTES,
+                "releases" : mantid_releases
                 }
 
   downloadVars = { "title" : "Mantid downloads",
                  "description" : "Download the latest release of Mantid.",
                  "sample_datasets" : SAMPLES_DATASETS,
+                 "mantid_news" : MANTID_NEWS,
+                 "release_notes" : RELEASE_NOTES,
+                 "latest_release" : mantid_releases[0],
+                 "nightly_release" : nightly_release(),
                  "paraview_version" : latest_paraview_version(),
-                 "paraview_build_names" : latest_paraview,
-                 "releases" : mantid_releases[0:2] # Only use first (nightly) and second (latest)
+                 "paraview_build_names" : latest_paraview_release()
                  }
 
   # Setup up the jinja environment and load the templates

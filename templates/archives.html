@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block content %}<div id="container">
   <h1>Previous releases</h1>{% for release in releases %}
-  <h2 id="{{ release['version']}}"><a href="{{ "http://www.mantidproject.org/Release_Notes_" ~ release['version'] }}">Release {{ release['version'] }} - {{ release['date'] }}</a></h2>
-  <ul class="release">{% for key,value in release['build_names']|dictsort() %}
-    <li><a class="{{ key }}" href="{{ "http://sourceforge.net/projects/mantid/files/" ~ release['version'][0:3] ~ "/" ~ value ~ "/download" }}">{{ value|get_osx_code_name if 'dmg' in value else key.title().replace("-"," ") }}</a></li>{% endfor %}
+  <h2 id="{{ release['version'] }}"><a href="{{ release_notes ~ release['version'] }}">Release {{ release['version'] }} - {{ release['date'] }}</a></h2>
+  <ul class="release">{% for name,downloadurl in release['build_info']|dictsort() %}
+    <li><a class="{{ name }}" href="{{ downloadurl }}">{{ name }}</a></li>{% endfor %}
   </ul>{% endfor %}
 </div>{% endblock %}
