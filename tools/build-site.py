@@ -3,6 +3,7 @@
 
 import jinja2
 import os
+import re
 
 THIS_DIR = os.path.abspath(os.path.dirname(__file__))
 
@@ -45,6 +46,14 @@ def getOSName(buildname):
   elif "tar.gz" in buildname: osname = "source"
   return osname
 
+def getOSXCodeName(url):
+  url = url.replace(".dmg","")
+  url = url.replace("-64bit","") # Required as some urls (paraview) have this
+  url = url.rsplit("-",1)[1] # Obtain codename by splitting on last hyphen
+  # Add space before uppercase (not first, e.g. MountainLion => Mountain Lion)
+  url = re.sub(r"(\w)([A-Z])",r"\1 \2",url)
+  return url
+
 if __name__ == "__main__":
   # Build information for each release file in the "releases" folder
   releases = releases()
@@ -66,6 +75,8 @@ if __name__ == "__main__":
 
   # Setup up the jinja environment and load the templates
   env = jinja2.Environment(loader=jinja2.FileSystemLoader(searchpath=THIS_DIR + "/../templates"))
+  # Add a filter to output the osx code name based on a given url
+  env.filters["getOSXCodeName"] = getOSXCodeName
   # Write the contents of variables to the templates and dump the output to an HTML file.
   env.get_template("archives.html").stream(archiveVars).dump(THIS_DIR +   "/../static/archives.html")
   env.get_template("downloads.html").stream(downloadVars).dump(THIS_DIR + "/../static/index.html")

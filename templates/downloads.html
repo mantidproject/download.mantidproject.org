@@ -11,7 +11,7 @@
     <a href="#" class="button">Download Mantid for </a>
     <p>Alternative downloads:</p>
     <ul class="alternatives">{% for key,value in releases[1]['buildInfo']|dictsort() %}
-      <li><a class="{{ key }}" href="{{ "http://sourceforge.net/projects/mantid/files/" ~ releases[1]['version'][0:3] ~ "/" ~ value ~ "/download" }}">{{ key.title().replace("-"," ") }}</a></li>{% endfor %}
+      <li><a class="{{ key }}" href="{{ "http://sourceforge.net/projects/mantid/files/" ~ releases[1]['version'][0:3] ~ "/" ~ value ~ "/download" }}">{{ value|getOSXCodeName if 'dmg' in value else key.title().replace("-"," ") }}</a></li>{% endfor %}
     </ul>
     <a href="./archives.html" id="previous">Previous releases</a>
   </section>
@@ -22,7 +22,7 @@
         <a href="#" class="button">Download Paraview for </a>
         <p>Alternative downloads:</p>
         <ul class="alternatives">{% for key,value in paraviewBuildNames|dictsort() %}
-          <li><a class="{{ key }}" href="{{ "http://sourceforge.net/projects/mantid/files/ParaView/" ~ paraviewVersion ~ "/" ~ value ~ "/download" }}">{{ key.title().replace("-"," ") }}</a></li>{% endfor %}
+          <li><a class="{{ key }}" href="{{ "http://sourceforge.net/projects/mantid/files/ParaView/" ~ paraviewVersion ~ "/" ~ value ~ "/download" }}">{{ value|getOSXCodeName if 'dmg' in value else key.title().replace("-"," ") }}</a></li>{% endfor %}
         </ul>
       </article>
       <article id="samples" class="column">
@@ -41,7 +41,7 @@
         <a href="#" class="button">Download Mantid for </a>
         <p>Alternative downloads:</p>
         <ul class="alternatives">{% for key,value in releases[0]['buildInfo']|dictsort() %}
-          <li><a class="{{ key }}" href="{{ "http://sourceforge.net/projects/mantid/files/Nightly/" ~ value ~ "/download" }}">{{ key.title().replace("-"," ") }}</a></li>{% endfor %}
+          <li><a class="{{ key }}" href="{{ "http://sourceforge.net/projects/mantid/files/Nightly/" ~ value ~ "/download" }}">{{ value|getOSXCodeName if 'dmg' in value else key.title().replace("-"," ") }}</a></li>{% endfor %}
         </ul>
       </article>
     </section>{% endblock %}
