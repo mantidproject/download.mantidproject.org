@@ -102,6 +102,8 @@ a {
 
 a:hover { text-decoration: underline; }
 
+#error { color: #EB2735; }
+
 /*-------------------- $DOWNLOADS --------------------*/
 .alternatives {
   text-align: left;

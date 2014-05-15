@@ -7,6 +7,18 @@ function getOS() {
 }
 
 $(document).ready(function() {
+
+  if (navigator.userAgent.indexOf('Windows NT 5.1') != -1)
+  {
+    $('#latest p:first').replaceWith('<p id="error"><b>Note:</b> Windows XP is no longer supported. Last supported release <b>(3.1.1)</b> can be downloaded below:</p>');
+    $('#latest .button').attr("href","http://sourceforge.net/projects/mantid/files/3.1/mantid-3.1.1-win32.exe/download");
+    $('#nightly .button').attr("href","http://sourceforge.net/projects/mantid/files/3.1/mantid-3.1.1-win32.exe/download");
+    $('#paraview .button').attr("href","http://download.mantidproject.org/download.psp?f=kits/mantid/Python27/3.0/ParaView-3.98.1-Windows-32bit.exe");
+    $('.button').append("Windows XP");
+    $('.win32').closest('li').remove();
+    return;
+  }
+
   osName = getOS();
   osClass = "." + osName.split(" ")[0].toLowerCase(); // Grab OS name only (e.g. not 7/8)
   // Replace the download buttons href with the correct download URL for latest and nightly releases
