@@ -12,11 +12,13 @@ PARAVIEW_DIR = os.path.join(RELEASE_DIR, "paraview/")
 # General globals
 MANTID_NEWS = "http://mantidproject.github.io/news/"
 RELEASE_NOTES = "http://www.mantidproject.org/Release_Notes_"
+
 # Download specific variables
 SOURCEFORGE_FILES = "http://sourceforge.net/projects/mantid/files/"
 SOURCEFORGE_NIGHTLY = SOURCEFORGE_FILES + "Nightly/"
 SOURCEFORGE_SAMPLES = SOURCEFORGE_FILES + "Sample%20Data/"
 SOURCEFORGE_PARAVIEW = SOURCEFORGE_FILES + "ParaView/"
+
 # Must be in the name : downloadurl format.
 SAMPLES_DATASETS = {
   "ISIS" : SOURCEFORGE_SAMPLES + "SampleData-ISIS.zip/download",
@@ -85,14 +87,14 @@ def latest_paraview_version():
   Obtains the latest version of paraview in use by reading the first line of the paraview versions file.
 
   Returns:
-    The version number of the latest paraview in use.
+    str: The version number of the latest paraview in use.
   """
   with open(os.path.join(PARAVIEW_DIR, "paraviewVersions.txt"), "r") as paraviewReleases:
     return paraviewReleases.readline().split(",")[1].rstrip()
 
 def latest_paraview_release():
   """
-  Reads the latest paraview release file, and writes the contents (which is the build names) to a list
+  Reads the latest paraview release file, and writes the contents (which is the build names) to a list.
 
   Returns:
     list: The build names for the latest version of paraview.
@@ -108,12 +110,15 @@ def latest_paraview_release():
 def get_os_name(build_name):
   """
   Obtains the operating system name from a given build name.
+  The osnames output as classes in the 'alternative downloads' <li> in the jinja template (They are the key in the 'build_names' dict).
+  This is required to allow switching of the href from the download button and the users os via JavaScript.
 
   Args:
     build_name (str): The name of the Mantid build for a given operating system, e.g. "mantid-2.3.2-SnowLeopard.dmg"
 
   Returns:
     str: The name of the operating system that the Mantid build will run on.
+    If no os can be detected 'unknown' is returned.
   """
   osname = "unknown"
   if "win64" in build_name or "Windows-64bit" in build_name: osname = "windows"
@@ -128,6 +133,7 @@ def get_os_name(build_name):
 def get_download_url(build_name, version, build_option):
   """
   Builds a download url for a given mantid buildname.
+  This is used as the value in the 'build_names' dictionary, which is output in the jinja template.
 
   Args:
     buildname (str): The Mantid build name from a release file, e.g. mantid-3.1.1-win64.exe
@@ -135,7 +141,7 @@ def get_download_url(build_name, version, build_option):
     build_option (str): Used to determine the type of URL to build.
 
   Returns:
-    The download url for a given build.
+    str: The download url for a given build.
   """
   build_name = build_name.rstrip() + "/download"
   if build_option is "nightly":
@@ -145,22 +151,41 @@ def get_download_url(build_name, version, build_option):
   else:
     return SOURCEFORGE_FILES + version[0:3] + "/" + build_name
 
-def get_osx_code_name(url):
+def tidy_build_name(url, osname):
   """
-  Obtains the OSX code name from a given download url.
+  Obtains the build name from a given download url if possible, otherwise uses the osname provided.
   This is used as a custom filter in the jinja2 templating engine.
 
   Args:
     url (str): The download url of a mantid OSX build.
+    osname (str): The osname set in get_os_name above, e.g. red-hat
 
   Returns:
     str: The OSX code name, e.g. "Mountain Lion".
   """
-  url = url.replace(".dmg","")
-  url = url.replace("-64bit","") # Required as some urls (paraview) have this
-  url = url.rsplit("-",1)[1] # Obtain codename by splitting on last hyphen
-  # Add space before uppercase (not first, e.g. MountainLion => Mountain Lion)
-  url = re.sub(r"(\w)([A-Z])",r"\1 \2",url)
+  # The osname set on "get_os_name" is sufficient.
+  if ".rpm" in url or ".tar.gz" in url or ".deb" in url:
+    return osname.title().replace("-"," ")
+
+  url = url.replace("/download","")
+
+  if ".dmg" in url:
+    url = url.replace(".dmg","")
+    url = url.replace("-64bit","") # Required as some urls (paraview) have this
+    url = url.rsplit("-",1)[1] # Obtain codename by splitting on last hyphen
+    # OSX fix: adds a space before uppercase, e.g. MountainLion becomes Mountain Lion
+    url = re.sub(r"(\w)([A-Z])",r"\1 \2",url)
+
+  if ".exe" in url:
+    # Cannot split like above as paraview has hyphen between Windows and bit, e.g. ..-Windows-64bit
+    url = url[url.lower().index("win"):len(url)]
+    # Usability improvements
+    url = url.replace(".exe","").replace("-","")
+    url = url.replace("bit","")
+    url = url.replace("win","Windows")
+    url = url.replace("32"," XP")
+    url = url.replace("64"," 7/8")
+
   return url
 
 if __name__ == "__main__":
@@ -188,7 +213,7 @@ if __name__ == "__main__":
   # Setup up the jinja environment and load the templates
   env = jinja2.Environment(loader=jinja2.FileSystemLoader(searchpath=os.path.join(ROOT_DIR,"templates")))
   # Add a filter to output the osx code name based on a given url
-  env.filters["get_osx_code_name"] = get_osx_code_name
+  env.filters["tidy_build_name"] = tidy_build_name
   # Write the contents of variables to the templates and dump the output to an HTML file.
   env.get_template("archives.html").stream(archiveVars).dump(os.path.join(ROOT_DIR + "static/archives.html"))
   env.get_template("downloads.html").stream(downloadVars).dump(os.path.join(ROOT_DIR + "static/index.html"))
