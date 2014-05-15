@@ -110,7 +110,7 @@ def latest_paraview_release():
 def get_os_name(build_name):
   """
   Obtains the operating system name from a given build name.
-  The osnames output as classes in the 'alternative downloads' <li> in the jinja template (They are the key in the 'build_names' dict).
+  The osnames output as CSS classes in the 'alternative downloads' <li> in the jinja template (They are the key in the 'build_names' dict).
   This is required to allow switching of the href from the download button and the users os via JavaScript.
 
   Args:
