@@ -1,8 +1,20 @@
 {% extends "base.html" %}
 {% block content %}<div id="container">
-  <h1>Previous releases</h1>{% for release in releases %}
-  <h2 id="{{ release['version'] }}"><a href="{{ release_notes ~ release['version'] }}">Release {{ release['version'] }} - {{ release['date'] }}</a></h2>
-  <ul class="release">{% for osname,downloadurl in release['build_info']|dictsort() %}
-    <li><a class="{{ osname }}" href="{{ downloadurl }}">{{ downloadurl|tidy_build_name(osname) }}</a></li>{% endfor %}
-  </ul>{% endfor %}
+  <h1>Previous releases</h1>
+  <p>Below is all previous Mantid releases and the related ParaView version, which is required to activate the VATES features within Mantid.</p>{% for release in releases %}
+  <h2><a href="{{ release_notes ~ release['mantid_version'] }}">Release {{ release['mantid_version'] }} &ndash; {{ release['date'] }}</a></h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Mantid build</th>
+        <th>ParaView version</th>
+      </tr>
+    </thead>
+    <tbody>{% for osname,downloadurls in release['build_info']|dictsort() %}
+      <tr>
+        <td><a href="{{ downloadurls[0] }}">{{ downloadurls[0]|tidy_build_name(osname) }}</a></td>
+        <td><a href="{{ downloadurls[1] }}">{{ release['paraview_version'] }}</a></td>
+      </tr>{% endfor %}
+    </tbody>
+  </table>{% endfor %}
 </div>{% endblock %}

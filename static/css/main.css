@@ -72,7 +72,7 @@ p {
   line-height: 1.6;
 }
 
-h1, h2, .banner, .button {
+h1, h2, .banner, .button, th {
   font-weight: 700;
 }
 
@@ -174,25 +174,45 @@ a:hover { text-decoration: underline; }
   padding: 1em;
 }
 
-.release {
- padding: 1em;
+/*-------------------- $TABLES ------------------*/
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.6em 0;
+}
+
+/* Zebra striping */
+tr:nth-of-type(odd) {  background: white; }
+
+th {
+  background: #E0DFDE;
+  font-size: 1.3em;
+}
+
+td, th {
+  padding: .75em;
+  border: 1px solid #CCC;
+  text-align: left;
 }
 
 /*-------------------- $MEDIA QUERIES ------------------*/
 
 @media only screen and (max-width: 60em) {
+  h1 { font-size: 2.8em; }
   .column {
     display: block;
     width: 85%;
     margin: 0 auto;
   }
   #gridcontainer { width: 100%; }
-  h1 { font-size: 2.8em; }
+  #container { width: 35em; }
 }
 
 @media only screen and (max-width: 45em){
-  .banner h1 { font-size: 2.8em; }
-  #gridcontainer { width: 100%; }
-  .column { width: 90%; }
   h1 { font-size: 2em; }
+  .banner h1 { font-size: 2.8em; }
+  .column { width: 90%; }
+  #gridcontainer { width: 100%; }
+  #container { width: 90%; }
 }

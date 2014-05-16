@@ -4,11 +4,13 @@
 import jinja2
 import os
 import re
+import sys
 
 # Repo folder structure
 ROOT_DIR = os.path.join(os.path.dirname(__file__) + "../")
 RELEASE_DIR = os.path.join(ROOT_DIR,"releases/")
 PARAVIEW_DIR = os.path.join(RELEASE_DIR, "paraview/")
+
 # General globals
 MANTID_NEWS = "http://mantidproject.github.io/news/"
 RELEASE_NOTES = "http://www.mantidproject.org/Release_Notes_"
@@ -39,8 +41,10 @@ def mantid_releases():
     [
       {
         "date" : "2014-02-28",
-        "version" : "3.1.1",
+        "mantid_version" : "3.1.1",
+        "paraview_version" : "3.98.1",
         "build_info" : {
+          # (key) operating system name : (value) [mantid_download_url, paraview_download_url]
           "windows" : "http://sourceforge.net/projects/mantid/files/3.1/mantid-3.1.1-win64.exe/download",
           "..." : "...", # Shortened for simplicity
           "ubuntu" : "http://sourceforge.net/projects/mantid/files/3.1/mantid_3.1.1-1_amd64.deb/download"
@@ -53,16 +57,74 @@ def mantid_releases():
   release_files = [name for name in os.listdir(RELEASE_DIR) if "paraview" not in name and "nightly" not in name]
   for file_name in release_files:
     release = {}
-    release['version'], release['date'] = os.path.splitext(file_name)[0].split("-",1)
-    # Read the build names of each release file.
-    with open(os.path.join(RELEASE_DIR,file_name), 'r') as content:
-      build_names = {}
-      for build_name in content:
-        # Stores the OS and related download URL to a dict, e.g. mac : http://...
-        build_names[get_os_name(build_name)] = get_download_url(build_name,release['version'],"release")
-      release['build_info'] = build_names
-      releases.append(release)
+    release['mantid_version'], release['date'] = os.path.splitext(file_name)[0].split("-",1)
+    release['paraview_version'] = paraview_version(release['mantid_version'])
+    mantid_builds = parse_build_names(os.path.join(RELEASE_DIR + file_name), release['mantid_version'], "release")
+    paraview_builds = paraview_build_names(release['paraview_version'])
+
+    # Add the related paraview download url to the dict, based on the osname.
+    # Value of dict must be changed to a list to accommodate multiple values.
+    for osname,downloadurl in mantid_builds.iteritems():
+      if osname in paraview_builds:
+        mantid_builds[osname] = [downloadurl, paraview_builds[osname]]
+      else:
+        # Required as value must now be a list in the template.
+        mantid_builds[osname] = [downloadurl, paraview_builds["source"]]
+
+    release['build_info'] = mantid_builds
+    releases.append(release)
   return sorted(releases, key=lambda k : k['date'],reverse=True)
+
+def parse_build_names(file_location, version, build_option):
+  """
+  Parses a file that contains build names (e.g. those in /releases/) and stores the contents in a dictionary.
+  The key of the dictionary is the operating system, which is obtained based on the build's file extension.
+
+  Args:
+    file_location (str): The location of the release file to parse.
+    version (str): Used when building the URL.
+    build_option (str): The name of the build, which is used when building the URL, e.g. "release", "nightly" or "paraview".
+
+  Returns:
+    dict: A dictionary containing OS names as keys, and the related download url as a value.
+      Key : Obtained from get_os_name, and is output on the downloads page as CSS classes.
+      Value : The download url for that specific operating system.
+  """
+  with open(file_location, 'r') as content:
+    build_names = {}
+    for build_name in content:
+      build_names[get_os_name(build_name)] = get_download_url(build_name,version,build_option)
+    return build_names
+
+def paraview_version(mantid_version):
+  """
+  Obtains the paraview version for a specific mantid release from the paraview versions file.
+
+  Args:
+    mantid_version (str): The version of Mantid to search for in the paraview versions file.
+
+  Returns:
+    str: The paraview version that the given release of mantid requires.
+  """
+  with open(os.path.join(PARAVIEW_DIR, "paraviewVersions.txt"), "r") as paraviewReleases:
+    for line in paraviewReleases:
+      m_version, paraview_version = line.rstrip("\n").split(",")
+      if m_version == mantid_version:
+        return paraview_version
+  sys.exit("ERROR: The version of Mantid you provided 'paraview_version' was not in the paraview versions file.")
+
+def paraview_build_names(paraview_version):
+  """
+  Reads and stores paraview build names from the paraview release file, which is parsed based on version.
+
+  Args:
+    paraview_version (str): The paraview version
+
+  Returns:
+    dict: The paraview build names for the given version.
+  """
+  file_location = os.path.join(PARAVIEW_DIR, "paraview-" + paraview_version + ".txt")
+  return parse_build_names(file_location, paraview_version, "paraview")
 
 def nightly_release():
   """
@@ -75,37 +137,8 @@ def nightly_release():
   release_info = {}
   filename = [name for name in os.listdir(RELEASE_DIR) if "nightly" in name]
   release_info['version'], release_info['date'] = os.path.splitext(filename[0])[0].split("-",1)
-  with open(os.path.join(RELEASE_DIR, filename[0]), "r") as content:
-    build_names = {}
-    for build_name in content:
-      build_names[get_os_name(build_name)] = get_download_url(build_name, latest_paraview_version(), "nightly")
-    release_info['build_info'] = build_names
+  release_info['build_info'] = parse_build_names(os.path.join(RELEASE_DIR,filename[0]),release_info['version'],"nightly")
   return release_info
-
-def latest_paraview_version():
-  """
-  Obtains the latest version of paraview in use by reading the first line of the paraview versions file.
-
-  Returns:
-    str: The version number of the latest paraview in use.
-  """
-  with open(os.path.join(PARAVIEW_DIR, "paraviewVersions.txt"), "r") as paraviewReleases:
-    return paraviewReleases.readline().split(",")[1].rstrip()
-
-def latest_paraview_release():
-  """
-  Reads the latest paraview release file, and writes the contents (which is the build names) to a list.
-
-  Returns:
-    list: The build names for the latest version of paraview.
-  """
-  build_names = {}
-  version = latest_paraview_version()
-  filename = "paraview-" + version + ".txt"
-  with open(os.path.join(PARAVIEW_DIR, filename), "r") as content:
-    for build_name in content:
-      build_names[get_os_name(build_name)] = get_download_url(build_name, version,"paraview")
-  return build_names
 
 def get_os_name(build_name):
   """
@@ -120,14 +153,14 @@ def get_os_name(build_name):
     str: The name of the operating system that the Mantid build will run on.
     If no os can be detected 'unknown' is returned.
   """
-  osname = "unknown"
-  if "win64" in build_name or "Windows-64bit" in build_name: osname = "windows"
-  elif "win32" in build_name or "Windows-32bit" in build_name: osname = "win32"
-  elif "MountainLion" in build_name: osname = "mac"
-  elif "SnowLeopard" in build_name: osname = "snow-leopard"
+  build_name = build_name.lower()
+  if "win64" in build_name or "windows-64bit" in build_name: osname = "windows"
+  elif "win32" in build_name or "windows-32bit" in build_name: osname = "win32"
+  elif "mountainlion" in build_name: osname = "mac"
+  elif "snowleopard" in build_name or ".dmg" in build_name: osname = "snow-leopard"
   elif ".rpm" in build_name: osname = "red-hat"
   elif ".deb" in build_name or "Linux" in build_name: osname = "ubuntu"
-  elif "tar.gz" in build_name: osname = "source"
+  else: osname = "source"
   return osname
 
 def get_download_url(build_name, version, build_option):
@@ -206,8 +239,8 @@ if __name__ == "__main__":
                  "release_notes" : RELEASE_NOTES,
                  "latest_release" : mantid_releases[0],
                  "nightly_release" : nightly_release(),
-                 "paraview_version" : latest_paraview_version(),
-                 "paraview_build_names" : latest_paraview_release()
+                 "paraview_version" : mantid_releases[0]['paraview_version'],
+                 "paraview_build_names" : paraview_build_names(mantid_releases[0]['paraview_version'])
                  }
 
   # Setup up the jinja environment and load the templates
