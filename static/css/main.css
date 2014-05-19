@@ -185,6 +185,8 @@ table {
 /* Zebra striping */
 tr:nth-of-type(odd) {  background: white; }
 
+tr:hover { background-color: whiteSmoke; }
+
 th {
   background: #E0DFDE;
   font-size: 1.3em;
