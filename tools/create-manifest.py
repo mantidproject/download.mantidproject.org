@@ -7,7 +7,6 @@ import distutils.version
 import os
 import sys
 
-
 def update_paraview_versions(mantid_version, paraview_version):
   """
   Adds the mantid release code and paraview version to the top of the paraviewReleases file.

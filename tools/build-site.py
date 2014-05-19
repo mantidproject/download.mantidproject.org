@@ -45,9 +45,8 @@ def mantid_releases():
         "paraview_version" : "3.98.1",
         "build_info" : {
           # (key) operating system name : (value) [mantid_download_url, paraview_download_url]
-          "windows" : "http://sourceforge.net/projects/mantid/files/3.1/mantid-3.1.1-win64.exe/download",
+          "windows" : ["http://...mantid-3.1.1-win64.exe/download", "http://...paraview-win64.exe/download"],
           "..." : "...", # Shortened for simplicity
-          "ubuntu" : "http://sourceforge.net/projects/mantid/files/3.1/mantid_3.1.1-1_amd64.deb/download"
         }
       }
       ...
@@ -151,7 +150,7 @@ def get_os_name(build_name):
 
   Returns:
     str: The name of the operating system that the Mantid build will run on.
-    If no os can be detected 'unknown' is returned.
+    If no os can be detected 'source' is returned.
   """
   build_name = build_name.lower()
   if "win64" in build_name or "windows-64bit" in build_name: osname = "windows"
@@ -190,11 +189,11 @@ def tidy_build_name(url, osname):
   This is used as a custom filter in the jinja2 templating engine.
 
   Args:
-    url (str): The download url of a mantid OSX build.
+    url (str): The download url of a mantid build.
     osname (str): The osname set in get_os_name above, e.g. red-hat
 
   Returns:
-    str: The OSX code name, e.g. "Mountain Lion".
+    str: The os name obtained from the url string, e.g. "Mountain Lion".
   """
   # The osname set on "get_os_name" is sufficient.
   if ".rpm" in url or ".tar.gz" in url or ".deb" in url:
@@ -245,7 +244,7 @@ if __name__ == "__main__":
 
   # Setup up the jinja environment and load the templates
   env = jinja2.Environment(loader=jinja2.FileSystemLoader(searchpath=os.path.join(ROOT_DIR,"templates")))
-  # Add a filter to output the osx code name based on a given url
+  # Add a filter to output the os name based on a given url
   env.filters["tidy_build_name"] = tidy_build_name
   # Write the contents of variables to the templates and dump the output to an HTML file.
   env.get_template("archives.html").stream(archiveVars).dump(os.path.join(ROOT_DIR + "static/archives.html"))
