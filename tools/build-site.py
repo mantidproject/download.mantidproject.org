@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import docutils.core
 import jinja2
 import os
 import re
@@ -10,6 +11,7 @@ import sys
 ROOT_DIR = os.path.join(os.path.dirname(__file__) + "../")
 RELEASE_DIR = os.path.join(ROOT_DIR,"releases/")
 PARAVIEW_DIR = os.path.join(RELEASE_DIR, "paraview/")
+INSTRUCTIONS_DIR = os.path.join(ROOT_DIR, "instructions/")
 
 # General globals
 MANTID_NEWS = "http://mantidproject.github.io/news/"
@@ -249,3 +251,21 @@ if __name__ == "__main__":
   # Write the contents of variables to the templates and dump the output to an HTML file.
   env.get_template("archives.html").stream(archiveVars).dump(os.path.join(ROOT_DIR + "static/archives.html"))
   env.get_template("downloads.html").stream(downloadVars).dump(os.path.join(ROOT_DIR + "static/index.html"))
+
+  instructionVars = {"title" : "Installation instructions for Mantid",
+                     "description" : "The installation instructions for each operating system of Mantid.",
+                     "instructions" : []}
+
+  instruction_files = sorted(os.listdir(INSTRUCTIONS_DIR))
+  for instruction_file in instruction_files:
+    with open(os.path.join(INSTRUCTIONS_DIR, instruction_file), "r") as content:
+      # Converts ReST file contents to HTML.
+      parts = docutils.core.publish_parts(
+          content.read(),
+          writer_name = 'html',
+          settings_overrides = {'doctitle_xform' : False}); # Required to disable promotion of top level header to section title.
+
+      instructionVars["instructions"].append(parts["html_body"])
+
+  # Write all the instructions to one file.
+  env.get_template("instructions.html").stream(instructionVars).dump(os.path.join(ROOT_DIR + "static/instructions.html"))

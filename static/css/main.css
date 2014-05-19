@@ -29,7 +29,7 @@ footer, header, hgroup, menu, nav, section,
 }
 
 body { line-height: 1; }
-ol, ul { list-style: none; }
+ul { list-style: none; }
 
 /*-------------------- $STRUCTURE --------------------*/
 
@@ -39,15 +39,14 @@ ol, ul { list-style: none; }
   padding: 1em;
 }
 
-li {
+/* Latest download inline list */
+.wrapper li {
   display: inline-block;
   *display: inline;
   *zoom: 1;
-  margin-right: 6px;
-  margin:0 0 10px 5px;
-  padding:0 0 0 10px;
-  background:url("../img/bullet.png") left no-repeat;
 }
+
+ul li { background:url("../img/bullet.png") left no-repeat; }
 
 .banner {
   text-align: center;
@@ -56,23 +55,22 @@ li {
 
 /*-------------------- $TYPEOGRAPY --------------------*/
 
-a, p { font-family: 'Droid Sans', sans-serif; }
+a, p, ol, ul { font-family: 'Droid Sans', sans-serif; }
 
-h1,h2 {
-  font-family: 'Droid Serif', serif;
-  border-bottom: 1px solid #DCDCDC;
-}
+h1,h2, h3 { font-family: 'Droid Serif', serif; }
 
-h1 { font-size: 2.8em; }
-
+h1 { font-size: 2.6em; }
 h2 { font-size: 1.75em; }
+h3 { font-size: 1.6em; }
+
+em { font-style: italic; }
 
 p {
   font-size: 1.2em;
   line-height: 1.6;
 }
 
-h1, h2, .banner, .button, th {
+h1, h2, h3, .banner, .button, th, strong, b {
   font-weight: 700;
 }
 
@@ -81,12 +79,25 @@ h1, h2, .banner, .button, th {
   border-bottom: 0;
 }
 
+
 /*-------------------- $SPACING --------------------*/
 
 h1,h2 { margin-bottom: .6em; }
+h3 { margin: 1em 0; }
 p { margin-bottom: 1em; }
-
 .banner h1 { margin-bottom: .2em; }
+
+ul li {
+  margin: 0 0 10px 5px;
+  padding: 0 0 0 10px;
+}
+
+ol {
+  margin-left: 1.6em;
+  padding: 0 1.6em .8em 1.6em;
+}
+
+ol li { margin: 0 0 10px 5px; }
 
 /*-------------------- $LINKS & $COLOURS --------------------*/
 
@@ -104,7 +115,10 @@ a:hover { text-decoration: underline; }
 
 #error { color: #EB2735; }
 
+h1, h2, h3 { border-bottom: 1px solid #DCDCDC; }
+
 /*-------------------- $DOWNLOADS --------------------*/
+
 .alternatives {
   text-align: left;
   margin-bottom: 1em;
@@ -168,7 +182,8 @@ a:hover { text-decoration: underline; }
 
 /*-------------------- $ARCHIVES --------------------*/
 
-#container {
+#container,
+.document {  /* reStructred auto-generated div container. */
   width: 40em;
   margin: 0 auto;
   padding: 1em;
@@ -198,6 +213,31 @@ td, th {
   text-align: left;
 }
 
+/*-------------------- $CODE -------------------*/
+
+pre {
+  padding: 1em;
+  margin-bottom: 1.6em;
+
+  /* Required to show scroll bar if content overflows. */
+  overflow: auto;
+  word-wrap: normal;
+  white-space: pre;
+}
+
+code { padding: .3em; }
+
+code, pre {
+  font-family: 'Inconsolata', Courier, monospace;
+  border: 1px solid #DCDCDC;
+  border-radius: 3px;
+  background-color: #FAFAFA;
+  color: #444;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+
 /*-------------------- $MEDIA QUERIES ------------------*/
 
 @media only screen and (max-width: 60em) {
@@ -208,7 +248,7 @@ td, th {
     margin: 0 auto;
   }
   #gridcontainer { width: 100%; }
-  #container { width: 35em; }
+  #container, .document { width: 35em; }
 }
 
 @media only screen and (max-width: 45em){
@@ -216,5 +256,5 @@ td, th {
   .banner h1 { font-size: 2.8em; }
   .column { width: 90%; }
   #gridcontainer { width: 100%; }
-  #container { width: 90%; }
+  #container, .document { width: 90%; }
 }
