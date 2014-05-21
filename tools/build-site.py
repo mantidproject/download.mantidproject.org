@@ -227,13 +227,13 @@ if __name__ == "__main__":
   mantid_releases = mantid_releases()
 
   # Variables to output on the archives page
-  archiveVars = { "title" : "Mantid archive downloads",
+  archive_vars = { "title" : "Mantid archive downloads",
                 "description" : "Downloads for current and previous releases of Mantid.",
                 "release_notes" : RELEASE_NOTES,
                 "releases" : mantid_releases
                 }
 
-  downloadVars = { "title" : "Mantid downloads",
+  download_vars = { "title" : "Mantid downloads",
                  "description" : "Download the latest release of Mantid.",
                  "sample_datasets" : SAMPLES_DATASETS,
                  "mantid_news" : MANTID_NEWS,
@@ -244,7 +244,7 @@ if __name__ == "__main__":
                  "paraview_build_names" : paraview_build_names(mantid_releases[0]['paraview_version'])
                  }
 
-  instructionVars = {"title" : "Installation instructions for Mantid",
+  installation_vars = {"title" : "Installation instructions for Mantid",
                      "description" : "The installation instructions for each operating system of Mantid.",
                      "instructions" : [os.path.splitext(filename)[0] for filename in sorted(os.listdir(INSTRUCTIONS_DIR))]}
 
@@ -253,9 +253,9 @@ if __name__ == "__main__":
   # Add a filter to output the os name based on a given url
   env.filters["tidy_build_name"] = tidy_build_name
   # Write the contents of variables to the templates and dump the output to an HTML file.
-  env.get_template("archives.html").stream(archiveVars).dump(os.path.join(ROOT_DIR + "static/archives.html"))
-  env.get_template("downloads.html").stream(downloadVars).dump(os.path.join(ROOT_DIR + "static/index.html"))
-  env.get_template("installation.html").stream(instructionVars).dump(os.path.join(ROOT_DIR + "static/instructions.html"))
+  env.get_template("archives.html").stream(archive_vars).dump(os.path.join(ROOT_DIR + "static/archives.html"))
+  env.get_template("downloads.html").stream(download_vars).dump(os.path.join(ROOT_DIR + "static/index.html"))
+  env.get_template("installation.html").stream(installation_vars).dump(os.path.join(ROOT_DIR + "static/installation.html"))
 
   for instruction_file in sorted(os.listdir(INSTRUCTIONS_DIR)):
     with open(os.path.join(INSTRUCTIONS_DIR, instruction_file), "r") as content:
@@ -265,8 +265,11 @@ if __name__ == "__main__":
           writer_name = 'html',
           settings_overrides = {'doctitle_xform' : False}); # Required to disable promotion of top level header to section title.
 
-      instructionVars = {"title" : instruction_file + " installation instructions",
-                         "description" : "Mantid installation instructions for " + instruction_file,
+      # Remove extension from instruction filename
+      filename = os.path.splitext(instruction_file)[0]
+
+      instruction_vars = {"title" : instruction_file + " installation instructions",
+                         "description" : "Mantid installation instructions for " + filename,
                          "instructions" : parts["html_body"]}
 
-      env.get_template("instructions.html").stream(instructionVars).dump(os.path.join(ROOT_DIR + "static/" + instruction_file + ".html"))
+      env.get_template("instructions.html").stream(instruction_vars).dump(os.path.join(ROOT_DIR + "static/" + filename + ".html"))
