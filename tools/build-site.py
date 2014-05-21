@@ -246,7 +246,7 @@ if __name__ == "__main__":
 
   instructionVars = {"title" : "Installation instructions for Mantid",
                      "description" : "The installation instructions for each operating system of Mantid.",
-                     "instructions" : sorted(os.listdir(INSTRUCTIONS_DIR))}
+                     "instructions" : [os.path.splitext(filename)[0] for filename in sorted(os.listdir(INSTRUCTIONS_DIR))]}
 
   # Setup up the jinja environment and load the templates
   env = jinja2.Environment(loader=jinja2.FileSystemLoader(searchpath=os.path.join(ROOT_DIR,"templates")))
