@@ -88,7 +88,7 @@ p { margin-bottom: 1em; }
 .banner h1 { margin-bottom: .2em; }
 
 ul li {
-  margin: 0 0 10px 5px;
+  margin: 0 0 1em 5px;
   padding: 0 0 0 10px;
 }
 
@@ -97,7 +97,7 @@ ol {
   padding: 0 1.6em .8em 1.6em;
 }
 
-ol li { margin: 0 0 10px 5px; }
+ol li { margin: 0 0 1em .4em; }
 
 /*-------------------- $LINKS & $COLOURS --------------------*/
 

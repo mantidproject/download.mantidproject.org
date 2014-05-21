@@ -244,6 +244,10 @@ if __name__ == "__main__":
                  "paraview_build_names" : paraview_build_names(mantid_releases[0]['paraview_version'])
                  }
 
+  instructionVars = {"title" : "Installation instructions for Mantid",
+                     "description" : "The installation instructions for each operating system of Mantid.",
+                     "instructions" : sorted(os.listdir(INSTRUCTIONS_DIR))}
+
   # Setup up the jinja environment and load the templates
   env = jinja2.Environment(loader=jinja2.FileSystemLoader(searchpath=os.path.join(ROOT_DIR,"templates")))
   # Add a filter to output the os name based on a given url
@@ -251,13 +255,9 @@ if __name__ == "__main__":
   # Write the contents of variables to the templates and dump the output to an HTML file.
   env.get_template("archives.html").stream(archiveVars).dump(os.path.join(ROOT_DIR + "static/archives.html"))
   env.get_template("downloads.html").stream(downloadVars).dump(os.path.join(ROOT_DIR + "static/index.html"))
+  env.get_template("installation.html").stream(instructionVars).dump(os.path.join(ROOT_DIR + "static/instructions.html"))
 
-  instructionVars = {"title" : "Installation instructions for Mantid",
-                     "description" : "The installation instructions for each operating system of Mantid.",
-                     "instructions" : []}
-
-  instruction_files = sorted(os.listdir(INSTRUCTIONS_DIR))
-  for instruction_file in instruction_files:
+  for instruction_file in sorted(os.listdir(INSTRUCTIONS_DIR)):
     with open(os.path.join(INSTRUCTIONS_DIR, instruction_file), "r") as content:
       # Converts ReST file contents to HTML.
       parts = docutils.core.publish_parts(
@@ -265,7 +265,8 @@ if __name__ == "__main__":
           writer_name = 'html',
           settings_overrides = {'doctitle_xform' : False}); # Required to disable promotion of top level header to section title.
 
-      instructionVars["instructions"].append(parts["html_body"])
+      instructionVars = {"title" : instruction_file + " installation instructions",
+                         "description" : "Mantid installation instructions for " + instruction_file,
+                         "instructions" : parts["html_body"]}
 
-  # Write all the instructions to one file.
-  env.get_template("instructions.html").stream(instructionVars).dump(os.path.join(ROOT_DIR + "static/instructions.html"))
+      env.get_template("instructions.html").stream(instructionVars).dump(os.path.join(ROOT_DIR + "static/" + instruction_file + ".html"))
