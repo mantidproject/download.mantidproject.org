@@ -267,9 +267,11 @@ if __name__ == "__main__":
 
       # Remove extension from instruction filename
       filename = os.path.splitext(instruction_file)[0]
+      # If filename is "Red-Hat" reformat it to "Red Hat"
+      if "Red" in filename: filename = filename.replace("-"," ")
 
-      instruction_vars = {"title" : instruction_file + " installation instructions",
-                         "description" : "Mantid installation instructions for " + filename,
+      instruction_vars = {"title" : filename + " installation instructions for Mantid.",
+                         "description" : "Mantid installation instructions for " + filename + ".",
                          "instructions" : parts["html_body"]}
 
-      env.get_template("instructions.html").stream(instruction_vars).dump(os.path.join(ROOT_DIR + "static/" + filename + ".html"))
+      env.get_template("instructions.html").stream(instruction_vars).dump(os.path.join(ROOT_DIR + "static/" + filename.replace(" ", "").lower() + ".html"))
