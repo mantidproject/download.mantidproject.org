@@ -251,7 +251,8 @@ code, pre {
   #container, .document { width: 35em; }
 }
 
-@media only screen and (max-width: 45em){
+@media only screen and (max-width: 45em) {
+  .wrapper { width: auto; }
   h1 { font-size: 2em; }
   .banner h1 { font-size: 2.8em; }
   .column { width: 90%; }
