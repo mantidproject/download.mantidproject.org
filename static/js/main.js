@@ -32,7 +32,7 @@ $(document).ready(function() {
   {
     $('#latest .button').append(" Linux (.deb)");
     $('#nightly .button').append(" Linux (.deb)");
-    $('#paraview .button').append(" Linux (.deb)");
+    $('#paraview .button').append(" Linux (.tar.gz)");
   }
   else
   {
