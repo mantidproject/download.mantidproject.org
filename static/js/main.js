@@ -21,11 +21,22 @@ $(document).ready(function() {
 
   osName = getOS();
   osClass = "." + osName.split(" ")[0].toLowerCase(); // Grab OS name only (e.g. not 7/8)
+
   // Replace the download buttons href with the correct download URL for latest and nightly releases
   $('#latest .button').attr("href",$("#latest "+osClass).attr("href"));
   $('#nightly .button').attr("href",$("#nightly "+osClass).attr("href"));
-  $('#paraview .button').attr("href",$("#paraview "+osClass).attr("href"));
-  $('.button').append(osName)
-  // Hide the related OS download link (in 'Alternative downloads') for each button.
-  $(osClass).closest('li').remove();
+
+  // Show .deb download by default.
+  if (osName == "Ubuntu")
+  {
+    $('#latest .button').append(" Linux (.deb)");
+    $('#nightly .button').append(" Linux (.deb)");
+    $(osClass).closest('li').remove();
+  }
+  else
+  {
+    $('#paraview .button').attr("href",$("#paraview " + osClass).attr("href"));
+    $('.button').append(osName)
+    $(osClass).closest('li').remove();
+  }
 });
