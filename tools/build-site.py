@@ -31,6 +31,9 @@ SAMPLES_DATASETS = {
   "Training" : SOURCEFORGE_SAMPLES + "WorkshopData.zip/download"
 }
 
+SUPPORTED_OSX_BUILDS = ["MountainLion", "Mavericks"]
+LATEST_SUPPORTED_OSX_VERSION = "10.8"
+
 def mantid_releases():
   """
   Reads and stores release information for each release file in the releases folder. This does not include the nightly build.
@@ -208,8 +211,8 @@ def tidy_build_name(url, osname):
     url = url.replace("-64bit","") # Required as some urls (paraview) have this
     url = url.rsplit("-",1)[1] # Obtain codename by splitting on last hyphen
     # Use version numbers rather than names for simplicity.
-    if "MountainLion" in url: url = "OSX (10.8+)"
-    else: url = "OSX (<10.7)"
+    if url in SUPPORTED_OSX_BUILDS: url = "OSX (" + LATEST_SUPPORTED_OSX_VERSION + "+)"
+    else: url = "OSX (<" + LATEST_SUPPORTED_OSX_VERSION +")"
 
   if ".exe" in url:
     # Cannot split like above as paraview has hyphen between Windows and bit, e.g. ..-Windows-64bit
