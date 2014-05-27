@@ -59,16 +59,15 @@ a, p, ol, ul { font-family: 'Droid Sans', sans-serif; }
 
 h1,h2, h3 { font-family: 'Droid Serif', serif; }
 
+p  { font-size: 1.2em; }
 h1 { font-size: 2.6em; }
 h2 { font-size: 1.75em; }
 h3 { font-size: 1.6em; }
 
 em { font-style: italic; }
 
-p {
-  font-size: 1.2em;
-  line-height: 1.6;
-}
+p  { line-height: 1.6; }
+ol { line-height: 1.4; }
 
 h1, h2, h3, .banner, .button, th, strong, b {
   font-weight: 700;
@@ -78,7 +77,6 @@ h1, h2, h3, .banner, .button, th, strong, b {
   font-size: 4.2em;
   border-bottom: 0;
 }
-
 
 /*-------------------- $SPACING --------------------*/
 
