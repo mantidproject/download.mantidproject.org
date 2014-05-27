@@ -36,7 +36,9 @@ $(document).ready(function() {
   }
   else
   {
-    $('.button').append(osName)
+    osxVersion = "OSX (10.8+)";
+    $('.button').append(osName == "Mac" ? osxVersion : osName)
+    $('.mac').text(osxVersion);
   }
   $(osClass).closest('li').remove();
 });

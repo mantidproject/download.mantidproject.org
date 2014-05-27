@@ -207,8 +207,9 @@ def tidy_build_name(url, osname):
     url = url.replace(".dmg","")
     url = url.replace("-64bit","") # Required as some urls (paraview) have this
     url = url.rsplit("-",1)[1] # Obtain codename by splitting on last hyphen
-    # OSX fix: adds a space before uppercase, e.g. MountainLion becomes Mountain Lion
-    url = re.sub(r"(\w)([A-Z])",r"\1 \2",url)
+    # Use version numbers rather than names for simplicity.
+    if "MountainLion" in url: url = "OSX (10.8+)"
+    else: url = "OSX (<10.7)"
 
   if ".exe" in url:
     # Cannot split like above as paraview has hyphen between Windows and bit, e.g. ..-Windows-64bit
