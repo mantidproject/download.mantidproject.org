@@ -25,18 +25,18 @@ $(document).ready(function() {
   // Replace the download buttons href with the correct download URL for latest and nightly releases
   $('#latest .button').attr("href",$("#latest "+osClass).attr("href"));
   $('#nightly .button').attr("href",$("#nightly "+osClass).attr("href"));
+  $('#paraview .button').attr("href",$("#paraview " + osClass).attr("href"));
 
   // Show .deb download by default.
   if (osName == "Ubuntu")
   {
     $('#latest .button').append(" Linux (.deb)");
     $('#nightly .button').append(" Linux (.deb)");
-    $(osClass).closest('li').remove();
+    $('#paraview .button').append(" Linux (.deb)");
   }
   else
   {
-    $('#paraview .button').attr("href",$("#paraview " + osClass).attr("href"));
     $('.button').append(osName)
-    $(osClass).closest('li').remove();
   }
+  $(osClass).closest('li').remove();
 });

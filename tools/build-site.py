@@ -160,7 +160,7 @@ def get_os_name(build_name):
   elif "mountainlion" in build_name: osname = "mac"
   elif "snowleopard" in build_name or ".dmg" in build_name: osname = "snow-leopard"
   elif ".rpm" in build_name: osname = "red-hat"
-  elif ".deb" in build_name or "Linux" in build_name: osname = "ubuntu"
+  elif ".deb" in build_name or "linux" in build_name: osname = "ubuntu"
   else: osname = "source"
   return osname
 
