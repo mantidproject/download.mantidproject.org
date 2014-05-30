@@ -6,8 +6,13 @@ function getOS() {
   return osName;
 }
 
-$(document).ready(function() {
+function updateInstructionsURL(osname) {
+  if (osname == "Windows 7/8") $('#installation').attr("href", "windows.html")
+  else if (osname == "Mac") $('#installation').attr("href", "osx.html")
+  else $('#installation').replaceWith('installation instructions for <a href="ubuntu.html">apt-get</a> or <a href="redhat.html">yum</a>');
+}
 
+function windowsXPWarning() {
   if (navigator.userAgent.indexOf('Windows NT 5.1') != -1)
   {
     $('#latest p:first').replaceWith('<p id="error"><b>Note:</b> Windows XP is no longer supported. Last supported release <b>(3.1.1)</b> can be downloaded below:</p>');
@@ -18,8 +23,14 @@ $(document).ready(function() {
     $('.win32').closest('li').remove();
     return;
   }
+}
+
+$(document).ready(function() {
+  windowsXPWarning()
 
   osName = getOS();
+
+  updateInstructionsURL(osName)
 
   // Show source code download for Linux distros.
   if (osName == "Ubuntu")
