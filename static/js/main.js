@@ -20,23 +20,25 @@ $(document).ready(function() {
   }
 
   osName = getOS();
-  osClass = "." + osName.split(" ")[0].toLowerCase(); // Grab OS name only (e.g. not 7/8)
 
-  // Replace the download buttons href with the correct download URL for latest and nightly releases
-  $('#latest .button').attr("href",$("#latest "+osClass).attr("href"));
-  $('#nightly .button').attr("href",$("#nightly "+osClass).attr("href"));
-  $('#paraview .button').attr("href",$("#paraview " + osClass).attr("href"));
-
-  // Show .deb download by default.
+  // Show source code download for Linux distros.
   if (osName == "Ubuntu")
   {
-    $('#latest .button').append(" Linux (.deb)");
-    $('#nightly .button').append(" Linux (.deb)");
-    $('#paraview .button').append(" Linux (.tar.gz)");
+    $('#latest .button').attr("href",$("#latest .source").attr("href")).text("Download source code");
+    $('#nightly .button').attr("href",$("#nightly .source").attr("href")).text("Download source code")
+    $('#paraview .button').attr("href",$("#paraview .source").attr("href")).text("Download source code")
+
+    $(".source").closest('li').remove();
   }
   else
   {
+    osClass = "." + osName.split(" ")[0].toLowerCase(); // Grab OS name only (e.g. not 7/8)
+
+    $('#latest .button').attr("href",$("#latest "+osClass).attr("href"));
+    $('#nightly .button').attr("href",$("#nightly "+osClass).attr("href"));
+    $('#paraview .button').attr("href",$("#paraview " + osClass).attr("href"));
     $('.button').append(osName == "Mac" ? $('#latest .mac').text() : osName)
+
+    $(osClass).closest('li').remove();
   }
-  $(osClass).closest('li').remove();
 });
