@@ -64,7 +64,7 @@ h1 { font-size: 2.6em; }
 h2 { font-size: 1.75em; }
 h3 { font-size: 1.6em; }
 
-em { font-style: italic; }
+i, em { font-style: italic; }
 
 p  { line-height: 1.6; }
 ol { line-height: 1.4; }
