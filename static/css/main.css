@@ -97,6 +97,11 @@ ol {
 
 ol li { margin: 0 0 1em .4em; }
 
+.instructions {
+  display: inline;
+  font-size: 1em;
+}
+
 /*-------------------- $LINKS & $COLOURS --------------------*/
 
 html {
