@@ -1,0 +1,6 @@
+mantidnightly_3.1.20140528.2000-1_amd64.deb
+mantidnightly-3.1.20140528.2000-Source.tar.gz
+mantidnightly-3.1.20140528.2000-1.el6.x86_64.rpm
+mantid-3.1.20140528.2000-win64.exe
+mantid-3.1.20140528.2000-MountainLion.dmg
+mantid-3.1.20140403.1757-win32.exe
