@@ -7,9 +7,7 @@ function getOS() {
 }
 
 function updateInstructionsURL(osname) {
-  if (osname == "Windows 7/8") $('#installation').attr("href", "windows.html")
-  else if (osname == "Mac") $('#installation').attr("href", "osx.html")
-  else $('#installation').replaceWith('installation instructions for <a href="ubuntu.html">apt-get</a> or <a href="redhat.html">yum</a>');
+  if (osname == "Ubuntu") $('#release_notes').append(' It is recommended to use <a href="ubuntu.html">apt-get</a> or <a href="redhat.html">yum</a> to install Mantid on UNIX.');
 }
 
 function windowsXPWarning() {

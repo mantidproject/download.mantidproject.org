@@ -245,12 +245,9 @@ if __name__ == "__main__":
                  "latest_release" : mantid_releases[0],
                  "nightly_release" : nightly_release(),
                  "paraview_version" : mantid_releases[0]['paraview_version'],
-                 "paraview_build_names" : paraview_build_names(mantid_releases[0]['paraview_version'])
+                 "paraview_build_names" : paraview_build_names(mantid_releases[0]['paraview_version']),
+                 "instructions" : [os.path.splitext(filename)[0] for filename in sorted(os.listdir(INSTRUCTIONS_DIR))]
                  }
-
-  installation_vars = {"title" : "Installation instructions for Mantid",
-                     "description" : "The installation instructions for each operating system of Mantid.",
-                     "instructions" : [os.path.splitext(filename)[0] for filename in sorted(os.listdir(INSTRUCTIONS_DIR))]}
 
   # Setup up the jinja environment and load the templates
   env = jinja2.Environment(loader=jinja2.FileSystemLoader(searchpath=os.path.join(ROOT_DIR,"templates")))
@@ -259,7 +256,6 @@ if __name__ == "__main__":
   # Write the contents of variables to the templates and dump the output to an HTML file.
   env.get_template("archives.html").stream(archive_vars).dump(os.path.join(ROOT_DIR + "static/archives.html"))
   env.get_template("downloads.html").stream(download_vars).dump(os.path.join(ROOT_DIR + "static/index.html"))
-  env.get_template("installation.html").stream(installation_vars).dump(os.path.join(ROOT_DIR + "static/installation.html"))
 
   for instruction_file in sorted(os.listdir(INSTRUCTIONS_DIR)):
     with open(os.path.join(INSTRUCTIONS_DIR, instruction_file), "r") as content:
