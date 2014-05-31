@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}<div id="container">
   <h1>Previous releases</h1>
-  <p>Below is all previous Mantid releases and the related ParaView version, which is required to activate the VATES features within Mantid. You can view installation instructions for each operating system on the <a href="./installation.html">here</a>.</p>{% for release in releases %}
+  <p>Below is all previous Mantid releases and the related ParaView version, which is required to activate the VATES features within Mantid. You can view installation instructions for each operating system <a href="./index.html">here</a>.</p>{% for release in releases %}
   <h2><a href="{{ release_notes ~ release['mantid_version'] }}">Release {{ release['mantid_version'] }} &ndash; {{ release['date'] }}</a></h2>
   <table>
     <thead>
