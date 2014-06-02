@@ -160,6 +160,13 @@ h1, h2, h3 { border-bottom: 1px solid #DCDCDC; }
   text-decoration: none;
 }
 
+#nightly > .button {
+  background-color: #F4E14E;
+  color: #333;
+}
+
+#nightly > .button:hover { background-color: #FDE45E; }
+
 #previous {
   text-align: right;
   font-weight: 700;
