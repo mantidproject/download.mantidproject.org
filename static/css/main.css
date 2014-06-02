@@ -133,7 +133,7 @@ h1, h2, h3 { border-bottom: 1px solid #DCDCDC; }
 
 #gridcontainer {
   margin: 0 auto;
-  width: 1080px;
+  max-width: 1080px;
   padding-top: 1em;
   border-top: 1px solid #DCDCDC;
   border-bottom: 1px solid #DCDCDC;
@@ -257,8 +257,15 @@ code, pre {
 @media only screen and (max-width: 45em) {
   .wrapper { width: auto; }
   h1 { font-size: 2em; }
+  h2 { font-size: 1.618em; }
   .banner h1 { font-size: 2.8em; }
   .column { width: 90%; }
   #gridcontainer { width: 100%; }
-  #container, .document { width: 90%; }
+  #container, .document { width: 85%; }
+  #container, .wrapper { font-size: .809em; }
+  .instructions {
+    display: block;
+    text-align: center;
+    font-size: 1em;
+  }
 }
