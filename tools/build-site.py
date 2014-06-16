@@ -8,10 +8,10 @@ import re
 import sys
 
 # Repo folder structure
-ROOT_DIR = os.path.join(os.path.dirname(__file__) + "../")
-RELEASE_DIR = os.path.join(ROOT_DIR,"releases/")
-PARAVIEW_DIR = os.path.join(RELEASE_DIR, "paraview/")
-INSTRUCTIONS_DIR = os.path.join(ROOT_DIR, "instructions/")
+ROOT_DIR = os.path.join(os.path.dirname(__file__), "..")
+RELEASE_DIR = os.path.join(ROOT_DIR,"releases")
+PARAVIEW_DIR = os.path.join(RELEASE_DIR, "paraview")
+INSTRUCTIONS_DIR = os.path.join(ROOT_DIR, "instructions")
 
 # General globals
 MANTID_NEWS = "http://mantidproject.github.io/news/"
@@ -63,7 +63,7 @@ def mantid_releases():
     release = {}
     release['mantid_version'], release['date'] = os.path.splitext(file_name)[0].split("-",1)
     release['paraview_version'] = paraview_version(release['mantid_version'])
-    mantid_builds = parse_build_names(os.path.join(RELEASE_DIR + file_name), release['mantid_version'], "release")
+    mantid_builds = parse_build_names(os.path.join(RELEASE_DIR, file_name), release['mantid_version'], "release")
     paraview_builds = paraview_build_names(release['paraview_version'])
 
     # Add the related paraview download url to the dict, based on the osname.
@@ -254,8 +254,8 @@ if __name__ == "__main__":
   # Add a filter to output the os name based on a given url
   env.filters["tidy_build_name"] = tidy_build_name
   # Write the contents of variables to the templates and dump the output to an HTML file.
-  env.get_template("archives.html").stream(archive_vars).dump(os.path.join(ROOT_DIR + "static/archives.html"))
-  env.get_template("downloads.html").stream(download_vars).dump(os.path.join(ROOT_DIR + "static/index.html"))
+  env.get_template("archives.html").stream(archive_vars).dump(os.path.join(ROOT_DIR, "static", "archives.html"))
+  env.get_template("downloads.html").stream(download_vars).dump(os.path.join(ROOT_DIR, "static", "index.html"))
 
   for instruction_file in sorted(os.listdir(INSTRUCTIONS_DIR)):
     with open(os.path.join(INSTRUCTIONS_DIR, instruction_file), "r") as content:
@@ -274,4 +274,4 @@ if __name__ == "__main__":
                          "description" : "Mantid installation instructions for " + filename + ".",
                          "instructions" : parts["html_body"]}
 
-      env.get_template("instructions.html").stream(instruction_vars).dump(os.path.join(ROOT_DIR + "static/" + filename.replace(" ", "").lower() + ".html"))
+      env.get_template("instructions.html").stream(instruction_vars).dump(os.path.join(ROOT_DIR, "static", filename.replace(" ", "").lower() + ".html"))
