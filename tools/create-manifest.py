@@ -71,8 +71,8 @@ if __name__ == "__main__":
    "ParaView-%s-Linux-64bit.tar.gz",
    "ParaView-%s-source.tar.gz"]
 
-  RELEASE_DIR = os.path.join(os.path.dirname(__file__),"../releases")
-  PARAVIEW_DIR = os.path.join(RELEASE_DIR, "paraview/")
+  RELEASE_DIR = os.path.join(os.path.dirname(__file__), "..", "releases")
+  PARAVIEW_DIR = os.path.join(RELEASE_DIR, "paraview")
 
   parser = argparse.ArgumentParser(prog='create-manifest', usage='%(prog)s [options]',
       description='Creates a release file in the "releases" folder with the name provided.')
