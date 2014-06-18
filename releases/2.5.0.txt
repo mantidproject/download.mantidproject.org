@@ -1,3 +1,5 @@
+2013-05-13
+
 Mantid-2.5.0-win64.exe
 Mantid-2.5.0-win32.exe
 mantid-2.5.0-SnowLeopard.dmg

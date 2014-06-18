@@ -21,7 +21,8 @@ def update_paraview_versions(mantid_version, paraview_version):
     content = paraview_versions.read()
     # If no paraview version is provided, then the previous paraview version is used.
     previous_version = content.split("\n",1)[0].split(",")[1]
-    if not paraview_version: paraview_version = previous_version
+    if not paraview_version: 
+      paraview_version = previous_version
     # Add the new release and paraview version to the top of the file
     paraview_versions.seek(0,0)
     paraview_versions.write(mantid_version + "," + paraview_version + "\n" + content)
@@ -30,17 +31,24 @@ def update_paraview_versions(mantid_version, paraview_version):
     if distutils.version.StrictVersion(paraview_version) > distutils.version.StrictVersion(previous_version):
       create_paraview_file(paraview_version)
 
-def create_release_file(version, date):
+def create_release_file(version, date, overwrite):
   """
   Creates a file in the release folder and writes the build names to it for a given release.
 
   Args:
     version (str): The version code for this release.
     date (str): The date that this version of Mantid was released.
+    overwrite (bool): If true, overwrite a file if it already exists
   """
-  with open(os.path.join(RELEASE_DIR, version + "-" + date + ".txt"), "w+") as release_file:
+  filename = version + ".txt"
+  filepath = os.path.join(RELEASE_DIR, version + ".txt")
+  if os.path.exists(filepath) and not overwrite:
+    raise RuntimeError("File '%s' already exists, use --force to overwrite." % filename)
+
+  with open(filepath, "w") as release_file:
+    release_file.write(date + "\n\n")
     release_file.write('\n'.join([build_name%(version) for build_name in MANTID_BUILD_NAMES]))
-    print "The new release file was created successfully."
+    print "New release manifest created in releases directory: %s" % (version + ".txt")
 
 def create_paraview_file(version):
   """
@@ -76,9 +84,14 @@ if __name__ == "__main__":
 
   parser = argparse.ArgumentParser(prog='create-manifest', usage='%(prog)s [options]',
       description='Creates a release file in the "releases" folder with the name provided.')
-  parser.add_argument('version', help="The version of the release to name the file being saved in the 'releases' folder.")
-  parser.add_argument('--date', help="The date of the release. This option overrides the current date, which is used by default.")
-  parser.add_argument('--paraview', help="The version of paraview for the release. Used the previous version if not changed.")
+  parser.add_argument('version',
+                      help="The version of the release to name the file being saved in the 'releases' folder.")
+  parser.add_argument('--force', action='store_true', # defaults to false
+                      help="Overwrite any existing file")
+  parser.add_argument('--date', 
+                      help="The date of the release. This option overrides the current date, which is used by default.")
+  parser.add_argument('--paraview', 
+                      help="The version of paraview for the release. Uses the previous version if not changed.")
   args = parser.parse_args()
 
   # Validate version
@@ -95,5 +108,6 @@ if __name__ == "__main__":
     except ValueError:
       sys.exit("The date you have provided is invalid. It must be in Y-M-D format.")
 
+  create_release_file(args.version,str(args.date), args.force)
   update_paraview_versions(args.version,args.paraview)
-  create_release_file(args.version,str(args.date))
+

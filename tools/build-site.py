@@ -61,9 +61,10 @@ def mantid_releases():
   release_files = [name for name in os.listdir(RELEASE_DIR) if "paraview" not in name and "nightly" not in name]
   for file_name in release_files:
     release = {}
-    release['mantid_version'], release['date'] = os.path.splitext(file_name)[0].split("-",1)
+    release['mantid_version'] = os.path.splitext(file_name)[0]
     release['paraview_version'] = paraview_version(release['mantid_version'])
-    mantid_builds = parse_build_names(os.path.join(RELEASE_DIR, file_name), release['mantid_version'], "release")
+    date, mantid_builds = parse_build_names(os.path.join(RELEASE_DIR, file_name), release['mantid_version'], "release")
+    release['date'] = date
     paraview_builds = paraview_build_names(release['paraview_version'])
 
     # Add the related paraview download url to the dict, based on the osname.
@@ -90,15 +91,19 @@ def parse_build_names(file_location, version, build_option):
     build_option (str): The name of the build, which is used when building the URL, e.g. "release", "nightly" or "paraview".
 
   Returns:
-    dict: A dictionary containing OS names as keys, and the related download url as a value.
-      Key : Obtained from get_os_name, and is output on the downloads page as CSS classes.
-      Value : The download url for that specific operating system.
+    tuple: (date, builds) - A dictionary containing OS names as keys, and the related download url as a value.
+           Key : Obtained from get_os_name, and is output on the downloads page as CSS classes.
+           Value : The download url for that specific operating system.
   """
   with open(file_location, 'r') as content:
+    date = content.readline()
     build_names = {}
     for build_name in content:
+      if build_name == "":
+        continue
       build_names[get_os_name(build_name)] = get_download_url(build_name,version,build_option)
-    return build_names
+    #endfor
+    return (date, build_names)
 
 def paraview_version(mantid_version):
   """
@@ -128,7 +133,7 @@ def paraview_build_names(paraview_version):
     dict: The paraview build names for the given version.
   """
   file_location = os.path.join(PARAVIEW_DIR, "paraview-" + paraview_version + ".txt")
-  return parse_build_names(file_location, paraview_version, "paraview")
+  return parse_build_names(file_location, paraview_version, "paraview")[1]
 
 def nightly_release():
   """
@@ -140,8 +145,11 @@ def nightly_release():
   """
   release_info = {}
   filename = [name for name in os.listdir(RELEASE_DIR) if "nightly" in name]
-  release_info['version'], release_info['date'] = os.path.splitext(filename[0])[0].split("-",1)
-  release_info['build_info'] = parse_build_names(os.path.join(RELEASE_DIR,filename[0]),release_info['version'],"nightly")
+  release_info['version'] = os.path.splitext(filename[0])[0]
+  date, builds = parse_build_names(os.path.join(RELEASE_DIR,filename[0]),release_info['version'],"nightly")
+  release_info['date'] = date
+  release_info['build_info'] = builds
+
   return release_info
 
 def get_os_name(build_name):

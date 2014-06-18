@@ -1,3 +1,5 @@
+2014-02-07
+
 mantid-3.1.0-win64.exe
 mantid-3.1.0-win32.exe
 mantid-3.1.0-MountainLion.dmg
