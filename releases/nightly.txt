@@ -1,5 +1,3 @@
-2014-05-28
-
 mantidnightly_3.1.20140528.2000-1_amd64.deb
 mantidnightly-3.1.20140528.2000-Source.tar.gz
 mantidnightly-3.1.20140528.2000-1.el6.x86_64.rpm

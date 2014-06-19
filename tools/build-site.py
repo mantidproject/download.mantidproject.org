@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import datetime
 import docutils.core
 import jinja2
 import os
@@ -12,6 +13,8 @@ ROOT_DIR = os.path.join(os.path.dirname(__file__), "..")
 RELEASE_DIR = os.path.join(ROOT_DIR,"releases")
 PARAVIEW_DIR = os.path.join(RELEASE_DIR, "paraview")
 INSTRUCTIONS_DIR = os.path.join(ROOT_DIR, "instructions")
+
+NIGHTLY_TARBALL_RE = re.compile("^mantidnightly-\d+\.\d+\.(\d{8})\.\d{4}-Source\.tar\.gz$")
 
 # General globals
 MANTID_NEWS = "http://mantidproject.github.io/news/"
@@ -33,6 +36,7 @@ SAMPLES_DATASETS = {
 
 SUPPORTED_OSX_BUILDS = ["MountainLion", "Mavericks"]
 LATEST_SUPPORTED_OSX_VERSION = "10.8"
+
 
 def mantid_releases():
   """
@@ -84,6 +88,8 @@ def parse_build_names(file_location, version, build_option):
   """
   Parses a file that contains build names (e.g. those in /releases/) and stores the contents in a dictionary.
   The key of the dictionary is the operating system, which is obtained based on the build's file extension.
+  The date on the first line is optional, if it is not present the date is extracted from the first filename if
+  possible, else it raises an error.
 
   Args:
     file_location (str): The location of the release file to parse.
@@ -95,15 +101,28 @@ def parse_build_names(file_location, version, build_option):
            Key : Obtained from get_os_name, and is output on the downloads page as CSS classes.
            Value : The download url for that specific operating system.
   """
-  with open(file_location, 'r') as content:
-    date = content.readline()
-    build_names = {}
-    for build_name in content:
-      if build_name == "":
-        continue
-      build_names[get_os_name(build_name)] = get_download_url(build_name,version,build_option)
-    #endfor
-    return (date, build_names)
+  manifest = open(file_location, 'r')
+  date = None
+  builds = {}
+  for line in manifest:
+    line = line.rstrip()
+    if line == "":
+      continue
+
+    try:
+      datetime.datetime.strptime(line, "%Y-%m-%d")
+      date = line
+    except ValueError:
+      pass
+    #endtry
+    
+    build = line
+    builds[get_os_name(build)] = get_download_url(build,version,build_option)
+    if date is None and build.endswith(".tar.gz"):
+      date = get_date_from_tarball(build)
+  #endfor
+
+  return (date, builds)
 
 def paraview_version(mantid_version):
   """
@@ -138,6 +157,7 @@ def paraview_build_names(paraview_version):
 def nightly_release():
   """
   Reads and stores release information for the nightly build from the nightly text file in the releases folder.
+  The date on the first line is optional, if it is not present the date is extracted from the first filename.
 
   Return:
     dict: A dictionary containing release information for the nightly build.
@@ -233,6 +253,27 @@ def tidy_build_name(url, osname):
     url = url.replace("64"," 7/8")
 
   return url
+
+def get_date_from_tarball(filename):
+  """
+  Attempts to parse a date from from a source tarball with the following format: mantidnightly-3.1.20140528.2000-Source.tar.gz
+
+  Args:
+    filename (str): A string giving the filename
+
+  Returns:
+    str: A date string in the format YYYY-MM-DD
+  """
+  match = NIGHTLY_TARBALL_RE.match(filename)
+  if match:
+    date = match.group(1)
+    formatted_date = "%s-%s-%s" % (date[:4], date[4:6], date[6:])
+  else:
+    raise RuntimeError("Unable to extract date from source tarball '%s'" % filename)
+
+  return formatted_date
+
+#========================================================================================================
 
 if __name__ == "__main__":
   # Build information for each release file in the "releases" folder
