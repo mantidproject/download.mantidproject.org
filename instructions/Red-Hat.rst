@@ -11,7 +11,7 @@ Prior to installing Mantid via Yum you need to enable the `Extra Packages for En
 Installing Mantid release
 -------------------------
 
-To install Mantid via yum, create the file :code:`/etc/yum.repos.d/isis-rhel.repo` with the following content: ::
+To install Mantid via yum, create the file ``/etc/yum.repos.d/isis-rhel.repo`` with the following content: ::
 
     [isis-rhel]
     name=ISIS Software Repository for Redhat Enterprise Linux $releasever - $basearch
@@ -45,12 +45,12 @@ You can then install the **stable release** of Mantid by typing: ::
 
     yum install mantid
 
-This will install Mantid into :code:`/opt/Mantid` and add bash files to :code:`/etc/profile.d` so that next time you create a terminal the correct path to MantidPlot will be defined.
+This will install Mantid into ``/opt/Mantid`` and add bash files to ``/etc/profile.d`` so that next time you create a terminal the correct path to MantidPlot will be defined.
 
 Installing Mantid nightly
 -------------------------
 
-To install nightly development builds via yum, create the file :code:`/etc/yum.repos.d/isis-rhel-testing.repo` with the following content: ::
+To install nightly development builds via yum, create the file ``/etc/yum.repos.d/isis-rhel-testing.repo`` with the following content: ::
 
     [isis-rhel-testing]
     name=ISIS Software Repository for Redhat Enterprise Linux $releasever - $basearch
@@ -73,11 +73,11 @@ To install nightly development builds via yum, create the file :code:`/etc/yum.r
     enabled=0
     gpgcheck=0
 
-To install the :code:`nightly release` run the appropriate setup steps to setup the testing repository above, and then run: ::
+To install the ``nightly release`` run the appropriate setup steps to setup the testing repository above, and then run: ::
 
     yum install --enablerepo=isis-rhel-testing mantidnightly
 
-This will install Mantid into :code:`/opt/mantidnightly`. It does **not** update the environment so you must type the following to start it: ::
+This will install Mantid into ``/opt/mantidnightly``. It does **not** update the environment so you must type the following to start it: ::
 
     ./opt/mantidnightly/bin/MantidPlot
 
