@@ -14,7 +14,7 @@ RELEASE_DIR = os.path.join(ROOT_DIR,"releases")
 PARAVIEW_DIR = os.path.join(RELEASE_DIR, "paraview")
 INSTRUCTIONS_DIR = os.path.join(ROOT_DIR, "instructions")
 
-NIGHTLY_TARBALL_RE = re.compile("^mantidnightly-\d+\.\d+\.(\d{8})\.\d{4}-Source\.tar\.gz$")
+NIGHTLY_TARBALL_RE = re.compile("^mantidnightly-\d+\.\d+\.(\d{8})\.\d+-Source\.tar\.gz$")
 
 # General globals
 MANTID_NEWS = "http://mantidproject.github.io/news/"
@@ -115,7 +115,7 @@ def parse_build_names(file_location, version, build_option):
     except ValueError:
       pass
     #endtry
-    
+
     build = line
     builds[get_os_name(build)] = get_download_url(build,version,build_option)
     if date is None and build.endswith(".tar.gz"):
