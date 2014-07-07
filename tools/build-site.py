@@ -31,7 +31,7 @@ SAMPLES_DATASETS = {
   "ISIS" : SOURCEFORGE_SAMPLES + "SampleData-ISIS.zip/download",
   "Muon" : SOURCEFORGE_SAMPLES + "SampleData-Muon.zip/download",
   "ORNL" : SOURCEFORGE_SAMPLES + "SampleData-ORNL.zip/download",
-  "Training" : SOURCEFORGE_SAMPLES + "WorkshopData.zip/download"
+  "Training" : SOURCEFORGE_SAMPLES + "TrainingCourseData.zip/download"
 }
 
 SUPPORTED_OSX_BUILDS = ["MountainLion", "Mavericks"]
