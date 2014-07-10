@@ -28,6 +28,7 @@ SOURCEFORGE_PARAVIEW = SOURCEFORGE_FILES + "ParaView/"
 
 # Must be in the name : downloadurl format.
 SAMPLES_DATASETS = [
+  ["Usage Examples", SOURCEFORGE_SAMPLES + "UsageData.zip/download"],
   ["ISIS", SOURCEFORGE_SAMPLES + "SampleData-ISIS.zip/download"],
   ["ORNL", SOURCEFORGE_SAMPLES + "SampleData-ORNL.zip/download"],
   ["Muon", SOURCEFORGE_SAMPLES + "SampleData-Muon.zip/download"],
