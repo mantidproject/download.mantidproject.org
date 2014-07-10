@@ -27,12 +27,12 @@ SOURCEFORGE_SAMPLES = SOURCEFORGE_FILES + "Sample%20Data/"
 SOURCEFORGE_PARAVIEW = SOURCEFORGE_FILES + "ParaView/"
 
 # Must be in the name : downloadurl format.
-SAMPLES_DATASETS = {
-  "ISIS" : SOURCEFORGE_SAMPLES + "SampleData-ISIS.zip/download",
-  "Muon" : SOURCEFORGE_SAMPLES + "SampleData-Muon.zip/download",
-  "ORNL" : SOURCEFORGE_SAMPLES + "SampleData-ORNL.zip/download",
-  "Training" : SOURCEFORGE_SAMPLES + "TrainingCourseData.zip/download"
-}
+SAMPLES_DATASETS = [
+  ["ISIS", SOURCEFORGE_SAMPLES + "SampleData-ISIS.zip/download"],
+  ["ORNL", SOURCEFORGE_SAMPLES + "SampleData-ORNL.zip/download"],
+  ["Muon", SOURCEFORGE_SAMPLES + "SampleData-Muon.zip/download"],
+  ["Training", SOURCEFORGE_SAMPLES + "TrainingCourseData.zip/download"]
+]
 
 SUPPORTED_OSX_BUILDS = ["MountainLion", "Mavericks"]
 LATEST_SUPPORTED_OSX_VERSION = "10.8"
