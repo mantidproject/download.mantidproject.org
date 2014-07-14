@@ -68,7 +68,7 @@ if __name__ == "__main__":
    "mantid-%s-MountainLion.dmg",
    "mantid-%s-1.el6.x86_64.rpm",
    "mantid_%s-1_amd64.deb",
-   "mantid-%s.tar.gz"]
+   "mantid-%s-Source.tar.gz"]
 
   # TODO: Update if a paraview build name changes with a new supported release.
   PARAVIEW_BUILD_NAMES = [
