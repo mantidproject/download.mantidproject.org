@@ -1,0 +1,7 @@
+2014-07-14
+
+mantid-3.2.0-win64.exe
+mantid-3.2.0-MountainLion.dmg
+mantid-3.2.0-1.el6.x86_64.rpm
+mantid_3.2.0-1_amd64.deb
+mantid-3.2.0-Source.tar.gz
