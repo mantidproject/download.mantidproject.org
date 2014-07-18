@@ -6,8 +6,8 @@
     <h1>Download Mantid</h1>
   </header>
   <section id="latest" class="wrapper">
-    <h1>Latest release ({{ latest_release['mantid_version'] }})</h1>
-    <p id="release_notes">View changes made in <a href="{{ release_notes ~ latest_release['mantid_version'] }}">this release</a>.</p>
+    <h1>Latest release ({{ latest_release['mantid_formatted_version'] }})</h1>
+    <p id="release_notes">View changes made in <a href="{{ release_notes ~ latest_release['mantid_formatted_version'] }}">this release</a>.</p>
     <p class="instructions">Installation instructions:</p>
     <ul class="instructions">{% for instruction in instructions %}
       <li><a href="{{instruction.replace("-", "").lower() ~ '.html' }}">{{ instruction.replace("-", " ") }}</a></li>{% endfor %}

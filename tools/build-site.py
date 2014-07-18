@@ -38,7 +38,6 @@ SAMPLES_DATASETS = [
 SUPPORTED_OSX_BUILDS = ["MountainLion", "Mavericks"]
 LATEST_SUPPORTED_OSX_VERSION = "10.8"
 
-
 def mantid_releases():
   """
   Reads and stores release information for each release file in the releases folder. This does not include the nightly build.
@@ -67,6 +66,7 @@ def mantid_releases():
   for file_name in release_files:
     release = {}
     release['mantid_version'] = os.path.splitext(file_name)[0]
+    release["mantid_formatted_version"] = format_release_str(release['mantid_version'])
     release['paraview_version'] = paraview_version(release['mantid_version'])
     date, mantid_builds = parse_build_names(os.path.join(RELEASE_DIR, file_name), release['mantid_version'], "release")
     release['date'] = date
@@ -273,6 +273,22 @@ def get_date_from_tarball(filename):
     raise RuntimeError("Unable to extract date from source tarball '%s'" % filename)
 
   return formatted_date
+
+def format_release_str(release_str):
+  """
+  Takes a release string, and formats it using the convention we use elsewhere
+  in Mantid, for example DOI's.  Essentially, the patch number is removed if
+  it is zero.  I.e. 2.1.0 bcomes 2.1, 3.0.0 becomes 3.0, but 3.0 is left alone.
+
+  Args:
+    release_str (str) :: the release string to format.
+  
+  Returns:
+    str: the formatted release string
+  """
+  if re.match("\d\.\d\.0", release_str):
+    return release_str[:-2]
+  return release_str
 
 #========================================================================================================
 
