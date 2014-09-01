@@ -37,6 +37,8 @@ SAMPLES_DATASETS = [
 
 SUPPORTED_OSX_BUILDS = ["MountainLion", "Mavericks"]
 LATEST_SUPPORTED_OSX_VERSION = "10.8"
+SUPPORTED_UBUNTU_VERSION = "12.04"
+SUPPORTED_UBUNTU_VERSION_NIGHTLY = "14.04"
 
 def mantid_releases():
   """
@@ -217,7 +219,7 @@ def get_download_url(build_name, version, build_option):
   else:
     return SOURCEFORGE_FILES + version[0:3] + "/" + build_name
 
-def tidy_build_name(url, osname):
+def tidy_build_name(url, osname, nightly=False):
   """
   Obtains the build name from a given download url if possible, otherwise uses the osname provided.
   This is used as a custom filter in the jinja2 templating engine.
@@ -225,13 +227,18 @@ def tidy_build_name(url, osname):
   Args:
     url (str): The download url of a mantid build.
     osname (str): The osname set in get_os_name above, e.g. red-hat
+    nightly (bool): True if this is for the nightly section
 
   Returns:
     str: The os name obtained from the url string, e.g. "Mountain Lion".
   """
   # The osname set on "get_os_name" is sufficient.
   if ".rpm" in url or ".tar.gz" in url or ".deb" in url:
-    return osname.title().replace("-"," ")
+    name = osname.title().replace("-"," ")
+    if ".deb" in url:
+      if nightly: name += " " + SUPPORTED_UBUNTU_VERSION_NIGHTLY
+      else: name += " " + SUPPORTED_UBUNTU_VERSION
+    return name
 
   url = url.replace("/download","")
 
@@ -282,7 +289,7 @@ def format_release_str(release_str):
 
   Args:
     release_str (str) :: the release string to format.
-  
+
   Returns:
     str: the formatted release string
   """
