@@ -1,5 +1,5 @@
-mantidnightly-3.2.20141023.1447-1.el6.x86_64.rpm
-mantidnightly-3.2.20141023.1447-Source.tar.gz
-mantid-3.2.20141023.1447-MountainLion.dmg
-mantid-3.2.20141023.1447-win64.exe
-mantidnightly_3.2.20141023.1447-1_amd64.deb
+mantidnightly-3.2.20141024.1528-Source.tar.gz
+mantidnightly-3.2.20141024.1528-1.el6.x86_64.rpm
+mantid-3.2.20141024.1528-MountainLion.dmg
+mantid-3.2.20141024.1528-win64.exe
+mantidnightly_3.2.20141024.1528-1_amd64.deb
