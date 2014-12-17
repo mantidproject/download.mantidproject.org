@@ -35,6 +35,12 @@
         <ul> {% for name,downloadurl in sample_datasets %}
           <li><a href="{{ downloadurl }}">{{ name }}</a></li>{% endfor %}
         </ul>
+        <h2>Additional examples</h2>
+        <p>Help documentation and examples can be found <a href="http://www.mantidproject.org/Documentation">here</a> </p>
+        <p>The IPython notebook is not officially supported for use with Mantid, but an example notebook is provided below. </p>
+        <ul> {% for name,downloadurl in ipython_notebook %}
+            <li><a href="{{ downloadurl }}">{{ name }}</a></li>{% endfor %}
+        </ul>
       </article>
       <article id="nightly" class="column">
         <h2>Nightly build &ndash; {{ nightly_release['date']}}</h2>
