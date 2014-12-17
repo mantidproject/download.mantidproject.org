@@ -25,6 +25,7 @@ SOURCEFORGE_FILES = "http://sourceforge.net/projects/mantid/files/"
 SOURCEFORGE_NIGHTLY = SOURCEFORGE_FILES + "Nightly/"
 SOURCEFORGE_SAMPLES = SOURCEFORGE_FILES + "Sample%20Data/"
 SOURCEFORGE_PARAVIEW = SOURCEFORGE_FILES + "ParaView/"
+SOURCEFORGE_IPYTHON_NOTEBOOK = SOURCEFORGE_FILES + "IPython%20Notebook/"
 
 # Must be in the name : downloadurl format.
 SAMPLES_DATASETS = [
@@ -33,6 +34,10 @@ SAMPLES_DATASETS = [
   ["ORNL", SOURCEFORGE_SAMPLES + "SampleData-ORNL.zip/download"],
   ["Muon", SOURCEFORGE_SAMPLES + "SampleData-Muon.zip/download"],
   ["Training", SOURCEFORGE_SAMPLES + "TrainingCourseData.zip/download"]
+]
+
+IPYTHON_NOTEBOOK = [
+  ["IPython Notebook Example", SOURCEFORGE_IPYTHON_NOTEBOOK + "Introduction%20to%20using%20Mantid%20with%20IPython%20Notebook.ipynb/download" ]
 ]
 
 SUPPORTED_OSX_BUILDS = ["MountainLion", "Mavericks"]
@@ -319,7 +324,8 @@ if __name__ == "__main__":
                  "nightly_release" : nightly_release(),
                  "paraview_version" : mantid_releases[0]['paraview_version'],
                  "paraview_build_names" : paraview_build_names(mantid_releases[0]['paraview_version']),
-                 "instructions" : [os.path.splitext(filename)[0] for filename in sorted(os.listdir(INSTRUCTIONS_DIR))]
+                 "instructions" : [os.path.splitext(filename)[0] for filename in sorted(os.listdir(INSTRUCTIONS_DIR))],
+                 "ipython_notebook" : IPYTHON_NOTEBOOK
                  }
 
   # Setup up the jinja environment and load the templates
