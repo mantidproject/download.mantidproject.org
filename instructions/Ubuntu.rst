@@ -2,25 +2,29 @@
 Installing Mantid via apt
 =========================
 
-The current release debian packages provided are built for the long term support release of **Ubuntu**, which is currently **12.04** (Precise Pangolin).
+The debian packages for the current release are built for Ubuntu 12.04 (Precise Pangolin).
 
-In order to install them you will need to add the ISIS apt repository to your repository configuration. **Note:** This only has to be done once.
+In order to install them you will need to add the ISIS apt repository and `Mantid PPA <https://launchpad.net/~mantid/+archive/ubuntu/mantid>`__ 
+to your repository configuration. **Note:** This only has to be done once.
 
-Open a terminal and add the repository: ::
+Open a terminal and add the repositories: ::
 
     sudo apt-add-repository "deb http://apt.isis.rl.ac.uk precise main"
+    sudo apt-add-repository ppa:mantid/mantid
 
 To update and install the latest version of Mantid type: ::
 
     sudo apt-get update
     sudo apt-get install mantid
 
-To download and install the package manually run the following: ::
+To download and install a package manually, first install gdebi: ::
 
-    # Assumes package is in the Downloads directory
-    sudo gdebi $HOME/Downloads/mantid_X.Y.Z-1_amd64.deb
+    sudo apt-get install gdebi
 
-where **X.Y.Z** should be replaced with the version number of Mantid.
+then install mantid using: ::
+
+    sudo gdebi pkgname.deb
+
 
 Installing ParaView
 ~~~~~~~~~~~~~~~~~~~~~~~~~
