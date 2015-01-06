@@ -1,1 +1,6 @@
-mantid-3.2.20141224.900-MountainLion.dmg
+mantidnightly-3.2.20150105.1455-1.fc20.x86_64.rpm
+mantidnightly-3.2.20150105.1455-Source.tar.gz
+mantidnightly-3.2.20150105.1455-1.el6.x86_64.rpm
+mantid-3.2.20150105.1455-MountainLion.dmg
+mantid-3.2.20150105.1455-win64.exe
+mantidnightly_3.2.20150105.1455-1_amd64.deb
