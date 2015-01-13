@@ -1,8 +1,6 @@
 mantidnightly-3.2.20150112.1317-1.fc20.x86_64.rpm
 mantidnightly-3.2.20150112.1317-1.el6.x86_64.rpm
 mantidnightly-3.2.20150112.1317-Source.tar.gz
-mantiddocs-g3a1d375.tar.bz2
 mantid-3.2.20150112.1317-MountainLion.dmg
-mantiddoxygen-html-master.tar.bz2
 mantid-3.2.20150112.1317-win64.exe
 mantidnightly_3.2.20150112.1317-1_amd64.deb
