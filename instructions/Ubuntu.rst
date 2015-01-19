@@ -2,14 +2,14 @@
 Installing Mantid via apt
 =========================
 
-The debian packages for the current release are built for Ubuntu 12.04 (Precise Pangolin).
+The debian packages for the current release are built for Ubuntu 14.04 (Trusty Tahr).
 
-In order to install them you will need to add the ISIS apt repository and `Mantid PPA <https://launchpad.net/~mantid/+archive/ubuntu/mantid>`__ 
+In order to install them you will need to add the ISIS apt repository
 to your repository configuration. **Note:** This only has to be done once.
 
 Open a terminal and add the repositories: ::
 
-    sudo apt-add-repository "deb http://apt.isis.rl.ac.uk precise main"
+    sudo apt-add-repository "deb http://apt.isis.rl.ac.uk trusty main"
     sudo apt-add-repository ppa:mantid/mantid
 
 To update and install the latest version of Mantid type: ::
@@ -27,7 +27,7 @@ then install mantid using: ::
 
 
 Installing ParaView
-~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~
 
 To install the latest `version <index.html>`_ of ParaView you will need to manually build it from source as Kitware no longer provide Debian packages.
 
