@@ -17,7 +17,7 @@ INSTRUCTIONS_DIR = os.path.join(ROOT_DIR, "instructions")
 NIGHTLY_TARBALL_RE = re.compile("^mantidnightly-\d+\.\d+\.(\d{8})\.\d+-Source\.tar\.gz$")
 
 # General globals
-MANTID_NEWS = "http://mantidproject.github.io/news/"
+MANTID_NEWS = "http://developer.mantidproject.org/"
 RELEASE_NOTES = "http://www.mantidproject.org/Release_Notes_"
 
 # Download specific variables
