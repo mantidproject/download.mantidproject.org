@@ -1,6 +1,6 @@
-mantidnightly-3.3.20150123.1955-1.fc20.x86_64.rpm
-mantidnightly-3.3.20150123.1955-1.el6.x86_64.rpm
-mantidnightly-3.3.20150123.1955-Source.tar.gz
-mantid-3.3.20150123.1955-MountainLion.dmg
-mantid-3.3.20150123.1955-win64.exe
-mantidnightly_3.3.20150123.1955-1_amd64.deb
+mantidnightly-3.3.20150126.1718-1.fc20.x86_64.rpm
+mantidnightly-3.3.20150126.1718-Source.tar.gz
+mantidnightly-3.3.20150126.1718-1.el6.x86_64.rpm
+mantid-3.3.20150126.1718-MountainLion.dmg
+mantid-3.3.20150126.1718-win64.exe
+mantidnightly_3.3.20150126.1718-1_amd64.deb
