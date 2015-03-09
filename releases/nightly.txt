@@ -1,5 +1,1 @@
-mantidnightly-3.3.20150306.1700-Source.tar.gz
-mantidnightly-3.3.20150306.1700-1.el6.x86_64.rpm
-mantid-3.3.20150306.1700-MountainLion.dmg
-mantid-3.3.20150306.1700-win64.exe
-mantidnightly_3.3.20150306.1700-1_amd64.deb
+mantidnightly_3.3.20150309.1738-1_amd64.deb
