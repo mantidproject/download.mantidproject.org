@@ -8,6 +8,10 @@ Prior to installing Mantid via Yum you need to enable the `Extra Packages for En
 
 **Note:** following these procedures will update some default RHEL packages with newer versions on your system.
 
+**Red Hat 7:** Some packages from the *rhel-7-workstation-optional-rpms* repository are required. This can be enabled through the subscription manager with the following command: ::
+
+    subscription-manager repo-override --repo=rhel-7-workstation-optional-rpms --add=enabled:1
+
 Installing Mantid release
 -------------------------
 
