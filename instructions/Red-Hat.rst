@@ -2,11 +2,11 @@
 Installing Mantid via Yum
 =========================
 
-On **RHEL6** it is possible to install Mantid and all the required RPMs via the ISIS yum repository. There is an RPM spec file in the `Mantid repo <https://github.com/mantidproject/mantid/tree/master/Code/Mantid/Build/dev-packages/rpm/mantid-developer>`_ to allow you to build an RPM and install all dependencies. 
+On **RHEL** it is possible to install Mantid and all the required RPMs via the ISIS yum repository. There is an RPM spec file in the `Mantid repo <https://github.com/mantidproject/mantid/tree/master/Code/Mantid/Build/dev-packages/rpm/mantid-developer>`_ to allow you to build an RPM and install all dependencies. 
 
 Prior to installing Mantid via Yum you need to enable the `Extra Packages for Enterprise Linux (EPEL) <https://fedoraproject.org/wiki/EPEL>`_ by installing the `relevant rpm <https://fedoraproject.org/wiki/EPEL/FAQ#howtouse>`_.
 
-**Note:** following these procedures will update some default RHEL6 packages with newer versions on your system.
+**Note:** following these procedures will update some default RHEL packages with newer versions on your system.
 
 Installing Mantid release
 -------------------------
@@ -40,7 +40,7 @@ To install Mantid via yum, create the file ``/etc/yum.repos.d/isis-rhel.repo`` w
     failovermethod=priority
     enabled=0
     gpgcheck=0
-
+    
 You can then install the **stable release** of Mantid by typing: ::
 
     yum install mantid
