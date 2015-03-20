@@ -1,4 +1,4 @@
-mantidnightly-3.3.20150316.1702-Source.tar.gz
-mantidnightly-3.3.20150316.1702-1.el6.x86_64.rpm
-mantid-3.3.20150316.1702-win64.exe
-mantidnightly_3.3.20150316.1702-1_amd64.deb
+mantidnightly-3.3.20150319.1408-Source.tar.gz
+mantidnightly-3.3.20150319.1408-1.el6.x86_64.rpm
+mantid-3.3.20150319.1408-win64.exe
+mantidnightly_3.3.20150319.1408-1_amd64.deb
