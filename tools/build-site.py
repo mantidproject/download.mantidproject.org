@@ -41,7 +41,7 @@ IPYTHON_NOTEBOOK = [
 ]
 
 SUPPORTED_OSX_BUILDS = ["MountainLion", "Mavericks"]
-LATEST_SUPPORTED_OSX_VERSION = "10.8"
+LATEST_SUPPORTED_OSX_VERSION = "10.9"
 SUPPORTED_UBUNTU_VERSION = "14.04"
 SUPPORTED_UBUNTU_VERSION_NIGHTLY = "14.04"
 
@@ -290,7 +290,7 @@ def format_release_str(release_str):
   """
   Takes a release string, and formats it using the convention we use elsewhere
   in Mantid, for example DOI's.  Essentially, the patch number is removed if
-  it is zero.  I.e. 2.1.0 bcomes 2.1, 3.0.0 becomes 3.0, but 3.0 is left alone.
+  it is zero.  I.e. 2.1.0 becomes 2.1, 3.0.0 becomes 3.0, but 3.0 is left alone.
 
   Args:
     release_str (str) :: the release string to format.
