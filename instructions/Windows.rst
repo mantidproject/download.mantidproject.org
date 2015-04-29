@@ -12,15 +12,3 @@ The steps below will guide you through installation of Mantid on Windows:
 6. That's it! Once the installation process is complete a `MantidPlot` icon will appear on your desktop, and in your start menu.
 
 **Note:** the installer will look for the drive with the most free disk space, which may include external devices. Installing and uninstalling on these devices is extremely slow, and not recommended.
-
-Installing ParaView
-~~~~~~~~~~~~~~~~~~~
-
-To install the latest `version <index.html>`_ of ParaView you will need to install it using a similar process as used above. To do this:
-
-1. Download and locate the ParaView installer.
-2. Double click the installer and click **Run**.
-3. On the **Install options** screen select **Add ParaView to the system path for the current user**, and click **Next**.
-4. Select **Next** on the **Installation location** and **Start menu** screens to keep the defaults.
-5. On the **Choose components** screen select all components, and click **Install** to begin the installation process.
-6. Congratulations! ParaView will have been installed, and the **VATES** features within Mantid enabled.
