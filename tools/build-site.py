@@ -309,13 +309,13 @@ if __name__ == "__main__":
   mantid_releases = mantid_releases()
 
   # Variables to output on the archives page
-  archive_vars = { "title" : "Mantid archive downloads",
+  archive_vars = { "title" : "Mantid - Previous Releases",
                 "description" : "Downloads for current and previous releases of Mantid.",
                 "release_notes" : RELEASE_NOTES,
                 "releases" : mantid_releases
                 }
 
-  download_vars = { "title" : "Mantid downloads",
+  download_vars = { "title" : "Mantid - Downloads",
                  "description" : "Download the latest release of Mantid.",
                  "sample_datasets" : SAMPLES_DATASETS,
                  "mantid_news" : MANTID_NEWS,
