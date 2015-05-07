@@ -1,5 +1,5 @@
-mantidnightly-3.3.20150505.2010-1.el6.x86_64.rpm
-mantidnightly-3.3.20150505.2010-Source.tar.gz
-mantid-3.3.20150505.2010-win64.exe
-mantid-3.3.20150505.2010-Mavericks.dmg
-mantidnightly_3.3.20150505.2010-1_amd64.deb
+mantidnightly-3.3.20150506.2143-Source.tar.gz
+mantidnightly-3.3.20150506.2143-1.el6.x86_64.rpm
+mantid-3.3.20150506.2143-win64.exe
+mantid-3.3.20150506.2143-Mavericks.dmg
+mantidnightly_3.3.20150506.2143-1_amd64.deb
