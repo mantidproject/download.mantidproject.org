@@ -1,6 +1,6 @@
-mantidnightly-3.3.20150511.1946-Source.tar.gz
-mantidnightly-3.3.20150511.1946-1.el6.x86_64.rpm
-mantidnightly-3.3.20150511.1946-1.el7.x86_64.rpm
-mantid-3.3.20150511.1946-win64.exe
-mantid-3.3.20150511.1946-Mavericks.dmg
-mantidnightly_3.3.20150511.1946-1_amd64.deb
+mantidnightly-3.3.20150514.1646-Source.tar.gz
+mantidnightly-3.3.20150514.1646-1.el6.x86_64.rpm
+mantidnightly-3.3.20150514.1646-1.el7.x86_64.rpm
+mantid-3.3.20150514.1646-win64.exe
+mantid-3.3.20150514.1646-Mavericks.dmg
+mantidnightly_3.3.20150514.1646-1_amd64.deb
