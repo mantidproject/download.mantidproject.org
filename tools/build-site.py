@@ -196,6 +196,7 @@ def get_os_name(build_name):
   build_name = build_name.lower()
   if "win64" in build_name or "windows-64bit" in build_name: osname = "windows"
   elif "win32" in build_name or "windows-32bit" in build_name: osname = "win32"
+  elif "mavericks" in build_name: osname = "mac"
   elif "mountainlion" in build_name: osname = "mac"
   elif "snowleopard" in build_name or ".dmg" in build_name: osname = "snow-leopard"
   elif ".rpm" in build_name: osname = "red-hat"
@@ -309,13 +310,13 @@ if __name__ == "__main__":
   mantid_releases = mantid_releases()
 
   # Variables to output on the archives page
-  archive_vars = { "title" : "Mantid archive downloads",
+  archive_vars = { "title" : "Mantid - Previous Releases",
                 "description" : "Downloads for current and previous releases of Mantid.",
                 "release_notes" : RELEASE_NOTES,
                 "releases" : mantid_releases
                 }
 
-  download_vars = { "title" : "Mantid downloads",
+  download_vars = { "title" : "Mantid - Downloads",
                  "description" : "Download the latest release of Mantid.",
                  "sample_datasets" : SAMPLES_DATASETS,
                  "mantid_news" : MANTID_NEWS,
