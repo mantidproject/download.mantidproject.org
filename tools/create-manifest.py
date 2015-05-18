@@ -65,7 +65,7 @@ if __name__ == "__main__":
   # TODO: Update if a build name changes with a release.
   MANTID_BUILD_NAMES = [
    "mantid-%s-win64.exe",
-   "mantid-%s-MountainLion.dmg",
+   "mantid-%s-Mavericks.dmg",
    "mantid-%s-1.el6.x86_64.rpm",
    "mantid_%s-1_amd64.deb",
    "mantid-%s-Source.tar.gz"]
