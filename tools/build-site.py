@@ -22,7 +22,10 @@ RELEASE_NOTES = "http://www.mantidproject.org/Release_Notes_"
 
 # Download specific variables
 SOURCEFORGE_FILES = "http://sourceforge.net/projects/mantid/files/"
-SOURCEFORGE_NIGHTLY = SOURCEFORGE_FILES + "Nightly/"
+#The sourceforge upload is down so use our server for now
+#SOURCEFORGE_NIGHTLY = SOURCEFORGE_FILES + "Nightly/"
+SOURCEFORGE_NIGHTLY = "http://download.mantidproject.org/kits/nightly/"
+
 SOURCEFORGE_SAMPLES = SOURCEFORGE_FILES + "Sample%20Data/"
 SOURCEFORGE_PARAVIEW = SOURCEFORGE_FILES + "ParaView/"
 SOURCEFORGE_IPYTHON_NOTEBOOK = SOURCEFORGE_FILES + "IPython%20Notebook/"
@@ -217,12 +220,14 @@ def get_download_url(build_name, version, build_option):
   Returns:
     str: The download url for a given build.
   """
-  build_name = build_name.rstrip() + "/download"
   if build_option is "nightly":
+    build_name = build_name.rstrip()
     return SOURCEFORGE_NIGHTLY + build_name
   elif build_option is "paraview":
+    build_name = build_name.rstrip() + "/download"
     return SOURCEFORGE_PARAVIEW + version + "/" + build_name
   else:
+    build_name = build_name.rstrip() + "/download"
     return SOURCEFORGE_FILES + version[0:3] + "/" + build_name
 
 def tidy_build_name(url, osname, nightly=False):
