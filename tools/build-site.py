@@ -23,8 +23,7 @@ RELEASE_NOTES = "http://www.mantidproject.org/Release_Notes_"
 # Download specific variables
 SOURCEFORGE_FILES = "http://sourceforge.net/projects/mantid/files/"
 #The sourceforge upload is down so use our server for now
-#SOURCEFORGE_NIGHTLY = SOURCEFORGE_FILES + "Nightly/"
-SOURCEFORGE_NIGHTLY = "http://download.mantidproject.org/kits/nightly/"
+SOURCEFORGE_NIGHTLY = SOURCEFORGE_FILES + "Nightly/"
 
 SOURCEFORGE_SAMPLES = SOURCEFORGE_FILES + "Sample%20Data/"
 SOURCEFORGE_PARAVIEW = SOURCEFORGE_FILES + "ParaView/"
