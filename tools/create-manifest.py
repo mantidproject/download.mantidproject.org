@@ -91,21 +91,12 @@ def create_nightly_file(nightly_package_dir):
                                only *updated* with packages
   """
   filepath = os.path.join(RELEASE_DIR, "nightly.txt")
+  current_packages = create_current_nightly_package_list(filepath)
+  updated_packages = create_updated_package_list(nightly_package_dir)
+  if len(updated_packages) == 0:
+    raise RuntimeError("No nightly packages found in '{0}'".format(nightly_package_dir))
 
-  if os.path.exists(filepath):
-    file_contents = open(filepath).read()
-    current_packages = file_contents.strip().split("\n")
-  else:
-    current_packages = []
-
-  if os.path.exists(nightly_package_dir):
-    updated_packages = os.listdir(nightly_package_dir)
-    if len(updated_packages) == 0:
-      raise RuntimeError("No nightly packages found in '{0}'".format(nightly_package_dir))
-  else:
-    raise RuntimeError("Invalid directory for nightly build artifacts '{0}'".format(nightly_package_dir))
-
-  # filter out those from current list that have nan updated version
+  # filter out those from current list that have no updated version
   def no_update(filename):
     for updated in updated_packages:
       for build_re_str in NIGHTLY_BUILD_REGEXES:
@@ -113,10 +104,46 @@ def create_nightly_file(nightly_package_dir):
         if build_re.match(filename) and build_re.match(updated):
           return False
     return True
+  #end
   nightlies = filter(no_update, current_packages)
   nightlies.extend(updated_packages)
   nightlies.sort()
   open(filepath, 'w').write("\n".join(nightlies))
+
+def create_current_nightly_package_list(manifest_filename):
+  """
+  Create a list of builds/source files that are current listed in the nightly section
+
+  Args:
+    manifest_filename (str): A file path pointing to the manifest for the current nightly build
+  """
+  if os.path.exists(manifest_filename):
+    file_contents = open(manifest_filename).read()
+    current_packages = file_contents.strip().split("\n")
+  else:
+    current_packages = []
+
+  return current_packages
+
+def create_updated_package_list(nightly_package_dir):
+  """
+  Create a list of builds/source files for the page
+
+  Args:
+    nightly_package_dir (str): A directory path to list for nightly packages
+  """
+  if not os.path.exists(nightly_package_dir):
+    raise RuntimeError("Invalid directory for nightly build artifacts '{0}'".format(nightly_package_dir))
+  updated_packages = os.listdir(nightly_package_dir)
+
+  def is_binary_or_source(item):
+    for build_re_str in NIGHTLY_BUILD_REGEXES:
+      build_re = re.compile(build_re_str)
+      if build_re.match(item):
+        return True
+    return False
+  #end
+  return filter(is_binary_or_source, updated_packages)
 
 def create_paraview_file(version):
   """
