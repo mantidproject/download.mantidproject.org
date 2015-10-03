@@ -1,19 +1,24 @@
 {% extends "base.html" %}
 {% block content %}<div id="container">
   <h1>Previous releases</h1>
-  <p>Listed below are all previous releases of Mantid. Where appropriate the related ParaView version, which is required to activate the VATES features within Mantid, is also listed. You can view installation instructions for each operating system <a href="./index.html">here</a>.</p>{% for release in releases %}
+  <p>Listed below are all previous releases of Mantid. Where appropriate the related ParaView version, which is required to activate the VATES features within Mantid, is also listed. You can view installation instructions for each operating system <a href="./index.html">here</a>.</p>
+  {% for release in releases %}
   <h2><a href="{{ release_notes ~ release['mantid_formatted_version'] }}">Release {{ release['mantid_formatted_version'] }} &ndash; {{ release['date'] }}</a></h2>
   <table>
     <thead>
       <tr>
+	{% if release['paraview_version'] %}
         <th>Mantid</th>
         <th>ParaView</th>
+	{% endif %}
       </tr>
     </thead>
     <tbody>{% for osname,downloadurls in release['build_info']|dictsort() %}
       <tr>
         <td><a href="{{ downloadurls[0] }}">{{ downloadurls[0]|tidy_build_name(osname) }}</a></td>
+	{% if release['paraview_version'] %}
         <td><a href="{{ downloadurls[1] }}">{{ release['paraview_version'] }}</a></td>
+	{% endif %}
       </tr>{% endfor %}
     </tbody>
   </table>{% endfor %}

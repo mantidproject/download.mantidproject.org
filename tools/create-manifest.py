@@ -190,6 +190,7 @@ if __name__ == "__main__":
         datetime.datetime.strptime(args.date, "%Y-%m-%d")
       except ValueError:
         sys.exit("The date you have provided is invalid. It must be in Y-M-D format.")
-      #
-      create_release_file(args.version,str(args.date), args.force)
+    #
+    create_release_file(args.version,str(args.date), args.force)
+    if args.paraview:
       update_paraview_versions(args.version,args.paraview)

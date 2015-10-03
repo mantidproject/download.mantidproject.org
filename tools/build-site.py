@@ -79,16 +79,17 @@ def mantid_releases():
     release['paraview_version'] = paraview_version(release['mantid_version'])
     date, mantid_builds = parse_build_names(os.path.join(RELEASE_DIR, file_name), release['mantid_version'], "release")
     release['date'] = date
-    paraview_builds = paraview_build_names(release['paraview_version'])
+    pv_version = release['paraview_version']
+    paraview_builds = paraview_build_names(pv_version) if pv_version is not None else {}
 
     # Add the related paraview download url to the dict, based on the osname.
     # Value of dict must be changed to a list to accommodate multiple values.
     for osname,downloadurl in mantid_builds.iteritems():
       if osname in paraview_builds:
-        mantid_builds[osname] = [downloadurl, paraview_builds[osname]]
+        mantid_builds[osname] = [downloadurl, paraview_builds.get(osname, "")]
       else:
         # Required as value must now be a list in the template.
-        mantid_builds[osname] = [downloadurl, paraview_builds["source"]]
+        mantid_builds[osname] = [downloadurl, paraview_builds.get("source", "")]
 
     release['build_info'] = mantid_builds
     releases.append(release)
@@ -149,7 +150,8 @@ def paraview_version(mantid_version):
       m_version, paraview_version = line.rstrip("\n").split(",")
       if m_version == mantid_version:
         return paraview_version
-  sys.exit("ERROR: The version of Mantid you provided 'paraview_version' was not in the paraview versions file.")
+      else:
+        return None
 
 def paraview_build_names(paraview_version):
   """
@@ -320,6 +322,7 @@ if __name__ == "__main__":
                 "releases" : mantid_releases
                 }
 
+  paraview_version = mantid_releases[0]['paraview_version']
   download_vars = { "title" : "Mantid - Downloads",
                  "description" : "Download the latest release of Mantid.",
                  "sample_datasets" : SAMPLES_DATASETS,
@@ -327,8 +330,8 @@ if __name__ == "__main__":
                  "release_notes" : RELEASE_NOTES,
                  "latest_release" : mantid_releases[0],
                  "nightly_release" : nightly_release(),
-                 "paraview_version" : mantid_releases[0]['paraview_version'],
-                 "paraview_build_names" : paraview_build_names(mantid_releases[0]['paraview_version']),
+                 "paraview_version" : paraview_version,
+                 "paraview_build_names" : None if paraview_version is None else paraview_build_names(paraview_version),
                  "instructions" : [os.path.splitext(filename)[0] for filename in sorted(os.listdir(INSTRUCTIONS_DIR))],
                  "ipython_notebook" : IPYTHON_NOTEBOOK
                  }
