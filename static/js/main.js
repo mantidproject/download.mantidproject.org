@@ -2,12 +2,12 @@ function getOS() {
   var osName = "UNIX"; // Unknown OS likely to be UNIX variant
   if (navigator.appVersion.indexOf("Win") != -1 || navigator.userAgent.indexOf('Windows NT 6.2') > -1) osName = "Windows 7/8";
   if (navigator.appVersion.indexOf("Mac") != -1) osName = "Mac";
-  if (navigator.appVersion.indexOf("X11") != -1 || navigator.appVersion.indexOf("Linux") != -1) osName = "Ubuntu";
+  if (navigator.appVersion.indexOf("X11") != -1 || navigator.appVersion.indexOf("Linux") != -1) osName = "Linux";
   return osName;
 }
 
 function updateInstructionsURL(osname) {
-  if (osname == "Ubuntu") $('#release_notes').append(' It is recommended to use <a href="ubuntu.html">apt-get</a> or <a href="redhat.html">yum</a> to install Mantid on UNIX.');
+  if (osname == "Linux") $('#release_notes').append(' It is recommended to use <a href="ubuntu.html">apt-get</a> or <a href="redhat.html">yum</a> to install Mantid on UNIX.');
 }
 
 function windowsXPWarning() {
@@ -30,18 +30,21 @@ $(document).ready(function() {
 
   updateInstructionsURL(osName)
 
+  winUpgradeWarning = $(".windows-upgrade");
   // Show source code download for Linux distros.
-  if (osName == "Ubuntu")
+  if (osName == "Linux")
   {
     $('#latest .button').attr("href",$("#latest .source").attr("href")).text("Download source code");
     $('#nightly .button').attr("href",$("#nightly .source").attr("href")).text("Download source code")
     $('#paraview .button').attr("href",$("#paraview .source").attr("href")).text("Download source code")
 
     $(".source").closest('li').remove();
+    winUpgradeWarning.hide()
   }
   else
   {
-    osClass = "." + osName.split(" ")[0].toLowerCase(); // Grab OS name only (e.g. not 7/8)
+    osType = osName.split(" ")[0]
+    osClass = "." + osType.toLowerCase(); // Grab OS name only (e.g. not 7/8)
 
     $('#latest .button').attr("href",$("#latest "+osClass).attr("href"));
     $('#nightly .button').attr("href",$("#nightly "+osClass).attr("href"));
@@ -49,5 +52,8 @@ $(document).ready(function() {
     $('.button').append(osName == "Mac" ? $('#latest .mac').text() : osName)
 
     $(osClass).closest('li').remove();
+    if (osType == "Windows" ) winUpgradeWarning.show();
+    else winUpgradeWarning.hide();
+
   }
 });
