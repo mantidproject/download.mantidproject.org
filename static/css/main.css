@@ -156,6 +156,22 @@ h1, h2, h3 { border-bottom: 1px solid #DCDCDC; }
   text-decoration: none;
 }
 
+div.admonition {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 7px;
+}
+div.admonition p, div.admonition li {
+   text-align: left;
+}
+.alert-warning {
+    background-image: -webkit-linear-gradient(top,#fcf8e3 0,#f8efc0 100%);
+    background-image: linear-gradient(to bottom,#fcf8e3 0,#f8efc0 100%);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffcf8e3', endColorstr='#fff8efc0', GradientType=0);
+    border-color: #f5e79e;
+}
+
 #nightly > .button {
   background-color: #F4E14E;
   color: #333;

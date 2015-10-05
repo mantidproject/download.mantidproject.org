@@ -13,6 +13,14 @@
       <li><a href="{{instruction.replace("-", "").lower() ~ '.html' }}">{{ instruction.replace("-", " ") }}</a></li>{% endfor %}
     </ul>
     <a href="#" class="button">Download Mantid for </a>
+    <div class="windows-upgrade admonition alert-warning">
+      <p>Known upgrade issues for Windows users:
+	<ul>
+	  <li>The install process has been streamlined but for a single time upgrading to v3.5.0 will require an additional single click to launch the uninstall of the old version. In future this will happen automatically.</li>
+	  <li>Shortcuts attached to the taskbar start Mantid but Python is broken. The resolution is to delete the old shortcut and generate a new one by dragging the desktop icon to the taskbar.</li>
+	</ul>
+      </p>
+    </div>
     <p>Alternative downloads:</p>
     <ul class="alternatives">{% for osname,downloadurls in latest_release['build_info']|dictsort() %}
       <li><a class="{{ osname }}" href="{{ downloadurls[0] }}">{{ downloadurls[0]|tidy_build_name(osname) }}</a></li>{% endfor %}
