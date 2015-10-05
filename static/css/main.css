@@ -34,7 +34,7 @@ ul { list-style: none; }
 /*-------------------- $STRUCTURE --------------------*/
 
 .wrapper {
-  width: 30em;
+  width: 42em;
   margin: 0 auto;
   padding: 1em;
 }
@@ -55,9 +55,9 @@ ul li { background:url("../img/bullet.png") left no-repeat; }
 
 /*-------------------- $TYPEOGRAPY --------------------*/
 
-a, p, ol, ul { font-family: 'Droid Sans', sans-serif; }
+a, p, ol, ul { font-family: adelle, Georgia, 'Times New Roman', serif; }
 
-h1,h2, h3 { font-family: 'Droid Serif', serif; }
+h1,h2, h3 { font-family: adelle, Georgia, 'Times New Roman', serif; }
 
 p  { font-size: 1.2em; }
 h1 { font-size: 2.6em; }
@@ -99,7 +99,7 @@ ol li { margin: 0 0 1em .4em; }
 
 .instructions {
   display: inline;
-  font-size: 1em;
+  font-size: 1.2em;
 }
 
 /*-------------------- $LINKS & $COLOURS --------------------*/
@@ -127,10 +127,6 @@ h1, h2, h3 { border-bottom: 1px solid #DCDCDC; }
   margin-bottom: 1em;
 }
 
-#latest p, #latest ul {
-  text-align: center;
-}
-
 #gridcontainer {
   margin: 0 auto;
   max-width: 1080px;
@@ -139,7 +135,7 @@ h1, h2, h3 { border-bottom: 1px solid #DCDCDC; }
   border-bottom: 1px solid #DCDCDC;
 }
 
-#gridcontainer p { font-size: 1em; }
+#gridcontainer p { font-size: 1.2em; }
 
 .button {
   margin: 0 auto;
