@@ -1,5 +1,5 @@
-mantid-3.5.20151008.1932-Mavericks.dmg
-mantid-3.5.20151008.1932-win64.exe
+mantid-3.5.20151009.1507-Mavericks.dmg
+mantid-3.5.20151009.1507-win64.exe
 mantidnightly-3.5.20151009.1507-1.el6.x86_64.rpm
 mantidnightly-3.5.20151009.1507-1.el7.x86_64.rpm
 mantidnightly-3.5.20151009.1507-Source.tar.gz
