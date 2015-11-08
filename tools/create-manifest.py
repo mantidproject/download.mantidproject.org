@@ -18,7 +18,7 @@ MANTID_BUILD_NAMES = [
   "mantid%s-%s-Source.tar.gz"
 ]
 
-TIMESTAMP_RE = r'\d+.\d+.\d{8}.\d{4}'
+TIMESTAMP_RE = r'\d+.\d+.\d{8}.\d+'
 NIGHTLY_BUILD_REGEXES = [
   "mantid-{0}-win64.exe".format(TIMESTAMP_RE),
   "mantid-{0}-Mavericks.dmg".format(TIMESTAMP_RE),
