@@ -1,4 +1,4 @@
-mantid-3.5.20151107.152-Mavericks.dmg
+mantid-3.5.20151108.1948-Mavericks.dmg
 mantid-3.5.20151108.1948-win64.exe
 mantidnightly-3.5.20151108.1948-1.el6.x86_64.rpm
 mantidnightly-3.5.20151108.1948-1.el7.x86_64.rpm
