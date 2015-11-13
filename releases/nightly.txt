@@ -3,4 +3,4 @@ mantid-3.5.20151108.1948-win64.exe
 mantidnightly-3.5.20151111.1932-1.el6.x86_64.rpm
 mantidnightly-3.5.20151111.1932-Source.tar.gz
 mantidnightly-3.5.20151112.1727-1.el7.x86_64.rpm
-mantidnightly_3.5.20151111.1932-1_amd64.deb
+mantidnightly_3.5.20151112.1727-1_amd64.deb
