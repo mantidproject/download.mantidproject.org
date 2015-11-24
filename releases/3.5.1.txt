@@ -1,0 +1,8 @@
+2015-11-24
+
+mantid-3.5.1-win64.exe
+mantid-3.5.1-Mavericks.dmg
+mantid-3.5.1-1.el6.x86_64.rpm
+mantid-3.5.1-1.el7.x86_64.rpm
+mantid_3.5.1-1_amd64.deb
+mantid-3.5.1-Source.tar.gz
