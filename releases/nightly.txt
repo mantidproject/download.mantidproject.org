@@ -1,6 +1,6 @@
 mantid-3.5.20151123.2224-Mavericks.dmg
 mantid-3.5.20151124.806-win64.exe
 mantidnightly-3.5.20151123.2224-1.el6.x86_64.rpm
-mantidnightly-3.5.20151123.2224-1.el7.x86_64.rpm
 mantidnightly-3.5.20151123.2224-Source.tar.gz
+mantidnightly-3.5.20151124.1310-1.el7.x86_64.rpm
 mantidnightly_3.5.20151123.2224-1_amd64.deb
