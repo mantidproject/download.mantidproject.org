@@ -1,5 +1,5 @@
-mantid-3.5.20160122.1816-Mavericks.dmg
 mantid-3.5.20160122.1816-win64.exe
+mantid-3.5.20160125.2246-Mavericks.dmg
 mantidnightly-3.5.20160125.2246-1.el6.x86_64.rpm
 mantidnightly-3.5.20160125.2246-1.el7.x86_64.rpm
 mantidnightly-3.5.20160125.2246-Source.tar.gz
