@@ -12,20 +12,12 @@
     <ul class="instructions">{% for instruction in instructions %}
       <li><a href="{{instruction.replace("-", "").lower() ~ '.html' }}">{{ instruction.replace("-", " ") }}</a></li>{% endfor %}
     </ul>
-    <a href="#" class="button">Download Mantid for </a>
-    <div class="admonition alert-warning">
-    <p>Attention Muon Users:
-    Please use the following version as the offical build contains a bug affecting sequential fitting for Muon data: <a href="http://files.mantidproject.org/kits/muon/3.5-fix/mantid-3.5.20151209.1536-win64.exe">Windows 7/8</a>, <a href="http://files.mantidproject.org/kits/muon/3.5-fix/mantid-3.5.20151209.1536-Mavericks.dmg">OSX (10.9+)</a>.
-    </p>
-    </div>
     <div class="windows-upgrade admonition alert-warning">
-      <p>Known upgrade issues for Windows users:
-	<ul>
-	  <li>The install process has been streamlined but for a single time upgrading to v3.5.0 will require an additional single click to launch the uninstall of the old version. In future this will happen automatically.</li>
-	  <li>Shortcuts attached to the taskbar start Mantid but Python is broken. The resolution is to delete the old shortcut and generate a new one by dragging the desktop icon to the taskbar.</li>
-	</ul>
-      </p>
+      <p>Windows users, if you see the following error:</p>
+      <img style="display: block; margin-left: auto; margin-right: auto;" src="img/msvc2015-dll.png" width="300px">
+      <p>your machine has not had recent Windows updates applied. Please either update Windows or install <a href="http://www.microsoft.com/en-us/download/confirmation.aspx?id=49093">KB2999226</a> standalone.</p>
     </div>
+    <a href="#" class="button">Download Mantid for </a>
     <p>Alternative downloads:</p>
     <ul class="alternatives">{% for osname,downloadurls in latest_release['build_info']|dictsort() %}
       <li><a class="{{ osname }}" href="{{ downloadurls[0] }}">{{ downloadurls[0]|tidy_build_name(osname) }}</a></li>{% endfor %}
@@ -51,13 +43,6 @@
       <article id="nightly" class="column">
         <h2>Nightly build &ndash; {{ nightly_release['date']}}</h2>
         <p><i>Nightly development build &ndash; minimally tested and <b>not</b> recommended for general use.</i></p>
-	<div class="windows-upgrade admonition alert-warning">
-	  <p>Current Windows nightly builds will require Windows update <a href="http://www.microsoft.com/en-us/download/confirmation.aspx?id=49093">KB2999226</a> to have been applied.</p>
-	  <p>If you see the following error:</p>
-	  <img src="img/msvc2015-dll.png" width="300px">
-	  <p>then please apply this update.</p>
-	</div>
-
         <a href="#" class="button">Download Mantid for </a>
         <p>View changes in this build in the <a href="{{ mantid_news }}">recent news</a>.</p>
         <p>Alternative downloads:</p>
