@@ -1,6 +1,6 @@
 function getOS() {
   var osName = "UNIX"; // Unknown OS likely to be UNIX variant
-  if (navigator.appVersion.indexOf("Win") != -1 || navigator.userAgent.indexOf('Windows NT 6.2') > -1) osName = "Windows 7/8";
+  if (navigator.appVersion.indexOf("Win") != -1 || navigator.userAgent.indexOf('Windows NT 6.2') > -1) osName = "Windows 7/8/10";
   if (navigator.appVersion.indexOf("Mac") != -1) osName = "Mac";
   if (navigator.appVersion.indexOf("X11") != -1 || navigator.appVersion.indexOf("Linux") != -1) osName = "Linux";
   return osName;
