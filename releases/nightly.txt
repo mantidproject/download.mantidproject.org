@@ -3,4 +3,4 @@ mantid-3.6.20160311.1903-win64.exe
 mantidnightly-3.6.20160311.1903-1.el6.x86_64.rpm
 mantidnightly-3.6.20160311.1903-Source.tar.gz
 mantidnightly-3.6.20160312.440-1.el7.x86_64.rpm
-mantidnightly_3.6.20160311.1903-1_amd64.deb
+mantidnightly_3.6.20160312.440-1_amd64.deb
