@@ -9,7 +9,7 @@ to your repository configuration. **Note:** This only has to be done once.
 
 Open a terminal and add the repositories: ::
 
-    sudo apt-add-repository "deb http://apt.isis.rl.ac.uk trusty main"
+    sudo apt-add-repository "deb [arch=amd64] http://apt.isis.rl.ac.uk trusty main"
     sudo apt-add-repository ppa:mantid/mantid
 
 To update and install the latest version of Mantid type: ::
