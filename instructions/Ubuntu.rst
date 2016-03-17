@@ -1,21 +1,47 @@
 =========================
-Installing Mantid via apt
+Installing Mantid via Apt
 =========================
 
 The debian packages for the current release are built for Ubuntu 14.04 (Trusty Tahr).
 
-In order to install them you will need to add the ISIS apt repository
-to your repository configuration. **Note:** This only has to be done once.
+Stable Release
+--------------
 
-Open a terminal and add the repositories: ::
+To install the current release via apt, first add the required repositories to the `sources.list`. This only needs to be done once.
+Open a terminal and run ::
 
     sudo apt-add-repository "deb [arch=amd64] http://apt.isis.rl.ac.uk trusty main"
     sudo apt-add-repository ppa:mantid/mantid
 
-To update and install the latest version of Mantid type: ::
+and then install package with: ::
 
     sudo apt-get update
     sudo apt-get install mantid
+
+This will install Mantid into ``/opt/Mantid`` and add bash files to ``/etc/profile.d`` so that next time you create a terminal the correct path to MantidPlot will be defined.
+
+Nightly Build
+-------------
+
+To install the current release via apt, first add the required repositories to the `sources.list`. This only needs to be done once.
+Open a terminal and run ::
+
+    sudo apt-add-repository "deb [arch=amd64] http://apt.isis.rl.ac.uk trusty-testing main"
+    sudo apt-add-repository ppa:mantid/mantid
+
+and then install package with: ::
+
+    sudo apt-get update
+    sudo apt-get install mantidnightly
+
+This will install Mantid into ``/opt/mantidnightly``. It does **not** update the environment so you must type the following to start it: ::
+
+    ./opt/mantidnightly/bin/MantidPlot
+
+This is to avoid users accidentally running the nightly development build.
+
+Manual Install
+--------------
 
 To download and install a package manually, first install gdebi: ::
 

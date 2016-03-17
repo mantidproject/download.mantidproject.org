@@ -2,7 +2,7 @@
 Installing Mantid via Yum
 =========================
 
-On **RHEL** it is possible to install Mantid and all the required RPMs via the ISIS yum repository. There is an RPM spec file in the `Mantid repo <https://github.com/mantidproject/mantid/tree/master/Code/Mantid/Build/dev-packages/rpm/mantid-developer>`_ to allow you to build an RPM and install all dependencies. 
+On **RHEL** it is possible to install Mantid and all the required RPMs via the ISIS yum repository. There is an RPM spec file in the `Mantid repo <https://github.com/mantidproject/mantid/tree/master/Code/Mantid/Build/dev-packages/rpm/mantid-developer>`_ to allow you to build an RPM and install all dependencies.
 
 Prior to installing Mantid via Yum you need to enable the `Extra Packages for Enterprise Linux (EPEL) <https://fedoraproject.org/wiki/EPEL>`_ by installing the `relevant rpm <https://fedoraproject.org/wiki/EPEL/FAQ#howtouse>`_.
 
@@ -12,8 +12,8 @@ Prior to installing Mantid via Yum you need to enable the `Extra Packages for En
 
     subscription-manager repo-override --repo=rhel-7-workstation-optional-rpms --add=enabled:1
 
-Installing Mantid release
--------------------------
+Stable release
+--------------
 
 To install Mantid via yum, create the file ``/etc/yum.repos.d/isis-rhel.repo`` with the following content: ::
 
@@ -44,15 +44,15 @@ To install Mantid via yum, create the file ``/etc/yum.repos.d/isis-rhel.repo`` w
     failovermethod=priority
     enabled=0
     gpgcheck=0
-    
+
 You can then install the **stable release** of Mantid by typing: ::
 
     yum install mantid
 
 This will install Mantid into ``/opt/Mantid`` and add bash files to ``/etc/profile.d`` so that next time you create a terminal the correct path to MantidPlot will be defined.
 
-Installing Mantid nightly
--------------------------
+Nightly Build
+-------------
 
 To install nightly development builds via yum, create the file ``/etc/yum.repos.d/isis-rhel-testing.repo`` with the following content: ::
 
