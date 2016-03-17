@@ -250,6 +250,12 @@ pre {
   white-space: pre;
 }
 
+tt {
+  color: #444;
+  font-family: 'Inconsolata', Courier, monospace;
+  font-size: 0.9em;
+}
+
 code { padding: .3em; }
 
 code, pre {
