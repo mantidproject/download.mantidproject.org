@@ -18,7 +18,8 @@ NIGHTLY_TARBALL_RE = re.compile("^mantidnightly-\d+\.\d+\.(\d{8})\.\d+-Source\.t
 
 # General globals
 MANTID_NEWS = "http://developer.mantidproject.org/"
-RELEASE_NOTES = "http://www.mantidproject.org/Release_Notes_"
+RELEASE_NOTES_PRE_37 = "http://www.mantidproject.org/Release_Notes_"
+RELEASE_NOTES = "http://docs.mantidproject.org/{version}/release/{version}/index.html"
 
 # Download specific variables
 SOURCEFORGE_FILES = "http://sourceforge.net/projects/mantid/files/"
@@ -318,17 +319,19 @@ if __name__ == "__main__":
   # Variables to output on the archives page
   archive_vars = { "title" : "Mantid - Previous Releases",
                 "description" : "Downloads for current and previous releases of Mantid.",
-                "release_notes" : RELEASE_NOTES,
-                "releases" : mantid_releases
+                "release_notes" : RELEASE_NOTES_PRE_37,
+                "releases" : mantid_releases[1:]
                 }
 
+  latest_version = mantid_releases[0]
+  release_notes = RELEASE_NOTES.format(version=('v' + latest_version['mantid_formatted_version']))
   paraview_version = mantid_releases[0]['paraview_version']
   download_vars = { "title" : "Mantid - Downloads",
                  "description" : "Download the latest release of Mantid.",
                  "sample_datasets" : SAMPLES_DATASETS,
                  "mantid_news" : MANTID_NEWS,
-                 "release_notes" : RELEASE_NOTES,
-                 "latest_release" : mantid_releases[0],
+                 "release_notes" : release_notes,
+                 "latest_release" : latest_version,
                  "nightly_release" : nightly_release(),
                  "paraview_version" : paraview_version,
                  "paraview_build_names" : None if paraview_version is None else paraview_build_names(paraview_version),
