@@ -271,7 +271,7 @@ def tidy_build_name(url, osname, nightly=False):
     url = url.replace("bit","")
     url = url.replace("win","Windows")
     url = url.replace("32"," XP")
-    url = url.replace("64"," 7/8")
+    url = url.replace("64"," 7/8/10")
 
   return url
 
