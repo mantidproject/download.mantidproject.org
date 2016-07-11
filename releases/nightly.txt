@@ -1,6 +1,6 @@
 mantid-3.7.20160708.1921-Mavericks.dmg
 mantid-3.7.20160708.1921-win64.exe
 mantidnightly-3.7.20160708.1921-1.el6.x86_64.rpm
-mantidnightly-3.7.20160708.1921-1.el7.x86_64.rpm
 mantidnightly-3.7.20160708.1921-Source.tar.gz
+mantidnightly-3.7.20160710.2338-1.el7.x86_64.rpm
 mantidnightly_3.7.20160708.1921-1_amd64.deb
