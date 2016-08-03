@@ -2,4 +2,4 @@
 static/*.html
 *~
 *.swp
-site/*
+site
