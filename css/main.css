@@ -1,0 +1,299 @@
+/*-------------------- $RESET --------------------*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section,
+.button, #previous  { /* download elements */
+  display: block;
+}
+
+body { line-height: 1; }
+ul { list-style: none; }
+
+/*-------------------- $STRUCTURE --------------------*/
+
+.wrapper {
+  width: 42em;
+  margin: 0 auto;
+  padding: 1em;
+}
+
+/* Latest download inline list */
+.wrapper li {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+
+ul li { background:url("../img/bullet.png") left no-repeat; }
+
+.banner {
+  text-align: center;
+  margin: 1em;
+}
+
+/*-------------------- $TYPEOGRAPY --------------------*/
+
+a, p, ol, ul { font-family: adelle, Georgia, 'Times New Roman', serif; }
+
+h1,h2, h3 { font-family: adelle, Georgia, 'Times New Roman', serif; }
+
+p  { font-size: 1.2em; }
+h1 { font-size: 2.3em; }
+h2 { font-size: 1.6em; }
+h3 { font-size: 1.6em; }
+
+i, em { font-style: italic; }
+
+p  { line-height: 1.6; }
+ol { line-height: 1.4; }
+
+h1, h2, h3, .banner, .button, th, strong, b {
+  font-weight: 700;
+}
+
+.banner h1 {
+  font-size: 4.2em;
+  border-bottom: 0;
+}
+
+/*-------------------- $SPACING --------------------*/
+
+h1,h2 {
+  margin-bottom: .6em;
+  padding-bottom: 0.1em;
+}
+h3 { margin: 1em 0; }
+p { margin-bottom: 1em; }
+.banner h1 { margin-bottom: .2em; }
+
+ul li {
+  margin: 0 0 1em 5px;
+  padding: 0 0 0 10px;
+}
+
+ol {
+  margin-left: 1.6em;
+  padding: 0 1.6em .8em 1.6em;
+}
+
+ol li { margin: 0 0 1em .4em; }
+
+.instructions {
+  display: inline;
+  font-size: 1.2em;
+}
+
+/*-------------------- $LINKS & $COLOURS --------------------*/
+
+html {
+  background: whiteSmoke;
+  color: #222;
+}
+
+a {
+  color: #009933;
+  text-decoration: none;
+}
+
+a:hover { text-decoration: underline; }
+
+#error { color: #EB2735; }
+
+h1, h2, h3 { border-bottom: 1px solid #DCDCDC; }
+
+/*-------------------- $DOWNLOADS --------------------*/
+
+.alternatives {
+  text-align: left;
+  margin-bottom: 1em;
+}
+
+#gridcontainer {
+  margin: 0 auto;
+  max-width: 1080px;
+  padding-top: 1em;
+  border-top: 1px solid #DCDCDC;
+  border-bottom: 1px solid #DCDCDC;
+}
+
+#gridcontainer p { font-size: 1.2em; }
+
+.button {
+  margin: 0 auto;
+  background-color: #009933;
+  color: whiteSmoke;
+  text-align: center;
+  width: 65%;
+  padding: 1.6em 1em;
+  margin-bottom: 1em;
+
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+}
+
+.button:hover {
+  background-color: #448844;
+  text-decoration: none;
+}
+
+div.admonition {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 7px;
+}
+div.admonition p, div.admonition li {
+   text-align: left;
+}
+.alert-warning {
+    background-image: -webkit-linear-gradient(top,#fcf8e3 0,#f8efc0 100%);
+    background-image: linear-gradient(to bottom,#fcf8e3 0,#f8efc0 100%);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffcf8e3', endColorstr='#fff8efc0', GradientType=0);
+    border-color: #f5e79e;
+}
+
+#nightly > .button {
+  background-color: #F4E14E;
+  color: #333;
+}
+
+#nightly > .button:hover { background-color: #FDE45E; }
+
+#previous {
+  text-align: right;
+  font-weight: 700;
+}
+
+.column {
+  vertical-align: top;
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+
+  font-size: 14px;
+  padding: 1em;
+  width: 30%;
+}
+
+.column .button {
+  width: 80%;
+  padding: 1em;
+}
+
+.column li { display: block; margin-left: 2em;}
+
+/*-------------------- $ARCHIVES --------------------*/
+
+#container,
+.document {  /* reStructred auto-generated div container. */
+  width: 40em;
+  margin: 0 auto;
+  padding: 1em;
+}
+
+/*-------------------- $TABLES ------------------*/
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.6em 0;
+}
+
+/* Zebra striping */
+tr:nth-of-type(odd) {  background: white; }
+
+tr:hover { background-color: whiteSmoke; }
+
+th {
+  background: #E0DFDE;
+  font-size: 1.3em;
+}
+
+td, th {
+  padding: .75em;
+  border: 1px solid #CCC;
+  text-align: left;
+}
+
+/*-------------------- $CODE -------------------*/
+
+pre {
+  padding: 1em;
+  margin-bottom: 1.6em;
+
+  /* Required to show scroll bar if content overflows. */
+  overflow: auto;
+  word-wrap: normal;
+  white-space: pre;
+}
+
+tt {
+  color: #444;
+  font-family: 'Inconsolata', Courier, monospace;
+  font-size: 0.9em;
+}
+
+code { padding: .3em; }
+
+code, pre {
+  font-family: 'Inconsolata', Courier, monospace;
+  border: 1px solid #DCDCDC;
+  border-radius: 3px;
+  background-color: #FAFAFA;
+  color: #444;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+
+/*-------------------- $MEDIA QUERIES ------------------*/
+
+@media only screen and (max-width: 60em) {
+  h1 { font-size: 2.8em; }
+  .column {
+    display: block;
+    width: 85%;
+    margin: 0 auto;
+  }
+  #gridcontainer { width: 100%; }
+  #container, .document { width: 35em; }
+}
+
+@media only screen and (max-width: 45em) {
+  .wrapper { width: auto; }
+  h1 { font-size: 2em; }
+  h2 { font-size: 1.618em; }
+  .banner h1 { font-size: 2.8em; }
+  .column { width: 90%; }
+  #gridcontainer { width: 100%; }
+  #container, .document { width: 85%; }
+  #container, .wrapper { font-size: .809em; }
+  .instructions {
+    display: block;
+    text-align: center;
+    font-size: 1em;
+  }
+}
