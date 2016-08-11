@@ -43,10 +43,9 @@ IPYTHON_NOTEBOOK = [
   ["IPython Notebook Example", SOURCEFORGE_IPYTHON_NOTEBOOK + "Introduction%20to%20using%20Mantid%20with%20IPython%20Notebook.ipynb/download" ]
 ]
 
-SUPPORTED_OSX_BUILDS = ["MountainLion", "Mavericks"]
-LATEST_SUPPORTED_OSX_VERSION = "10.9"
-SUPPORTED_UBUNTU_VERSION = "14.04"
-SUPPORTED_UBUNTU_VERSION_NIGHTLY = "14.04"
+OSX_CODENAME_VERSIONS = {"MountainLion": "10.8", "Mavericks": "10.9", "Yosemite": "10.10", "ElCapitan": "10.11"}
+UBUNTU_RELEASE_VERSION = "14.04"
+UBUNTU_NIGHTLY_VERSION = UBUNTU_RELEASE_VERSION
 
 def mantid_releases():
   """
@@ -249,8 +248,8 @@ def tidy_build_name(url, osname, nightly=False):
   if ".rpm" in url or ".tar.gz" in url or ".deb" in url:
     name = osname.title().replace("-"," ")
     if ".deb" in url:
-      if nightly: name += " " + SUPPORTED_UBUNTU_VERSION_NIGHTLY
-      else: name += " " + SUPPORTED_UBUNTU_VERSION
+      if nightly: name += " " + UBUNTU_NIGHTLY_VERSION
+      else: name += " " + UBUNTU_RELEASE_VERSION
     return name
 
   url = url.replace("/download","")
@@ -260,8 +259,8 @@ def tidy_build_name(url, osname, nightly=False):
     url = url.replace("-64bit","") # Required as some urls (paraview) have this
     url = url.rsplit("-",1)[1] # Obtain codename by splitting on last hyphen
     # Use version numbers rather than names for simplicity.
-    if url in SUPPORTED_OSX_BUILDS: url = "OSX (" + LATEST_SUPPORTED_OSX_VERSION + "+)"
-    else: url = "OSX (<" + LATEST_SUPPORTED_OSX_VERSION +")"
+    if url in OSX_CODENAME_VERSIONS:
+      url = "OSX (" + OSX_CODENAME_VERSIONS[url]  + "+)"
 
   if ".exe" in url:
     # Cannot split like above as paraview has hyphen between Windows and bit, e.g. ..-Windows-64bit
