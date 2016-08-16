@@ -21,7 +21,7 @@ MANTID_BUILD_NAMES = [
 TIMESTAMP_RE = r'\d+.\d+.\d{8}.\d+'
 NIGHTLY_BUILD_REGEXES = [
   "mantid-{0}-win64.exe".format(TIMESTAMP_RE),
-  "mantid-{0}-Mavericks.dmg".format(TIMESTAMP_RE),
+  "mantid-{0}-Yosemite.dmg".format(TIMESTAMP_RE),
   "mantidnightly-{0}-1.el6.x86_64.rpm".format(TIMESTAMP_RE),
   "mantidnightly-{0}-1.el7.x86_64.rpm".format(TIMESTAMP_RE),
   "mantidnightly_{0}-1_amd64.deb".format(TIMESTAMP_RE),
