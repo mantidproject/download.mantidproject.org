@@ -343,8 +343,8 @@ if __name__ == "__main__":
   # Add a filter to output the os name based on a given url
   env.filters["tidy_build_name"] = tidy_build_name
   # Write the contents of variables to the templates and dump the output to an HTML file.
-  env.get_template("archives.html").stream(archive_vars).dump(os.path.join(ROOT_DIR, "static", "archives.html"))
-  env.get_template("downloads.html").stream(download_vars).dump(os.path.join(ROOT_DIR, "static", "index.html"))
+  env.get_template("archives.html").stream(archive_vars).dump(os.path.join(ROOT_DIR, "docs", "archives.html"))
+  env.get_template("downloads.html").stream(download_vars).dump(os.path.join(ROOT_DIR, "docs", "index.html"))
 
   for instruction_file in sorted(os.listdir(INSTRUCTIONS_DIR)):
     with open(os.path.join(INSTRUCTIONS_DIR, instruction_file), "r") as content:
@@ -363,4 +363,4 @@ if __name__ == "__main__":
                          "description" : "Mantid installation instructions for " + filename + ".",
                          "instructions" : parts["html_body"]}
 
-      env.get_template("instructions.html").stream(instruction_vars).dump(os.path.join(ROOT_DIR, "static", filename.replace(" ", "").lower() + ".html"))
+      env.get_template("instructions.html").stream(instruction_vars).dump(os.path.join(ROOT_DIR, "docs", filename.replace(" ", "").lower() + ".html"))
