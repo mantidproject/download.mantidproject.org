@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Mantid - Downloads</title>
+  <link rel="shortcut icon" href="./img/mantidplot.ico"/>
+  <meta name="description" content="Download the latest release of Mantid.">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+  <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Inconsolata'>
+  <link rel="stylesheet" href="./css/main.css">
+  <script src="./js/pack.js"></script>
+  <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+  <script src="./js/main.js"></script>
+</head>
+<body>
+  <header class="banner">
+    <h1>Download Mantid</h1>
+  </header>
+  <section id="latest" class="wrapper">
+    <h1>Latest release (3.7.2)</h1>
+    <p id="release_notes">View changes made in <a href="http://docs.mantidproject.org/v3.7.2/release/v3.7.2/index.html">this release</a>.</p>
+    <p class="instructions">Installation instructions:</p>
+    <ul class="instructions">
+      <li><a href="osx.html">OSX</a></li>
+      <li><a href="redhat.html">Red Hat</a></li>
+      <li><a href="ubuntu.html">Ubuntu</a></li>
+      <li><a href="windows.html">Windows</a></li>
+    </ul>
+    <div class="windows-upgrade admonition alert-warning">
+      <p>Windows 7 users: if you see the following error:</p>
+      <img style="display: block; margin-left: auto; margin-right: auto;" src="img/msvc2015-dll.png" width="300px">
+      <p>your machine has not had recent Windows updates applied. Please either update Windows or install <a href="http://www.microsoft.com/en-us/download/confirmation.aspx?id=49093">KB2999226</a> standalone.</p>
+    </div>
+    <a href="#" class="button">Download Mantid for </a>
+    <p>Alternative downloads:</p>
+    <ul class="alternatives">
+      <li><a class="mac" href="http://sourceforge.net/projects/mantid/files/3.7/mantid-3.7.2-Mavericks.dmg/download">OSX (10.9+)</a></li>
+      <li><a class="red-hat" href="http://sourceforge.net/projects/mantid/files/3.7/mantid-3.7.2-1.el7.x86_64.rpm/download">Red Hat</a></li>
+      <li><a class="source" href="http://sourceforge.net/projects/mantid/files/3.7/mantid-3.7.2-Source.tar.gz/download">Source</a></li>
+      <li><a class="ubuntu" href="http://sourceforge.net/projects/mantid/files/3.7/mantid_3.7.2-1_amd64.deb/download">Ubuntu 14.04</a></li>
+      <li><a class="windows" href="http://sourceforge.net/projects/mantid/files/3.7/mantid-3.7.2-win64.exe/download">Windows 7/8/10</a></li>
+    </ul>
+    <a href="./archives.html" id="previous">Previous releases</a>
+  </section>
+    <section id="gridcontainer">
+      <article id="samples" class="column">
+        <h2>Sample datasets</h2>
+        <p>Sample datasets for use in Mantid:</p>
+        <ul> 
+          <li><a href="http://sourceforge.net/projects/mantid/files/Sample%20Data/UsageData.zip/download">Usage Examples</a></li>
+          <li><a href="http://sourceforge.net/projects/mantid/files/Sample%20Data/SampleData-ISIS.zip/download">ISIS</a></li>
+          <li><a href="http://sourceforge.net/projects/mantid/files/Sample%20Data/SampleData-ORNL.zip/download">ORNL</a></li>
+          <li><a href="http://sourceforge.net/projects/mantid/files/Sample%20Data/SampleData-Muon.zip/download">Muon</a></li>
+          <li><a href="http://sourceforge.net/projects/mantid/files/Sample%20Data/TrainingCourseData.zip/download">Training</a></li>
+        </ul>
+      </article>
+      <article id="examples" class="column">
+        <h2>Additional examples</h2>
+        <p>Help documentation and examples can be found <a href="http://www.mantidproject.org/Documentation">here</a> </p>
+        <p>The IPython notebook is not officially supported for use with Mantid, but an example notebook is provided below. </p>
+        <ul> 
+            <li><a href="http://sourceforge.net/projects/mantid/files/IPython%20Notebook/Introduction%20to%20using%20Mantid%20with%20IPython%20Notebook.ipynb/download">IPython Notebook Example</a></li>
+        </ul>
+      </article>
+      <article id="nightly" class="column">
+        <h2>Nightly build &ndash; 2016-08-18</h2>
+        <p><i>Nightly development build &ndash; minimally tested and <b>not</b> recommended for general use.</i></p>
+        <a href="#" class="button">Download Mantid for </a>
+        <p>View changes in this build in the <a href="http://developer.mantidproject.org/">recent news</a>.</p>
+        <p>Alternative downloads:</p>
+        <ul class="alternatives">
+          <li><a class="red-hat" href="http://sourceforge.net/projects/mantid/files/Nightly/mantidnightly-3.7.20160818.1746-1.el7.x86_64.rpm">Red Hat</a></li>
+          <li><a class="snow-leopard" href="http://sourceforge.net/projects/mantid/files/Nightly/mantid-3.7.20160818.1746-Yosemite.dmg">OSX (10.10+)</a></li>
+          <li><a class="source" href="http://sourceforge.net/projects/mantid/files/Nightly/mantidnightly-3.7.20160818.1746-Source.tar.gz">Source</a></li>
+          <li><a class="ubuntu" href="http://sourceforge.net/projects/mantid/files/Nightly/mantidnightly_3.7.20160818.1746-1_amd64.deb">Ubuntu 14.04</a></li>
+          <li><a class="windows" href="http://sourceforge.net/projects/mantid/files/Nightly/mantid-3.7.20160819.148-win64.exe">Windows 7/8/10</a></li>
+        </ul>
+        <p>Previous nightly builds can be found <a href="http://files.mantidproject.org/Development Releases">here</a>.</p>
+      </article>
+    </section>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Red Hat installation instructions for Mantid.</title>
+  <link rel="shortcut icon" href="./img/mantidplot.ico"/>
+  <meta name="description" content="Mantid installation instructions for Red Hat.">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+  <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Inconsolata'>
+  <link rel="stylesheet" href="./css/main.css">
+  <script src="./js/pack.js"></script>
+</head>
+<body>
+
+<div class="document">
+<div class="section" id="installing-mantid-via-yum">
+<h1>Installing Mantid via Yum</h1>
+<p>On <strong>RHEL</strong> it is possible to install Mantid and all the required RPMs via the ISIS yum repository. There is an RPM spec file in the <a class="reference external" href="https://github.com/mantidproject/mantid/tree/master/Code/Mantid/Build/dev-packages/rpm/mantid-developer">Mantid repo</a> to allow you to build an RPM and install all dependencies.</p>
+<p>Prior to installing Mantid via Yum you need to enable the <a class="reference external" href="https://fedoraproject.org/wiki/EPEL">Extra Packages for Enterprise Linux (EPEL)</a> by installing the <a class="reference external" href="https://fedoraproject.org/wiki/EPEL/FAQ#howtouse">relevant rpm</a>.</p>
+<p><strong>Note:</strong> following these procedures will update some default RHEL packages with newer versions on your system.</p>
+<p><strong>Red Hat 7:</strong> Some packages from the <em>rhel-7-workstation-optional-rpms</em> repository are required. This can be enabled through the subscription manager with the following command:</p>
+<pre class="literal-block">
+subscription-manager repo-override --repo=rhel-7-workstation-optional-rpms --add=enabled:1
+</pre>
+<div class="section" id="stable-release">
+<h2>Stable release</h2>
+<p>To install Mantid via yum, create the file <tt class="docutils literal"><span class="pre">/etc/yum.repos.d/isis-rhel.repo</span></tt> with the following content:</p>
+<pre class="literal-block">
+[isis-rhel]
+name=ISIS Software Repository for Redhat Enterprise Linux $releasever - $basearch
+baseurl=http://yum.isis.rl.ac.uk/rhel/$releasever/$basearch
+failovermethod=priority
+enabled=1
+gpgcheck=0
+
+[isis-rhel-noarch]
+name=ISIS Software Repository for Redhat Enterprise Linux $releasever - noarch
+baseurl=http://yum.isis.rl.ac.uk/rhel/$releasever/noarch
+failovermethod=priority
+enabled=1
+gpgcheck=0
+
+[isis-rhel-debuginfo]
+name=ISIS Software Repository for Redhat Enterprise Linux $releasever - $basearch - Debug
+baseurl=http://yum.isis.rl.ac.uk/rhel/$releasever/$basearch/debug
+failovermethod=priority
+enabled=1
+gpgcheck=0
+
+[isis-rhel-source]
+name=ISIS Software Repository for Redhat Enterprise Linux $releasever - $basearch - Source
+baseurl=http://yum.isis.rl.ac.uk/rhel/$releasever/SRPMS
+failovermethod=priority
+enabled=0
+gpgcheck=0
+</pre>
+<p>You can then install the <strong>stable release</strong> of Mantid by typing:</p>
+<pre class="literal-block">
+yum install mantid
+</pre>
+<p>This will install Mantid into <tt class="docutils literal">/opt/Mantid</tt> and add bash files to <tt class="docutils literal">/etc/profile.d</tt> so that next time you create a terminal the correct path to MantidPlot will be defined.</p>
+</div>
+<div class="section" id="nightly-build">
+<h2>Nightly Build</h2>
+<p>To install nightly development builds via yum, create the file <tt class="docutils literal"><span class="pre">/etc/yum.repos.d/isis-rhel-testing.repo</span></tt> with the following content:</p>
+<pre class="literal-block">
+[isis-rhel-testing]
+name=ISIS Software Repository for Redhat Enterprise Linux $releasever - $basearch
+baseurl=http://yum.isis.rl.ac.uk/rhel/testing/$releasever/$basearch
+failovermethod=priority
+enabled=0
+gpgcheck=0
+
+[isis-rhel-testing-debuginfo]
+name=ISIS Software Repository for Redhat Enterprise Linux $releasever - $basearch - Debug
+baseurl=http://yum.isis.rl.ac.uk/rhel/testing/$releasever/$basearch/debug
+failovermethod=priority
+enabled=0
+gpgcheck=0
+
+[isis-rhel-testing-source]
+name=ISIS Software Repository for Redhat Enterprise Linux $releasever - $basearch - Source
+baseurl=http://yum.isis.rl.ac.uk/rhel/testing/$releasever/SRPMS
+failovermethod=priority
+enabled=0
+gpgcheck=0
+</pre>
+<p>To install the <tt class="docutils literal">nightly release</tt> run the appropriate setup steps to setup the testing repository above, and then run:</p>
+<pre class="literal-block">
+yum install --enablerepo=isis-rhel-testing mantidnightly
+</pre>
+<p>This will install Mantid into <tt class="docutils literal">/opt/mantidnightly</tt>. It does <strong>not</strong> update the environment so you must type the following to start it:</p>
+<pre class="literal-block">
+./opt/mantidnightly/bin/MantidPlot
+</pre>
+<p>This is to avoid users accidentally running the nightly development build.</p>
+</div>
+</div>
+</div>
+
+
+</body>
+</html>
