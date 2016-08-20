@@ -1,6 +1,6 @@
 mantid-3.7.20160818.1746-Yosemite.dmg
 mantid-3.7.20160819.148-win64.exe
-mantidnightly-3.7.20160818.1746-1.el6.x86_64.rpm
-mantidnightly-3.7.20160818.1746-Source.tar.gz
+mantidnightly-3.7.20160819.2040-1.el6.x86_64.rpm
 mantidnightly-3.7.20160819.2040-1.el7.x86_64.rpm
+mantidnightly-3.7.20160819.2040-Source.tar.gz
 mantidnightly_3.7.20160819.2040-1_amd64.deb
