@@ -198,14 +198,19 @@ def get_os_name(build_name):
     If no os can be detected 'source' is returned.
   """
   build_name = build_name.lower()
-  if "win64" in build_name or "windows-64bit" in build_name: osname = "windows"
-  elif "win32" in build_name or "windows-32bit" in build_name: osname = "win32"
-  elif "mavericks" in build_name: osname = "mac"
-  elif "mountainlion" in build_name: osname = "mac"
-  elif "snowleopard" in build_name or ".dmg" in build_name: osname = "snow-leopard"
-  elif ".rpm" in build_name: osname = "red-hat"
-  elif ".deb" in build_name or "linux" in build_name: osname = "ubuntu"
-  else: osname = "source"
+  if build_name.endswith('.exe'):
+    if "win32" in build_name or "windows-32bit" in build_name:
+      osname = "win32"
+    else:
+      osname = "windows"
+  elif build_name.endswith(".dmg"):
+    osname = "mac"
+  elif ".rpm" in build_name:
+    osname = "red-hat"
+  elif ".deb" in build_name or "linux" in build_name:
+    osname = "ubuntu"
+  else:
+    osname = "source"
   return osname
 
 def get_download_url(build_name, version, build_option):

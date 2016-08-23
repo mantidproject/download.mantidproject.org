@@ -46,10 +46,9 @@ $(document).ready(function() {
     osType = osName.split(" ")[0]
     osClass = "." + osType.toLowerCase(); // Grab OS name only (e.g. not 7/8)
 
-    $('#latest .button').attr("href",$("#latest "+osClass).attr("href"));
-    $('#nightly .button').attr("href",$("#nightly "+osClass).attr("href"));
+    $('#latest .button').attr("href",$("#latest "+osClass).attr("href")).append($('#latest ' + osClass).text());
+    $('#nightly .button').attr("href",$("#nightly "+osClass).attr("href")).append($('#nightly ' + osClass).text());;
     $('#paraview .button').attr("href",$("#paraview " + osClass).attr("href"));
-    $('.button').append(osName == "Mac" ? $('#latest .mac').text() : osName)
 
     $(osClass).closest('li').remove();
     if (osType == "Windows" ) winUpgradeWarning.show();
