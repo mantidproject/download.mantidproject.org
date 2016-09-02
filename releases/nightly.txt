@@ -1,5 +1,5 @@
-mantid-3.7.20160831.1814-win64.exe
 mantid-3.7.20160901.1623-Yosemite.dmg
+mantid-3.7.20160901.1623-win64.exe
 mantidnightly-3.7.20160901.1623-1.el6.x86_64.rpm
 mantidnightly-3.7.20160901.1623-1.el7.x86_64.rpm
 mantidnightly-3.7.20160901.1623-Source.tar.gz
