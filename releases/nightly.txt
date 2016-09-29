@@ -1,6 +1,6 @@
-mantid-3.7.20160927.2020-Yosemite.dmg
 mantid-3.7.20160927.2020-win64.exe
-mantidnightly-3.7.20160927.2020-1.el6.x86_64.rpm
-mantidnightly-3.7.20160927.2020-Source.tar.gz
-mantidnightly-3.7.20160927.2026-1.el7.x86_64.rpm
+mantid-3.7.20160928.2207-Yosemite.dmg
+mantidnightly-3.7.20160928.1455-1.el7.x86_64.rpm
+mantidnightly-3.7.20160928.2207-1.el6.x86_64.rpm
+mantidnightly-3.7.20160928.2207-Source.tar.gz
 mantidnightly_3.7.20160928.2207-1_amd64.deb
