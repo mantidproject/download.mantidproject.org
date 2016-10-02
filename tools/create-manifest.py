@@ -9,12 +9,13 @@ import re
 import sys
 
 # TODO: Update if a build name changes with a release.
+NIGHTLY_UBUNTU="trusty"
 MANTID_BUILD_NAMES = [
   "mantid%s-%s-win64.exe",
   "mantid%s-%s-Mavericks.dmg",
   "mantid%s-%s-1.el6.x86_64.rpm",
   "mantid%s-%s-1.el7.x86_64.rpm",
-  "mantid%s_%s-1_amd64.deb",
+  "mantid%s_%s-0ubuntu1~{0}1_amd64.deb".format(NIGHTLY_UBUNTU),
   "mantid%s-%s-Source.tar.gz"
 ]
 
@@ -24,7 +25,7 @@ NIGHTLY_BUILD_REGEXES = [
   "mantid-{0}-Yosemite.dmg".format(TIMESTAMP_RE),
   "mantidnightly-{0}-1.el6.x86_64.rpm".format(TIMESTAMP_RE),
   "mantidnightly-{0}-1.el7.x86_64.rpm".format(TIMESTAMP_RE),
-  "mantidnightly_{0}-1_amd64.deb".format(TIMESTAMP_RE),
+  "mantidnightly_{0}-0ubuntu1~{1}1_amd64.deb".format(TIMESTAMP_RE, NIGHTLY_UBUNTU),
   "mantidnightly-{0}-Source.tar.gz".format(TIMESTAMP_RE)
 ]
 
