@@ -2,7 +2,7 @@
 Installing Mantid via Apt
 =========================
 
-The debian packages for the current release are built for Ubuntu 14.04 (Trusty Tahr).
+The debian packages for the current release are built for both Ubuntu 14.04 (Trusty Tahr) and Ubuntu 16.04 (Xenial Xerus).
 
 Stable Release
 --------------
@@ -10,7 +10,7 @@ Stable Release
 To install the current release via apt, first add the required repositories to the `sources.list`. This only needs to be done once.
 Open a terminal and run ::
 
-    sudo apt-add-repository "deb [arch=amd64] http://apt.isis.rl.ac.uk trusty main"
+    sudo apt-add-repository "deb [arch=amd64] http://apt.isis.rl.ac.uk $(lsb_release -c | cut -f 2) main"
     sudo apt-add-repository ppa:mantid/mantid
 
 and then install package with: ::
@@ -26,7 +26,7 @@ Nightly Build
 To install the current release via apt, first add the required repositories to the `sources.list`. This only needs to be done once.
 Open a terminal and run ::
 
-    sudo apt-add-repository "deb [arch=amd64] http://apt.isis.rl.ac.uk trusty-testing main"
+    sudo apt-add-repository "deb [arch=amd64] http://apt.isis.rl.ac.uk $(lsb_release -c | cut -f 2)-testing main"
     sudo apt-add-repository ppa:mantid/mantid
 
 and then install package with: ::

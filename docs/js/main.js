@@ -1,13 +1,13 @@
 function getOS() {
-  var osName = "UNIX"; // Unknown OS likely to be UNIX variant
-  if (navigator.appVersion.indexOf("Win") != -1 || navigator.userAgent.indexOf('Windows NT 6.2') > -1) osName = "Windows 7/8/10";
-  if (navigator.appVersion.indexOf("Mac") != -1) osName = "Mac";
-  if (navigator.appVersion.indexOf("X11") != -1 || navigator.appVersion.indexOf("Linux") != -1) osName = "Linux";
-  return osName;
+  var os = "";
+  if (navigator.appVersion.indexOf("Win") != -1 || navigator.userAgent.indexOf('Windows NT 6.2') > -1) os = "Windows";
+  if (navigator.appVersion.indexOf("Mac") != -1) os = "OSX";
+  if (navigator.appVersion.indexOf("X11") != -1 || navigator.appVersion.indexOf("Linux") != -1) os = "Linux";
+  return os;
 }
 
-function updateInstructionsURL(osname) {
-  if (osname == "Linux") $('#release_notes').append(' It is recommended to use <a href="ubuntu.html">apt-get</a> or <a href="redhat.html">yum</a> to install Mantid on UNIX.');
+function updateInstructionsURL(os) {
+  if (os == "Linux") $('#release_notes').append(' It is recommended to use <a href="ubuntu.html">apt-get</a> or <a href="redhat.html">yum</a> to install Mantid on Ubuntu/Red Hat.');
 }
 
 function windowsXPWarning() {
@@ -25,33 +25,29 @@ function windowsXPWarning() {
 
 $(document).ready(function() {
   windowsXPWarning()
-
-  osName = getOS();
-
-  updateInstructionsURL(osName)
-
+  os = getOS();
+  updateInstructionsURL(os);
   winUpgradeWarning = $(".windows-upgrade");
   // Show source code download for Linux distros.
-  if (osName == "Linux")
+  if (os == "Linux")
   {
-    $('#latest .button').attr("href",$("#latest .source").attr("href")).text("Download source code");
-    $('#nightly .button').attr("href",$("#nightly .source").attr("href")).text("Download source code")
-    $('#paraview .button').attr("href",$("#paraview .source").attr("href")).text("Download source code")
+    $('#latest .button').attr("href",$("#latest .Source").attr("href")).text("Download source code");
+    $('#nightly .button').attr("href",$("#nightly .Source").attr("href")).text("Download source code")
+    $('#paraview .button').attr("href",$("#paraview .Source").attr("href")).text("Download source code")
 
-    $(".source").closest('li').remove();
+    $(".Source").closest('li').remove();
     winUpgradeWarning.hide()
   }
   else
   {
-    osType = osName.split(" ")[0]
     osClass = "." + osType.toLowerCase(); // Grab OS name only (e.g. not 7/8)
 
-    $('#latest .button').attr("href",$("#latest "+osClass).attr("href")).append($('#latest ' + osClass).text());
-    $('#nightly .button').attr("href",$("#nightly "+osClass).attr("href")).append($('#nightly ' + osClass).text());;
+    $('#latest .button').attr("href",$("#latest " + osClass).attr("href")).append($('#latest ' + osClass).text());
+    $('#nightly .button').attr("href",$("#nightly " + osClass).attr("href")).append($('#nightly ' + osClass).text());;
     $('#paraview .button').attr("href",$("#paraview " + osClass).attr("href"));
 
     $(osClass).closest('li').remove();
-    if (osType == "Windows" ) winUpgradeWarning.show();
+    if (os == "Windows") winUpgradeWarning.show();
     else winUpgradeWarning.hide();
 
   }

@@ -13,11 +13,11 @@
 	{% endif %}
       </tr>
     </thead>
-    <tbody>{% for osname,downloadurls in release['build_info']|dictsort() %}
+    <tbody>{% for osname,downloadinfo in release['build_info']|dictsort() %}
       <tr>
-        <td><a href="{{ downloadurls[0] }}">{{ downloadurls[0]|tidy_build_name(osname) }}</a></td>
+        <td><a href="{{ downloadinfo['url'] }}">{{ osname }}</a></td>
 	{% if release['paraview_version'] %}
-        <td><a href="{{ downloadurls[1] }}">{{ release['paraview_version'] }}</a></td>
+        <td><a href="{{ downloadinfo['paraview_url'] }}">{{ release['paraview_version'] }}</a></td>
 	{% endif %}
       </tr>{% endfor %}
     </tbody>
