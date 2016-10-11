@@ -20,7 +20,7 @@
     <a href="#" class="button">Download Mantid for </a>
     <p>Alternative downloads:</p>
     <ul class="alternatives">{% for osname,buildinfo in latest_release['build_info']|dictsort() %}
-      <li><a class="{{ osname }}" href="{{ buildinfo['url'] }}">{{ osname }}</a></li>{% endfor %}
+      <li><a class="{{ buildinfo['type'] }}" href="{{ buildinfo['url'] }}">{{ osname }}</a></li>{% endfor %}
     </ul>
     <a href="./archives.html" id="previous">Previous releases</a>
   </section>
@@ -47,7 +47,7 @@
         <p>View changes in this build in the <a href="{{ mantid_news }}">recent news</a>.</p>
         <p>Alternative downloads:</p>
         <ul class="alternatives">{% for osname,buildinfo in nightly_release['build_info']|dictsort() %}
-          <li><a class="{{ osname }}" href="{{ buildinfo['url'] }}">{{ osname }}</a></li>{% endfor %}
+          <li><a class="{{ buildinfo['type'] }}" href="{{ buildinfo['url'] }}">{{ osname }}</a></li>{% endfor %}
         </ul>
         <p>Previous nightly builds can be found <a href="http://files.mantidproject.org/Development Releases">here</a>.</p>
       </article>

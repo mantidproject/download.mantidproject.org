@@ -40,7 +40,7 @@ $(document).ready(function() {
   }
   else
   {
-    osClass = "." + osType.toLowerCase(); // Grab OS name only (e.g. not 7/8)
+    osClass = "." + os
 
     $('#latest .button').attr("href",$("#latest " + osClass).attr("href")).append($('#latest ' + osClass).text());
     $('#nightly .button').attr("href",$("#nightly " + osClass).attr("href")).append($('#nightly ' + osClass).text());;
