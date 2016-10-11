@@ -31,6 +31,13 @@ sudo apt-get update
 sudo apt-get install mantid
 </pre>
 <p>This will install Mantid into <tt class="docutils literal">/opt/Mantid</tt> and add bash files to <tt class="docutils literal">/etc/profile.d</tt> so that next time you create a terminal the correct path to MantidPlot will be defined.</p>
+<div class="warning">
+<p class="first admonition-title">Warning</p>
+<p>For <strong>Ubuntu 16.04</strong> the current 3.8.0 package is missing a dependency on the <tt class="docutils literal">libhdf5_cpp</tt> library.
+After installing mantid on 16.04 please also run</p>
+<p><tt class="docutils literal">sudo <span class="pre">apt-get</span> install <span class="pre">libhdf5-cpp-11</span></tt></p>
+<p class="last">so that Mantid will start</p>
+</div>
 </div>
 <div class="section" id="nightly-build">
 <h2>Nightly Build</h2>

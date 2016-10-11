@@ -20,6 +20,15 @@ and then install package with: ::
 
 This will install Mantid into ``/opt/Mantid`` and add bash files to ``/etc/profile.d`` so that next time you create a terminal the correct path to MantidPlot will be defined.
 
+.. warning::
+
+   For **Ubuntu 16.04** the current 3.8.0 package is missing a dependency on the ``libhdf5_cpp`` library.
+   After installing mantid on 16.04 for the first time please run
+
+   ``sudo apt-get install libhdf5-cpp-11``
+
+   so that Mantid will start.
+
 Nightly Build
 -------------
 
