@@ -298,7 +298,7 @@ if __name__ == "__main__":
                 }
 
   latest_version = mantid_releases[0]
-  release_notes = RELEASE_NOTES.format(version=('v' + latest_version['mantid_formatted_version']))
+  release_notes = RELEASE_NOTES.format(version=('v' + latest_version['mantid_version']))
   paraview_version = mantid_releases[0]['paraview_version']
   download_vars = { "title" : "Mantid - Downloads",
                  "description" : "Download the latest release of Mantid.",
