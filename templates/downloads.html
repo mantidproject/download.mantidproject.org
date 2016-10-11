@@ -19,8 +19,8 @@
     </div>
     <a href="#" class="button">Download Mantid for </a>
     <p>Alternative downloads:</p>
-    <ul class="alternatives">{% for osname,downloadurls in latest_release['build_info']|dictsort() %}
-      <li><a class="{{ osname }}" href="{{ downloadurls[0] }}">{{ downloadurls[0]|tidy_build_name(osname) }}</a></li>{% endfor %}
+    <ul class="alternatives">{% for osname,buildinfo in latest_release['build_info']|dictsort() %}
+      <li><a class="{{ osname }}" href="{{ buildinfo['url'] }}">{{ osname }}</a></li>{% endfor %}
     </ul>
     <a href="./archives.html" id="previous">Previous releases</a>
   </section>
@@ -46,8 +46,8 @@
         <a href="#" class="button">Download Mantid for </a>
         <p>View changes in this build in the <a href="{{ mantid_news }}">recent news</a>.</p>
         <p>Alternative downloads:</p>
-        <ul class="alternatives">{% for osname,downloadurl in nightly_release['build_info']|dictsort() %}
-          <li><a class="{{ osname }}" href="{{ downloadurl }}">{{ downloadurl|tidy_build_name(osname, True) }}</a></li>{% endfor %}
+        <ul class="alternatives">{% for osname,buildinfo in nightly_release['build_info']|dictsort() %}
+          <li><a class="{{ osname }}" href="{{ buildinfo['url'] }}">{{ osname }}</a></li>{% endfor %}
         </ul>
         <p>Previous nightly builds can be found <a href="http://files.mantidproject.org/Development Releases">here</a>.</p>
       </article>

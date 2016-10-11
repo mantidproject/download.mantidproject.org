@@ -43,9 +43,7 @@ IPYTHON_NOTEBOOK = [
   ["IPython Notebook Example", SOURCEFORGE_IPYTHON_NOTEBOOK + "Introduction%20to%20using%20Mantid%20with%20IPython%20Notebook.ipynb/download" ]
 ]
 
-OSX_CODENAME_VERSIONS = {"MountainLion": "10.8", "Mavericks": "10.9", "Yosemite": "10.10", "ElCapitan": "10.11"}
-UBUNTU_RELEASE_VERSION = "14.04"
-UBUNTU_NIGHTLY_VERSION = UBUNTU_RELEASE_VERSION
+OSX_CODENAME_VERSIONS = {'SnowLeopard': '10.6', 'Lion': '10.7', 'MountainLion': '10.8', 'Mavericks': '10.9', 'Yosemite': '10.10', 'ElCapitan': '10.11'}
 
 def mantid_releases():
   """
@@ -81,15 +79,12 @@ def mantid_releases():
     release['date'] = date
     pv_version = release['paraview_version']
     paraview_builds = paraview_build_names(pv_version) if pv_version is not None else {}
-
-    # Add the related paraview download url to the dict, based on the osname.
-    # Value of dict must be changed to a list to accommodate multiple values.
-    for osname,downloadurl in mantid_builds.iteritems():
-      if osname in paraview_builds:
-        mantid_builds[osname] = [downloadurl, paraview_builds.get(osname, "")]
-      else:
-        # Required as value must now be a list in the template.
-        mantid_builds[osname] = [downloadurl, paraview_builds.get("source", "")]
+    if len(paraview_builds) > 0:
+      for osname, info in paraview_builds.iteritems():
+        try:
+          mantid_builds[osname]['paraview_url'] = paraview_builds[osname]
+        except KeyError:
+          pass
 
     release['build_info'] = mantid_builds
     releases.append(release)
@@ -109,7 +104,7 @@ def parse_build_names(file_location, version, build_option):
 
   Returns:
     tuple: (date, builds) - A dictionary containing OS names as keys, and the related download url as a value.
-           Key : Obtained from get_os_name, and is output on the downloads page as CSS classes.
+           Key : Obtained from get_os, and is output on the downloads page as CSS classes.
            Value : The download url for that specific operating system.
   """
   manifest = open(file_location, 'r')
@@ -123,12 +118,14 @@ def parse_build_names(file_location, version, build_option):
     try:
       datetime.datetime.strptime(line, "%Y-%m-%d")
       date = line
+      continue
     except ValueError:
       pass
     #endtry
 
     build = line
-    builds[get_os_name(build)] = get_download_url(build,version,build_option)
+    os_info = get_os(build)
+    builds[os_info[0]] = {'url': get_download_url(build,version,build_option), 'type': os_info[1]}
     if date is None and build.endswith(".tar.gz"):
       date = get_date_from_tarball(build)
   #endfor
@@ -184,7 +181,7 @@ def nightly_release():
 
   return release_info
 
-def get_os_name(build_name):
+def get_os(build_name):
   """
   Obtains the operating system name from a given build name.
   The osnames output as CSS classes in the 'alternative downloads' <li> in the jinja template (They are the key in the 'build_names' dict).
@@ -194,24 +191,40 @@ def get_os_name(build_name):
     build_name (str): The name of the Mantid build for a given operating system, e.g. "mantid-2.3.2-SnowLeopard.dmg"
 
   Returns:
-    str: The name of the operating system that the Mantid build will run on.
-    If no os can be detected 'source' is returned.
+    (str,str): The name of the operating system and its type that the Mantid build will run on. Type={Linux,Windows,OSX}
+    If no os can be detected (build_name,None) is returned.
   """
-  build_name = build_name.lower()
-  if build_name.endswith('.exe'):
+  if build_name.endswith('.tar.gz'):
+    osname = "Source"
+    ostype = None
+  elif build_name.endswith('.exe'):
+    ostype = "Windows"
     if "win32" in build_name or "windows-32bit" in build_name:
-      osname = "win32"
+      osname = "Windows XP 32-bit"
     else:
-      osname = "windows"
+      osname = "Windows 7/8/10"
   elif build_name.endswith(".dmg"):
-    osname = "mac"
-  elif ".rpm" in build_name:
-    osname = "red-hat"
-  elif ".deb" in build_name or "linux" in build_name:
-    osname = "ubuntu"
+    ostype = "OSX"
+    for codename, version in OSX_CODENAME_VERSIONS.iteritems():
+      if codename in build_name:
+        osname = "OSX ({})".format(version)
   else:
-    osname = "source"
-  return osname
+    ostype = "Linux"
+    if "el7" in build_name:
+      osname = "Red Hat 7"
+    elif "el6" in build_name:
+      osname = "Red Hat 6"
+    elif "trusty" in build_name:
+      osname = "Ubuntu 14.04"
+    elif "xenial" in build_name:
+      osname = "Ubuntu 16.04"
+    elif build_name.endswith(".deb"):
+      # Last debian file name without a distribution in the filename was trusty so just print "Ubuntu"
+      osname = "Ubuntu"
+    else:
+      osname = build_name
+      ostype = None
+  return osname, ostype
 
 def get_download_url(build_name, version, build_option):
   """
@@ -235,49 +248,6 @@ def get_download_url(build_name, version, build_option):
   else:
     build_name = build_name.rstrip() + "/download"
     return SOURCEFORGE_FILES + version[0:3] + "/" + build_name
-
-def tidy_build_name(url, osname, nightly=False):
-  """
-  Obtains the build name from a given download url if possible, otherwise uses the osname provided.
-  This is used as a custom filter in the jinja2 templating engine.
-
-  Args:
-    url (str): The download url of a mantid build.
-    osname (str): The osname set in get_os_name above, e.g. red-hat
-    nightly (bool): True if this is for the nightly section
-
-  Returns:
-    str: The os name obtained from the url string, e.g. "Mountain Lion".
-  """
-  # The osname set on "get_os_name" is sufficient.
-  if ".rpm" in url or ".tar.gz" in url or ".deb" in url:
-    name = osname.title().replace("-"," ")
-    if ".deb" in url:
-      if nightly: name += " " + UBUNTU_NIGHTLY_VERSION
-      else: name += " " + UBUNTU_RELEASE_VERSION
-    return name
-
-  url = url.replace("/download","")
-
-  if ".dmg" in url:
-    url = url.replace(".dmg","")
-    url = url.replace("-64bit","") # Required as some urls (paraview) have this
-    url = url.rsplit("-",1)[1] # Obtain codename by splitting on last hyphen
-    # Use version numbers rather than names for simplicity.
-    if url in OSX_CODENAME_VERSIONS:
-      url = "OSX (" + OSX_CODENAME_VERSIONS[url]  + "+)"
-
-  if ".exe" in url:
-    # Cannot split like above as paraview has hyphen between Windows and bit, e.g. ..-Windows-64bit
-    url = url[url.lower().index("win"):len(url)]
-    # Usability improvements
-    url = url.replace(".exe","").replace("-","")
-    url = url.replace("bit","")
-    url = url.replace("win","Windows")
-    url = url.replace("32"," XP")
-    url = url.replace("64"," 7/8/10")
-
-  return url
 
 def get_date_from_tarball(filename):
   """
@@ -345,8 +315,6 @@ if __name__ == "__main__":
 
   # Setup up the jinja environment and load the templates
   env = jinja2.Environment(loader=jinja2.FileSystemLoader(searchpath=os.path.join(ROOT_DIR,"templates")))
-  # Add a filter to output the os name based on a given url
-  env.filters["tidy_build_name"] = tidy_build_name
   # Write the contents of variables to the templates and dump the output to an HTML file.
   env.get_template("archives.html").stream(archive_vars).dump(os.path.join(ROOT_DIR, "docs", "archives.html"))
   env.get_template("downloads.html").stream(download_vars).dump(os.path.join(ROOT_DIR, "docs", "index.html"))
@@ -361,8 +329,7 @@ if __name__ == "__main__":
 
       # Remove extension from instruction filename
       filename = os.path.splitext(instruction_file)[0]
-      # If filename is "Red-Hat" reformat it to "Red Hat"
-      if "Red" in filename: filename = filename.replace("-"," ")
+      filename = filename.replace("-"," ")
 
       instruction_vars = {"title" : filename + " installation instructions for Mantid.",
                          "description" : "Mantid installation instructions for " + filename + ".",
