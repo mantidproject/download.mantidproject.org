@@ -3,4 +3,4 @@ mantid-3.8.20161122.1623-win64.exe
 mantidnightly-3.8.20161122.1623-1.el6.x86_64.rpm
 mantidnightly-3.8.20161123.2139-1.el7.x86_64.rpm
 mantidnightly-3.8.20161123.2139-Source.tar.gz
-mantidnightly_3.8.20161122.1623-0ubuntu1~trusty1_amd64.deb
+mantidnightly_3.8.20161123.2139-0ubuntu1~trusty1_amd64.deb
