@@ -1,6 +1,6 @@
 mantid-3.8.20161206.1652-win64.exe
 mantid-3.8.20161208.2132-Yosemite.dmg
 mantidnightly-3.8.20161208.2132-1.el6.x86_64.rpm
-mantidnightly-3.8.20161208.2132-1.el7.x86_64.rpm
-mantidnightly-3.8.20161208.2132-Source.tar.gz
+mantidnightly-3.8.20161209.1611-1.el7.x86_64.rpm
+mantidnightly-3.8.20161209.1611-Source.tar.gz
 mantidnightly_3.8.20161208.2132-0ubuntu1~trusty1_amd64.deb
