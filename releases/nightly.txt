@@ -1,4 +1,4 @@
-mantid-3.8.20161208.2132-Yosemite.dmg
+mantid-3.8.20161212.1121-Yosemite.dmg
 mantid-3.8.20161212.1121-win64.exe
 mantidnightly-3.8.20161212.1121-1.el6.x86_64.rpm
 mantidnightly-3.8.20161212.1121-1.el7.x86_64.rpm
