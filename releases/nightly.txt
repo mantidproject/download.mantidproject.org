@@ -1,5 +1,5 @@
 mantid-3.8.20161229.1641-Yosemite.dmg
-mantid-3.8.20161229.1641-win64.exe
+mantid-3.8.20170104.1635-win64.exe
 mantidnightly-3.8.20161229.1641-1.el7.x86_64.rpm
 mantidnightly-3.8.20161229.1641-Source.tar.gz
 mantidnightly-3.8.20170104.1635-1.el6.x86_64.rpm
