@@ -196,7 +196,7 @@ def get_os(build_name):
   """
   if build_name.endswith('.tar.gz'):
     osname = "Source"
-    ostype = None
+    ostype = "Source"
   elif build_name.endswith('.exe'):
     ostype = "Windows"
     if "win32" in build_name or "windows-32bit" in build_name:
