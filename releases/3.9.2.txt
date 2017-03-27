@@ -1,0 +1,9 @@
+2017-03-27
+
+mantid-3.9.2-win64.exe
+mantid-3.9.2-Yosemite.dmg
+mantid-3.9.2-1.el6.x86_64.rpm
+mantid-3.9.2-1.el7.x86_64.rpm
+mantid_3.9.2-0ubuntu1~trusty1_amd64.deb
+mantid_3.9.2-0ubuntu1~xenial1_amd64.deb
+mantid-3.9.2-Source.tar.gz
