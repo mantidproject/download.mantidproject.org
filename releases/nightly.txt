@@ -2,5 +2,5 @@ mantid-3.9.20170412.2004-Yosemite.dmg
 mantid-3.9.20170509.2109-win64.exe
 mantidnightly-3.9.20170511.1459-1.el7.x86_64.rpm
 mantidnightly-3.9.20170511.1459-Source.tar.gz
-mantidnightly_3.9.20170505.1459-0ubuntu1~trusty1_amd64.deb
+mantidnightly_3.9.20170511.1459-0ubuntu1~trusty1_amd64.deb
 mantidnightly_3.9.20170511.1459-0ubuntu1~xenial1_amd64.deb
