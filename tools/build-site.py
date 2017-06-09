@@ -247,7 +247,9 @@ def get_download_url(build_name, version, build_option):
     return SOURCEFORGE_PARAVIEW + version + "/" + build_name
   else:
     build_name = build_name.rstrip() + "/download"
-    return SOURCEFORGE_FILES + version[0:3] + "/" + build_name
+    pattern = "^\d\.\d+"
+    found = re.search(pattern, version)
+    return SOURCEFORGE_FILES + found.group(0) + "/" + build_name
 
 def get_date_from_tarball(filename):
   """
