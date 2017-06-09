@@ -13,7 +13,6 @@ NIGHTLY_UBUNTU = ("trusty", "xenial")
 MANTID_BUILD_NAMES = [
   "mantid%s-%s-win64.exe",
   "mantid%s-%s-Yosemite.dmg",
-  "mantid%s-%s-1.el6.x86_64.rpm",
   "mantid%s-%s-1.el7.x86_64.rpm",
   "mantid%s_%s-0ubuntu1~{0}1_amd64.deb".format(NIGHTLY_UBUNTU[0]),
   "mantid%s_%s-0ubuntu1~{0}1_amd64.deb".format(NIGHTLY_UBUNTU[1]),
@@ -24,7 +23,6 @@ TIMESTAMP_RE = r'\d+.\d+.\d{8}.\d+'
 NIGHTLY_BUILD_REGEXES = [
   "mantid-{0}-win64.exe".format(TIMESTAMP_RE),
   "mantid-{0}-Yosemite.dmg".format(TIMESTAMP_RE),
-  "mantidnightly-{0}-1.el6.x86_64.rpm".format(TIMESTAMP_RE),
   "mantidnightly-{0}-1.el7.x86_64.rpm".format(TIMESTAMP_RE),
   "mantidnightly_{0}-0ubuntu1~{1}1_amd64.deb".format(TIMESTAMP_RE, NIGHTLY_UBUNTU[0]),
   "mantidnightly_{0}-0ubuntu1~{1}1_amd64.deb".format(TIMESTAMP_RE, NIGHTLY_UBUNTU[1]),
@@ -178,7 +176,9 @@ if __name__ == "__main__":
   args = parser.parse_args()
 
   # Validate version
-  if args.version != "nightly" and len(args.version) != 5:
+  version_pattern = re.compile("^\d\.\d+\.\d+$")
+  has_correct_version = version_pattern.match(args.version) is not None
+  if args.version != "nightly" and not has_correct_version:
     sys.exit("Error: Invalid version number provided. The format expected is X.Y.Z or the word 'nightly'")
 
   if args.version == "nightly":
