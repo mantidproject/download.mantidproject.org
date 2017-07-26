@@ -3,4 +3,4 @@ mantid-3.10.20170724.1832-Yosemite.dmg
 mantidnightly-3.10.20170725.1348-1.el7.x86_64.rpm
 mantidnightly-3.10.20170725.1348-Source.tar.gz
 mantidnightly_3.10.20170724.1832-0ubuntu1~trusty1_amd64.deb
-mantidnightly_3.10.20170724.1832-0ubuntu1~xenial1_amd64.deb
+mantidnightly_3.10.20170725.1348-0ubuntu1~xenial1_amd64.deb
