@@ -1,0 +1,8 @@
+2017-10-11
+
+mantid-3.11.0-win64.exe
+mantid-3.11.0-Yosemite.dmg
+mantid-3.11.0-1.el7.x86_64.rpm
+mantid_3.11.0-0ubuntu1~trusty1_amd64.deb
+mantid_3.11.0-0ubuntu1~xenial1_amd64.deb
+mantid-3.11.0-Source.tar.gz
