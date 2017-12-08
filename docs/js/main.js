@@ -28,6 +28,7 @@ $(document).ready(function() {
   os = getOS();
   updateInstructionsURL(os);
   winUpgradeWarning = $(".windows-upgrade");
+  windows = $(".windows");
   // Show source code download for Linux distros.
   if (os == "Linux")
   {
@@ -36,7 +37,8 @@ $(document).ready(function() {
     $('#paraview .button').attr("href",$("#paraview .Source").attr("href")).text("Download source code")
 
     $(".Source").closest('li').remove();
-    winUpgradeWarning.hide()
+    winUpgradeWarning.hide();
+    windows.hide();
   }
   else
   {
@@ -47,7 +49,10 @@ $(document).ready(function() {
     $('#paraview .button').attr("href",$("#paraview " + osClass).attr("href"));
 
     $(osClass).closest('li').remove();
-    if (os == "Windows") winUpgradeWarning.show();
+    if (os == "Windows"){
+            winUpgradeWarning.show();
+            windows.show();
+    }
     else winUpgradeWarning.hide();
 
   }
