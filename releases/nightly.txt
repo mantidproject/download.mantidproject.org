@@ -1,6 +1,6 @@
 mantid-3.11.20171123.1608-Yosemite.dmg
 mantid-3.11.20171214.1337-win64.exe
-mantidnightly-3.11.20171214.1337-1.el7.x86_64.rpm
-mantidnightly-3.11.20171214.1337-Source.tar.gz
+mantidnightly-3.11.20171215.1630-1.el7.x86_64.rpm
+mantidnightly-3.11.20171215.1630-Source.tar.gz
 mantidnightly_3.11.20171214.1337-0ubuntu1~trusty1_amd64.deb
 mantidnightly_3.11.20171214.1337-0ubuntu1~xenial1_amd64.deb
