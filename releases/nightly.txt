@@ -1,5 +1,5 @@
-mantid-3.11.20180123.2148-win64.exe
 mantid-3.11.20180124.2013-Yosemite.dmg
+mantid-3.11.20180124.2013-win64.exe
 mantidnightly-3.11.20180124.2013-1.el7.x86_64.rpm
 mantidnightly-3.11.20180124.2013-Source.tar.gz
 mantidnightly_3.11.20180122.1804-0ubuntu1~trusty1_amd64.deb
