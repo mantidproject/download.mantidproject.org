@@ -14,25 +14,33 @@
 <body>
 
 <div class="document">
-<p># Install mantid (framework-only) using [conda](<a class="reference external" href="https://conda.io/docs/">https://conda.io/docs/</a>)</p>
-<p>Supported platforms:
-* Linux-64: latest ubuntu/fedora/redhat (see below for distribution-specific instructions)
-* Mac OS X: experimental</p>
-<p>Installation:
-<tt class="docutils literal">`
-$ conda config <span class="pre">--add</span> channels <span class="pre">conda-forge</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # add <span class="pre">conda-forge</span> channel
-$ conda install <span class="pre">-c</span> mantid <span class="pre">mantid-framework</span>&nbsp;&nbsp;&nbsp;&nbsp; # install
-`</tt></p>
-<p>To install the nightly build:
-<tt class="docutils literal">`
-$ conda install <span class="pre">-c</span> mantid/label/nightly <span class="pre">mantid-framework</span>
-`</tt></p>
-<p>## Ubuntu
-A caveat is that you will need to import matplotlib before mantid:</p>
-<p><tt class="docutils literal">`
+<div class="section" id="install-mantid-framework-only-using-conda">
+<h1>Install mantid (framework-only) using conda</h1>
+<p>Supported platforms:</p>
+<ul class="simple">
+<li>Linux-64: latest ubuntu/fedora/redhat (see below for distribution-specific instructions)</li>
+<li>Mac OS X: experimental</li>
+</ul>
+<p>Installation:</p>
+<pre class="literal-block">
+$ conda config --add channels conda-forge      # add conda-forge channel
+$ conda install -c mantid mantid-framework     # install
+</pre>
+<p>To install the nightly build:</p>
+<pre class="literal-block">
+$ conda install -c mantid/label/nightly mantid-framework
+</pre>
+<div class="section" id="ubuntu">
+<h2>Ubuntu</h2>
+<p>A caveat for using conda build of mantid-framework at an ubuntu distribution is
+that you will need to import matplotlib before mantid to get the correct backend
+initialized:</p>
+<pre class="literal-block">
 import matplotlib
 import mantid
-`</tt></p>
+</pre>
+</div>
+</div>
 </div>
 
 

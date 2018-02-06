@@ -8,7 +8,7 @@ Supported platforms:
 * Mac OS X: experimental
 
 Installation::
-    
+
   $ conda config --add channels conda-forge      # add conda-forge channel
   $ conda install -c mantid mantid-framework     # install
 
@@ -22,10 +22,8 @@ Ubuntu
 ------
 
 A caveat for using conda build of mantid-framework at an ubuntu distribution is
-that you will need to import matplotlib before mantid::
+that you will need to import matplotlib before mantid to get the correct backend
+initialized::
 
   import matplotlib
   import mantid
-
-
-
