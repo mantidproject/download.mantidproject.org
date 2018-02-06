@@ -15,3 +15,11 @@ To install the nightly build:
 ```
 $ conda install -c mantid/label/nightly mantid-framework
 ```
+
+## Ubuntu
+A caveat is that you will need to import matplotlib before mantid:
+
+```
+import matplotlib
+import mantid
+```
