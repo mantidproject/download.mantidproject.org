@@ -3,4 +3,4 @@ mantid-3.12.20180320.1329-win64.exe
 mantidnightly-3.12.20180320.1329-1.el7.x86_64.rpm
 mantidnightly-3.12.20180320.1329-Source.tar.gz
 mantidnightly_3.12.20180320.1329-0ubuntu1~trusty1_amd64.deb
-mantidnightly_3.12.20180320.1329-0ubuntu1~xenial1_amd64.deb
+mantidnightly_3.12.20180321.1826-0ubuntu1~xenial1_amd64.deb
