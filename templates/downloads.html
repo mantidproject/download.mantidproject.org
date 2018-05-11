@@ -50,6 +50,6 @@
         <ul class="alternatives">{% for osname,buildinfo in nightly_release['build_info']|dictsort() %}
           <li><a class="{{ buildinfo['type'] }}" href="{{ buildinfo['url'] }}">{{ osname }}</a></li>{% endfor %}
         </ul>
-        <p>Previous nightly builds can be found <a href="http://files.mantidproject.org/Development Releases">here</a>.</p>
+        <p>Previous nightly builds can be found <a href="https://sourceforge.net/projects/mantid/files/Nightly/">here</a>.</p>
       </article>
     </section>{% endblock %}
