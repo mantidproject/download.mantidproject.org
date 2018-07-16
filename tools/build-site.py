@@ -14,7 +14,10 @@ RELEASE_DIR = os.path.join(ROOT_DIR,"releases")
 PARAVIEW_DIR = os.path.join(RELEASE_DIR, "paraview")
 INSTRUCTIONS_DIR = os.path.join(ROOT_DIR, "instructions")
 
-NIGHTLY_TARBALL_RE = re.compile("^mantidnightly-\d+\.\d+\.(\d{8})\.\d+-Source\.tar\.gz$")
+NIGHTLY_NAME_SUFFIX = "nightly"
+
+# Parse date of nightly build
+NIGHTLY_DATE_RE = re.compile(r'^(?:mantidnightly|mantid)(?:-|_)(?:\d+)\.(?:\d+)\.(\d{8})\.(?:\d{3,4})-.*$')
 
 # General globals
 MANTID_NEWS = "http://developer.mantidproject.org/"
@@ -69,7 +72,7 @@ def mantid_releases():
     ]
   """
   releases = []
-  release_files = [name for name in os.listdir(RELEASE_DIR) if "paraview" not in name and "nightly" not in name]
+  release_files = [name for name in os.listdir(RELEASE_DIR) if "paraview" not in name and NIGHTLY_NAME_SUFFIX not in name]
   for file_name in release_files:
     release = {}
     release['mantid_version'] = os.path.splitext(file_name)[0]
@@ -103,33 +106,35 @@ def parse_build_names(file_location, version, build_option):
     build_option (str): The name of the build, which is used when building the URL, e.g. "release", "nightly" or "paraview".
 
   Returns:
-    tuple: (date, builds) - A dictionary containing OS names as keys, and the related download url as a value.
+    dict: A dictionary containing OS names as keys, and the related download url as a value.
            Key : Obtained from get_os, and is output on the downloads page as CSS classes.
            Value : The download url for that specific operating system.
   """
   manifest = open(file_location, 'r')
   date = None
+  if build_option is not NIGHTLY_NAME_SUFFIX:
+    try:
+        first_line = manifest.readline().rstrip()
+        datetime.datetime.strptime(first_line, "%Y-%m-%d")
+        date = first_line
+    except ValueError:
+        raise RuntimeError("Expected date stamp to be found on first line of release file. Found: "
+                           + first_line)
+
   builds = {}
   for line in manifest:
-    line = line.rstrip()
-    if line == "":
+    build = line.rstrip()
+    if build == "":
       continue
 
-    try:
-      datetime.datetime.strptime(line, "%Y-%m-%d")
-      date = line
-      continue
-    except ValueError:
-      pass
-    #endtry
-
-    build = line
     os_info = get_os(build)
-    builds[os_info[0]] = {'url': get_download_url(build,version,build_option), 'type': os_info[1]}
-    if date is None and build.endswith(".tar.gz"):
-      date = get_date_from_tarball(build)
+    if date is None:
+      build_date = get_date_from_nightly(build)
+    else:
+      build_date = date
+    builds[os_info[0]] = {'url': get_download_url(build,version,build_option), 'type': os_info[1],
+                          'date': build_date}
   #endfor
-
   return (date, builds)
 
 def paraview_version(mantid_version):
@@ -173,9 +178,9 @@ def nightly_release():
     A similar format (see inner dict) of mantid_releases above is returned.
   """
   release_info = {}
-  filename = [name for name in os.listdir(RELEASE_DIR) if "nightly" in name]
+  filename = [name for name in os.listdir(RELEASE_DIR) if NIGHTLY_NAME_SUFFIX in name]
   release_info['version'] = os.path.splitext(filename[0])[0]
-  date, builds = parse_build_names(os.path.join(RELEASE_DIR,filename[0]),release_info['version'],"nightly")
+  date, builds = parse_build_names(os.path.join(RELEASE_DIR,filename[0]),release_info['version'],NIGHTLY_NAME_SUFFIX)
   release_info['date'] = date
   release_info['build_info'] = builds
 
@@ -195,7 +200,7 @@ def get_os(build_name):
     If no os can be detected (build_name,None) is returned.
   """
   if build_name.endswith('.tar.gz'):
-    osname = "Source"
+    osname = "Source code"
     ostype = "Source"
   elif build_name.endswith('.exe'):
     ostype = "Windows"
@@ -239,7 +244,7 @@ def get_download_url(build_name, version, build_option):
   Returns:
     str: The download url for a given build.
   """
-  if build_option is "nightly":
+  if build_option is NIGHTLY_NAME_SUFFIX:
     build_name = build_name.rstrip()
     return SOURCEFORGE_NIGHTLY + build_name
   elif build_option is "paraview":
@@ -251,22 +256,19 @@ def get_download_url(build_name, version, build_option):
     found = re.search(pattern, version)
     return SOURCEFORGE_FILES + found.group(0) + "/" + build_name
 
-def get_date_from_tarball(filename):
-  """
-  Attempts to parse a date from from a source tarball with the following format: mantidnightly-3.1.20140528.2000-Source.tar.gz
+
+def get_date_from_nightly(filename):
+  """Attempts to parse a date from a nightly build file
 
   Args:
-    filename (str): A string giving the filename
-
-  Returns:
-    str: A date string in the format YYYY-MM-DD
+    filename (str): A string giving a filename
   """
-  match = NIGHTLY_TARBALL_RE.match(filename)
+  match = NIGHTLY_DATE_RE.match(filename)
   if match:
     date = match.group(1)
     formatted_date = "%s-%s-%s" % (date[:4], date[4:6], date[6:])
   else:
-    raise RuntimeError("Unable to extract date from source tarball '%s'" % filename)
+    raise RuntimeError("Unable to extract date from nightly build '%s'" % filename)
 
   return formatted_date
 

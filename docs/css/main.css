@@ -55,9 +55,9 @@ ul li { background:url("../img/bullet.png") left no-repeat; }
 
 /*-------------------- $TYPEOGRAPY --------------------*/
 
-a, p, ol, ul { font-family: adelle, Georgia, 'Times New Roman', serif; }
+a, p, ol, ul { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
-h1,h2, h3 { font-family: adelle, Georgia, 'Times New Roman', serif; }
+h1,h2, h3 { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
 p  { font-size: 1.2em; }
 h1 { font-size: 2.3em; }

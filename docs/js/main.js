@@ -32,10 +32,8 @@ $(document).ready(function() {
   if (os == "Linux")
   {
     $('#latest .button').attr("href",$("#latest .Source").attr("href")).text("Download source code");
-    $('#nightly .button').attr("href",$("#nightly .Source").attr("href")).text("Download source code")
     $('#paraview .button').attr("href",$("#paraview .Source").attr("href")).text("Download source code")
 
-    $(".Source").closest('li').remove();
     windows.hide();
   }
   else
@@ -43,12 +41,10 @@ $(document).ready(function() {
     osClass = "." + os
 
     $('#latest .button').attr("href",$("#latest " + osClass).attr("href")).append($('#latest ' + osClass).text());
-    $('#nightly .button').attr("href",$("#nightly " + osClass).attr("href")).append($('#nightly ' + osClass).text());;
     $('#paraview .button').attr("href",$("#paraview " + osClass).attr("href"));
 
-    $(osClass).closest('li').remove();
     if (os == "Windows"){
-            windows.show();
+      windows.show();
     }
     else windows.hide();
 
