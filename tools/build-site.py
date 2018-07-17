@@ -223,6 +223,8 @@ def get_os(build_name):
       osname = "Ubuntu 14.04"
     elif "xenial" in build_name:
       osname = "Ubuntu 16.04"
+    elif "bionic" in build_name:
+      osname = "Ubuntu 18.04"
     elif build_name.endswith(".deb"):
       # Last debian file name without a distribution in the filename was trusty so just print "Ubuntu"
       osname = "Ubuntu"
