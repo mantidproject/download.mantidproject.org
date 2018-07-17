@@ -199,7 +199,7 @@ def get_os(build_name):
     (str,str): The name of the operating system and its type that the Mantid build will run on. Type={Linux,Windows,OSX}
     If no os can be detected (build_name,None) is returned.
   """
-  if build_name.endswith('.tar.gz'):
+  if build_name.endswith('.tar.gz') or build_name.endswith('.tar.xz'):
     osname = "Source code"
     ostype = "Source"
   elif build_name.endswith('.exe'):

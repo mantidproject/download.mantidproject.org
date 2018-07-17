@@ -15,7 +15,7 @@ MANTID_BUILD_NAMES = [
   "mantid%s-%s-Yosemite.dmg",
   "mantid%s-%s-1.el7.x86_64.rpm",
   "mantid%s_%s-0ubuntu1~{0}1_amd64.deb".format(NIGHTLY_UBUNTU[0]),
-  "mantid%s-%s-Source.tar.gz"
+  "mantid%s-%s-Source.tar.xz"
 ]
 
 TIMESTAMP_RE = r'\d+.\d+.\d{8}.\d+'
@@ -24,7 +24,7 @@ NIGHTLY_BUILD_REGEXES = [
   "mantid-{0}-Yosemite.dmg".format(TIMESTAMP_RE),
   "mantidnightly-{0}-1.el7.x86_64.rpm".format(TIMESTAMP_RE),
   "mantidnightly_{0}-0ubuntu1~{1}1_amd64.deb".format(TIMESTAMP_RE, NIGHTLY_UBUNTU[0]),
-  "mantidnightly-{0}-Source.tar.gz".format(TIMESTAMP_RE)
+  "mantidnightly-{0}-Source.tar.xz".format(TIMESTAMP_RE)
 ]
 
 # TODO: Update if a paraview build name changes with a new supported release.
