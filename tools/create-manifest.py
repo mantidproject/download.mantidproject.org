@@ -13,7 +13,8 @@ MANTID_BUILD_NAMES = [
   "mantid%s-%s-win64.exe",
   "mantid%s-%s-Yosemite.dmg",
   "mantid%s-%s-1.el7.x86_64.rpm",
-  "mantid%s_%s-0ubuntu1~1_amd64.deb",
+  "mantid%s_%s-0ubuntu1~xenial1_amd64.deb",
+  "mantid%s_%s-0ubuntu1~bionic1_amd64.deb",
   "mantid%s-%s-Source.tar.xz"
 ]
 
