@@ -1,4 +1,4 @@
-mantid-3.13.20180910.2014-Yosemite.dmg
+mantid-3.13.20180911.2134-Yosemite.dmg
 mantid-3.13.20180911.2134-win64.exe
 mantidnightly-3.13.20180911.2134-1.el7.x86_64.rpm
 mantidnightly-3.13.20180911.2134-Source.tar.xz
