@@ -3,4 +3,4 @@ mantid-3.13.20190315.2227-Yosemite.dmg
 mantidnightly-3.13.20190315.2227-1.el7.x86_64.rpm
 mantidnightly-3.13.20190315.2227-Source.tar.xz
 mantidnightly-3.13.20190318.2121-win64.exe
-mantidnightly_3.13.20190315.2227-0ubuntu1~bionic1_amd64.deb
+mantidnightly_3.13.20190318.2121-0ubuntu1~xenial1_amd64.deb
