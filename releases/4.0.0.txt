@@ -1,0 +1,8 @@
+2019-03-25
+
+mantid-4.0.0-win64.exe
+mantid-4.0.0-Yosemite.dmg
+mantid-4.0.0-1.el7.x86_64.rpm
+mantid_4.0.0-0ubuntu1~xenial1_amd64.deb
+mantid_4.0.0-0ubuntu1~bionic1_amd64.deb
+mantid-4.0.0-Source.tar.xz
