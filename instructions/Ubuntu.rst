@@ -40,7 +40,7 @@ and then install package with: ::
 
 This will install Mantid into ``/opt/mantidnightly``. It does **not** update the environment so you must type the following to start it: ::
 
-    ./opt/mantidnightly/bin/MantidPlot
+    /opt/mantidnightly/bin/launch_mantidplot.sh
 
 This is to avoid users accidentally running the nightly development build.
 
