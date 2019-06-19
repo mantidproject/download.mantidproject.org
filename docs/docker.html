@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Docker installation instructions for Mantid.</title>
+  <link rel="shortcut icon" href="./img/mantidplot.ico"/>
+  <meta name="description" content="Mantid installation instructions for Docker.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Inconsolata'>
+  <link rel="stylesheet" href="./css/main.css">
+  <script src="./js/pack.js"></script>
+</head>
+<body>
+
+<div class="document">
+<div class="section" id="docker">
+<h1>Docker</h1>
+<p>Docker images are published to <a class="reference external" href="https://hub.docker.com/r/mantidproject/mantid/">Docker Hub</a>.</p>
+<p>Tags are available for each release (starting from 3.13.0).</p>
+<p>Platform support:</p>
+<ul class="simple">
+<li>Linux: full support for Mantid Python scripting and MantidPlot</li>
+<li>Mac OS X and Windows: support for Mantid Python scripting,
+limited/experimental GUI support</li>
+</ul>
+<div class="section" id="linux-usage-example">
+<h2>Linux usage example</h2>
+<p>Requires having <a class="reference external" href="https://github.com/mviereck/x11docker">x11docker</a> and <a class="reference external" href="https://xpra.org/">Xpra</a> installed.</p>
+<dl class="docutils">
+<dt>Launch MantidPlot giving access to the <tt class="docutils literal">/media/data</tt> directory:</dt>
+<dd><tt class="docutils literal">x11docker <span class="pre">--hostipc</span> <span class="pre">--xpra</span> <span class="pre">--sharedir</span> /media/data/ mantidproject/mantid mantidplot</tt></dd>
+</dl>
+</div>
+</div>
+</div>
+
+
+</body>
+</html>
