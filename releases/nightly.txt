@@ -1,6 +1,6 @@
 mantid-3.13.20181005.2040-win64.exe
 mantid-4.0.20190705.1416-Yosemite.dmg
-mantidnightly-4.0.20190705.1416-win64.exe
 mantidnightly-4.0.20190708.2202-1.el7.x86_64.rpm
 mantidnightly-4.0.20190708.2202-Source.tar.xz
+mantidnightly-4.0.20190708.2202-win64.exe
 mantidnightly_4.0.20190708.2202-0ubuntu1~xenial1_amd64.deb
