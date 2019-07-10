@@ -3,4 +3,4 @@ mantid-4.0.20190708.2202-Yosemite.dmg
 mantidnightly-4.0.20190708.2202-win64.exe
 mantidnightly-4.0.20190709.1501-1.el7.x86_64.rpm
 mantidnightly-4.0.20190709.1501-Source.tar.xz
-mantidnightly_4.0.20190708.2202-0ubuntu1~xenial1_amd64.deb
+mantidnightly_4.0.20190709.1501-0ubuntu1~xenial1_amd64.deb
