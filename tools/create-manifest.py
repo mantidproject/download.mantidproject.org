@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+from __future__ import (absolute_import, print_function)
 
 import argparse
 import datetime
@@ -55,7 +56,7 @@ def update_paraview_versions(mantid_version, paraview_version):
     # Add the new release and paraview version to the top of the file
     paraview_versions.seek(0,0)
     paraview_versions.write(mantid_version + "," + paraview_version + "\n" + content)
-    print "The following was added to the paraviewVersions file: " + mantid_version + " " + paraview_version
+    print("The following was added to the paraviewVersions file: " + mantid_version + " " + paraview_version)
     # Compare paraview versions, and create a new ('latest') paraview file if provided version is greater than previous
     if distutils.version.StrictVersion(paraview_version) > distutils.version.StrictVersion(previous_version):
       create_paraview_file(paraview_version)
@@ -78,7 +79,7 @@ def create_release_file(version, date, overwrite):
   with open(filepath, "w") as release_file:
     release_file.write(date + "\n\n")
     release_file.write('\n'.join([build_name % (suffix, version) for build_name in MANTID_BUILD_NAMES]))
-    print "New release manifest created in releases directory: %s" % (version + ".txt")
+    print("New release manifest created in releases directory: %s" % (version + ".txt"))
 
 def create_nightly_file(nightly_package_dir):
   """
@@ -104,7 +105,7 @@ def create_nightly_file(nightly_package_dir):
           return False
     return True
   #end
-  nightlies = filter(no_update, current_packages)
+  nightlies = list(filter(no_update, current_packages))
   nightlies.extend(updated_packages)
   nightlies.sort()
   open(filepath, 'w').write("\n".join(nightlies))
@@ -142,7 +143,7 @@ def create_updated_package_list(nightly_package_dir):
         return True
     return False
   #end
-  return filter(is_binary_or_source, updated_packages)
+  return list(filter(is_binary_or_source, updated_packages))
 
 def create_paraview_file(version):
   """

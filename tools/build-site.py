@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+from __future__ import (absolute_import, print_function)
 
 import datetime
 import docutils.core
@@ -7,6 +8,8 @@ import jinja2
 import os
 import re
 import sys
+
+from six import iteritems
 
 # Repo folder structure
 ROOT_DIR = os.path.join(os.path.dirname(__file__), "..")
@@ -83,7 +86,7 @@ def mantid_releases():
     pv_version = release['paraview_version']
     paraview_builds = paraview_build_names(pv_version) if pv_version is not None else {}
     if len(paraview_builds) > 0:
-      for osname, info in paraview_builds.iteritems():
+      for osname, info in iteritems(paraview_builds):
         try:
           mantid_builds[osname]['paraview_url'] = paraview_builds[osname]
         except KeyError:
@@ -210,7 +213,7 @@ def get_os(build_name):
       osname = "Windows 7/8/10"
   elif build_name.endswith(".dmg"):
     ostype = "OSX"
-    for codename, version in OSX_CODENAME_VERSIONS.iteritems():
+    for codename, version in iteritems(OSX_CODENAME_VERSIONS):
       if codename in build_name:
         osname = "OSX ({})".format(version)
   else:
