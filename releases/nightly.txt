@@ -1,5 +1,5 @@
 mantid-3.13.20181005.2040-win64.exe
-mantid-4.1.20190917.1410-Yosemite.dmg
+mantid-4.1.20190918.1337-Yosemite.dmg
 mantidnightly-4.1.20190917.1410-win64.exe
 mantidnightly-4.1.20190918.1337-1.el7.x86_64.rpm
 mantidnightly-4.1.20190918.1337-Source.tar.xz
