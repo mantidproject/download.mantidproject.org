@@ -49,7 +49,13 @@ IPYTHON_NOTEBOOK = [
   ["IPython Notebook Example", SOURCEFORGE_IPYTHON_NOTEBOOK + "Introduction%20to%20using%20Mantid%20with%20IPython%20Notebook.ipynb/download" ]
 ]
 
-OSX_CODENAME_VERSIONS = {'SnowLeopard': '10.6', 'Lion': '10.7', 'MountainLion': '10.8', 'Mavericks': '10.9', 'Yosemite': '10.10', 'ElCapitan': '10.11'}
+OSX_CODENAME_VERSIONS = {
+  'SnowLeopard': '10.6', 'Lion': '10.7',
+  'MountainLion': '10.8', 'Mavericks': '10.9',
+  'Yosemite': '10.10', 'ElCapitan': '10.11',
+  'Sierra': '10.12', 'HighSierra': '10.13',
+  'Mojave': '10.14', 'Catalina': '10.15'
+}
 
 def mantid_releases():
   """
