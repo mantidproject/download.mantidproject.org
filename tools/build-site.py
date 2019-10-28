@@ -233,8 +233,8 @@ def get_os(build_name):
         ostype = "Source"
     elif build_name.endswith('.exe'):
         ostype = "Windows"
-        if "win32" in build_name or "windows-32bit" in build_name:
-            osname = "Windows XP 32-bit"
+        if "nightly"in build_name:
+            osname = "Windows 10"
         else:
             osname = "Windows 7/8/10"
     elif build_name.endswith(".dmg"):
