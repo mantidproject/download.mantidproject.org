@@ -239,9 +239,13 @@ def get_os(build_name):
             osname = "Windows 7/8/10"
     elif build_name.endswith(".dmg"):
         ostype = "OSX"
-        for codename, version in iteritems(OSX_CODENAME_VERSIONS):
-            if codename in build_name:
-                osname = "OSX ({})".format(version)
+        filename_parts = build_name.split("-")
+        if len(filename_parts) < 3 or len(filename_parts) > 4:
+            raise RuntimeError("Expected OSX filename to contain 2 ornl 3 dashes. Found {}".format(build_name))
+        else:
+            # old filenames can have a -64bit suffix
+            codename = filename_parts[-1][:-4] if len(filename_parts) == 3 else filename_parts[-2]
+            osname = "OSX ({})".format(OSX_CODENAME_VERSIONS[codename])
     else:
         ostype = "Linux"
         if "el7" in build_name:
