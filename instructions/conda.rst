@@ -2,6 +2,9 @@
 Install mantid (framework-only) using conda
 ===========================================
 
+Note that this is an unofficial distribution channel and not suitable for production use.
+It may not work as described and may disappear with little notice.
+
 Supported platforms:
 
 * Linux-64: latest ubuntu/fedora/redhat (see below for distribution-specific instructions)
@@ -16,7 +19,6 @@ Installation::
 To install the nightly build::
 
   $ conda install -c mantid/label/nightly mantid-framework
-
 
 Ubuntu
 ------
