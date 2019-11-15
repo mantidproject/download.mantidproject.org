@@ -3,6 +3,7 @@
 from __future__ import (absolute_import, print_function)
 
 import datetime
+from distutils.version import LooseVersion
 import docutils.core
 import jinja2
 import os
@@ -233,7 +234,9 @@ def get_os(build_name):
         ostype = "Source"
     elif build_name.endswith('.exe'):
         ostype = "Windows"
-        if "nightly"in build_name:
+        # after 4.1 Windows 10 only
+        version_str = build_name.split('-')[1]
+        if "nightly"in build_name or LooseVersion(version_str) > LooseVersion("4.1.0"):
             osname = "Windows 10"
         else:
             osname = "Windows 7/8/10"
