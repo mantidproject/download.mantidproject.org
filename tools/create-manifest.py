@@ -12,8 +12,7 @@ import sys
 # TODO: Update list if a build name changes with a release.
 MANTID_BUILD_NAMES = [
     "mantid%s-%s-win64.exe", "mantid%s-%s-HighSierra.dmg", "mantid%s-%s-1.el7.x86_64.rpm",
-    "mantid%s_%s-0ubuntu1~bionic1_amd64.deb",
-    "mantid%s-%s-Source.tar.xz"
+    "mantid%s_%s-0ubuntu1~bionic1_amd64.deb", "mantid%s-%s-Source.tar.xz"
 ]
 
 TIMESTAMP_RE = r'\d+.\d+.\d{8}.\d+'

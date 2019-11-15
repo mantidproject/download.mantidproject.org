@@ -8,7 +8,6 @@ import docutils.core
 import jinja2
 import os
 import re
-import sys
 
 from six import iteritems
 
@@ -31,7 +30,7 @@ RELEASE_NOTES = "http://docs.mantidproject.org/{version}/release/{version}/index
 
 # Download specific variables
 SOURCEFORGE_FILES = "http://sourceforge.net/projects/mantid/files/"
-#The sourceforge upload is down so use our server for now
+# The sourceforge upload is down so use our server for now
 SOURCEFORGE_NIGHTLY = SOURCEFORGE_FILES + "Nightly/"
 
 SOURCEFORGE_SAMPLES = SOURCEFORGE_FILES + "Sample%20Data/"
@@ -163,25 +162,6 @@ def parse_build_names(file_location, version, build_option):
     return (date, builds)
 
 
-def paraview_version(mantid_version):
-    """
-  Obtains the paraview version for a specific mantid release from the paraview versions file.
-
-  Args:
-    mantid_version (str): The version of Mantid to search for in the paraview versions file.
-
-  Returns:
-    str: The paraview version that the given release of mantid requires.
-  """
-    with open(os.path.join(PARAVIEW_DIR, "paraviewVersions.txt"), "r") as paraviewReleases:
-        for line in paraviewReleases:
-            m_version, paraview_version = line.rstrip("\n").split(",")
-            if m_version == mantid_version:
-                return paraview_version
-            else:
-                return None
-
-
 def paraview_build_names(paraview_version):
     """
   Reads and stores paraview build names from the paraview release file, which is parsed based on version.
@@ -236,7 +216,7 @@ def get_os(build_name):
         ostype = "Windows"
         # after 4.1 Windows 10 only
         version_str = build_name.split('-')[1]
-        if "nightly"in build_name or LooseVersion(version_str) > LooseVersion("4.1.0"):
+        if "nightly" in build_name or LooseVersion(version_str) > LooseVersion("4.1.0"):
             osname = "Windows 10"
         else:
             osname = "Windows 7/8/10"
@@ -244,7 +224,8 @@ def get_os(build_name):
         ostype = "OSX"
         filename_parts = build_name.split("-")
         if len(filename_parts) < 3 or len(filename_parts) > 4:
-            raise RuntimeError("Expected OSX filename to contain 2 ornl 3 dashes. Found {}".format(build_name))
+            raise RuntimeError(
+                "Expected OSX filename to contain 2 ornl 3 dashes. Found {}".format(build_name))
         else:
             # old filenames can have a -64bit suffix
             codename = filename_parts[-1][:-4] if len(filename_parts) == 3 else filename_parts[-2]
@@ -329,7 +310,7 @@ def format_release_str(release_str):
     return release_str
 
 
-#========================================================================================================
+# ========================================================================================================
 
 if __name__ == "__main__":
     # Build information for each release file in the "releases" folder
