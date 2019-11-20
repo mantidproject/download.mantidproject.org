@@ -1,8 +1,8 @@
 function getOS() {
   var os = "";
-  if (navigator.appVersion.indexOf("Win") != -1 || navigator.userAgent.indexOf('Windows NT 6.2') > -1) os = "Windows";
-  if (navigator.appVersion.indexOf("Mac") != -1) os = "OSX";
-  if (navigator.appVersion.indexOf("X11") != -1 || navigator.appVersion.indexOf("Linux") != -1) os = "Linux";
+  if (navigator.userAgent.indexOf('Windows NT 6.2') > -1) os = "Windows";
+  if (navigator.userAgent.indexOf("Mac") != -1) os = "OSX";
+  if (navigator.userAgent.indexOf("X11") != -1) os = "Linux";
   return os;
 }
 

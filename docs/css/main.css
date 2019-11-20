@@ -34,7 +34,7 @@ ul { list-style: none; }
 /*-------------------- $STRUCTURE --------------------*/
 
 .wrapper {
-  width: 42em;
+  max-width: 1080px;
   margin: 0 auto;
   padding: 1em;
 }
@@ -168,7 +168,7 @@ h1, h2, h3 { border-bottom: 1px solid #DCDCDC; }
   background-color: #009933;
   color: whiteSmoke;
   text-align: center;
-  width: 65%;
+  width: 40%;
   padding: 1.6em 1em;
   margin-bottom: 1em;
 
@@ -201,6 +201,17 @@ div.admonition p, div.admonition li {
     border: 1px solid transparent;
     border-radius: 4px;
 }
+.container {
+    float: left;
+    width: 40%;
+    padding: 3px;
+}
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
 #nightly > .button {
   background-color: #F4E14E;
   color: #333;

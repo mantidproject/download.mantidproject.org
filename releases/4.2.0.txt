@@ -1,0 +1,7 @@
+2019-11-15
+
+mantid-4.2.0-win64.exe
+mantid-4.2.0-HighSierra.dmg
+mantid-4.2.0-1.el7.x86_64.rpm
+mantid_4.2.0-0ubuntu1~bionic1_amd64.deb
+mantid-4.2.0-Source.tar.xz

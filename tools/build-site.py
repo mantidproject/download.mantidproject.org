@@ -162,6 +162,25 @@ def parse_build_names(file_location, version, build_option):
     return (date, builds)
 
 
+def paraview_version(mantid_version):
+    """
+  Obtains the paraview version for a specific mantid release from the paraview versions file.
+
+  Args:
+    mantid_version (str): The version of Mantid to search for in the paraview versions file.
+
+  Returns:
+    str: The paraview version that the given release of mantid requires.
+  """
+    with open(os.path.join(PARAVIEW_DIR, "paraviewVersions.txt"), "r") as paraviewReleases:
+        for line in paraviewReleases:
+            m_version, paraview_version = line.rstrip("\n").split(",")
+            if m_version == mantid_version:
+                return paraview_version
+            else:
+                return None
+
+
 def paraview_build_names(paraview_version):
     """
   Reads and stores paraview build names from the paraview release file, which is parsed based on version.

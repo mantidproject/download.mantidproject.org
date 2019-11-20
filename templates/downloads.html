@@ -13,10 +13,17 @@
       <li><a href="{{instruction.replace("-", "").lower() ~ '.html' }}">{{ instruction.replace("-", " ") }}</a></li>{% endfor %}
     </ul>
     <div class="windows admonition warning">
-      <p>Windows 7/8 users: if you see the following error:</p>
-      <img style="display: block; margin-left: auto; margin-right: auto;" src="img/msvc2015-dll.png" width="300px">
-      <p>your machine has not had recent Windows updates applied. Please either update Windows fully or install the relevant
-	<a href="https://support.microsoft.com/en-gb/help/2999226/update-for-universal-c-runtime-in-windows">standalone</a> update package for your version of x64 Windows.</p>
+      <p>Windows users: We currently have an issue with our signing certificate and are unable to sign the windows executable.
+        When running the installer you will first see the Windows Defender image on the left below.
+        Click <i>More Info</i> and then <i>Run anyway</i> on the next screen to continue with the installation.</p>
+      <div class="row">
+        <div class="container">
+          <img src="img/windows-defender-more-info.png" style="width:100%;">
+        </div>
+        <div class="container">
+          <img src="img/windows-defender-run-anyway.png" style="width:100%;">
+        </div>
+      </div>
     </div>
     <a href="#" class="button">Download Mantid for </a>
     <p>Alternative downloads:</p>
