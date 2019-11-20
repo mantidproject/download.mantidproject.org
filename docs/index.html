@@ -18,8 +18,8 @@
   <h1>Download Mantid</h1>
   </header>
   <section id="latest" class="wrapper">
-    <h2>Latest release: 4.1 (2019-07-23)</h2>
-    <p id="release_notes">View changes made in <a href="http://docs.mantidproject.org/v4.1.0/release/v4.1.0/index.html">this release</a>.</p>
+    <h2>Latest release: 4.2 (2019-11-15)</h2>
+    <p id="release_notes">View changes made in <a href="http://docs.mantidproject.org/v4.2.0/release/v4.2.0/index.html">this release</a>.</p>
     <p class="instructions">Installation instructions:</p>
     <ul class="instructions">
       <li><a href="docker.html">Docker</a></li>
@@ -30,20 +30,26 @@
       <li><a href="conda.html">conda</a></li>
     </ul>
     <div class="windows admonition warning">
-      <p>Windows 7/8 users: if you see the following error:</p>
-      <img style="display: block; margin-left: auto; margin-right: auto;" src="img/msvc2015-dll.png" width="300px">
-      <p>your machine has not had recent Windows updates applied. Please either update Windows fully or install the relevant
-	<a href="https://support.microsoft.com/en-gb/help/2999226/update-for-universal-c-runtime-in-windows">standalone</a> update package for your version of x64 Windows.</p>
+      <p>Windows users: We currently have an issue with our signing certificate and are unable to sign the windows executable.
+        When running the installer you will first see the Windows Defender image on the left below.
+        Click <i>More Info</i> and then <i>Run anyway</i> on the next screen to continue with the installation.</p>
+      <div class="row">
+        <div class="container">
+          <img src="img/windows-defender-more-info.png" style="width:100%;">
+        </div>
+        <div class="container">
+          <img src="img/windows-defender-run-anyway.png" style="width:100%;">
+        </div>
+      </div>
     </div>
     <a href="#" class="button">Download Mantid for </a>
     <p>Alternative downloads:</p>
     <ul class="alternatives">
-      <li><a class="OSX" href="http://sourceforge.net/projects/mantid/files/4.1/mantid-4.1.0-Yosemite.dmg/download">OSX (10.10)</a></li>
-      <li><a class="Linux" href="http://sourceforge.net/projects/mantid/files/4.1/mantid-4.1.0-1.el7.x86_64.rpm/download">Red Hat 7</a></li>
-      <li><a class="Source" href="http://sourceforge.net/projects/mantid/files/4.1/mantid-4.1.0-Source.tar.xz/download">Source code</a></li>
-      <li><a class="Linux" href="http://sourceforge.net/projects/mantid/files/4.1/mantid_4.1.0-0ubuntu1~xenial1_amd64.deb/download">Ubuntu 16.04</a></li>
-      <li><a class="Linux" href="http://sourceforge.net/projects/mantid/files/4.1/mantid_4.1.0-0ubuntu1~bionic1_amd64.deb/download">Ubuntu 18.04</a></li>
-      <li><a class="Windows" href="http://sourceforge.net/projects/mantid/files/4.1/mantid-4.1.0-win64.exe/download">Windows 7/8/10</a></li>
+      <li><a class="OSX" href="http://sourceforge.net/projects/mantid/files/4.2/mantid-4.2.0-HighSierra.dmg/download">OSX (10.13)</a></li>
+      <li><a class="Linux" href="http://sourceforge.net/projects/mantid/files/4.2/mantid-4.2.0-1.el7.x86_64.rpm/download">Red Hat 7</a></li>
+      <li><a class="Source" href="http://sourceforge.net/projects/mantid/files/4.2/mantid-4.2.0-Source.tar.xz/download">Source code</a></li>
+      <li><a class="Linux" href="http://sourceforge.net/projects/mantid/files/4.2/mantid_4.2.0-0ubuntu1~bionic1_amd64.deb/download">Ubuntu 18.04</a></li>
+      <li><a class="Windows" href="http://sourceforge.net/projects/mantid/files/4.2/mantid-4.2.0-win64.exe/download">Windows 10</a></li>
     </ul>
     <a href="./archives.html" id="previous">Previous releases</a>
   </section>
@@ -75,9 +81,9 @@
         <!-- <p>Alternative downloads:</p> -->
         <ul class="alternatives">
           <li><a class="OSX" href="http://sourceforge.net/projects/mantid/files/Nightly/mantid-4.1.20191112.1448-HighSierra.dmg">OSX (10.13)</a>: 2019-11-12</li>
-          <li><a class="Linux" href="http://sourceforge.net/projects/mantid/files/Nightly/mantidnightly-4.2.20191114.1820-1.el7.x86_64.rpm">Red Hat 7</a>: 2019-11-14</li>
-          <li><a class="Source" href="http://sourceforge.net/projects/mantid/files/Nightly/mantidnightly-4.2.20191114.1820-Source.tar.xz">Source code</a>: 2019-11-14</li>
-          <li><a class="Linux" href="http://sourceforge.net/projects/mantid/files/Nightly/mantidnightly_4.2.20191114.1820-0ubuntu1~bionic1_amd64.deb">Ubuntu 18.04</a>: 2019-11-14</li>
+          <li><a class="Linux" href="http://sourceforge.net/projects/mantid/files/Nightly/mantidnightly-4.2.20191119.1504-1.el7.x86_64.rpm">Red Hat 7</a>: 2019-11-19</li>
+          <li><a class="Source" href="http://sourceforge.net/projects/mantid/files/Nightly/mantidnightly-4.2.20191119.1504-Source.tar.xz">Source code</a>: 2019-11-19</li>
+          <li><a class="Linux" href="http://sourceforge.net/projects/mantid/files/Nightly/mantidnightly_4.2.20191118.1526-0ubuntu1~bionic1_amd64.deb">Ubuntu 18.04</a>: 2019-11-18</li>
           <li><a class="Windows" href="http://sourceforge.net/projects/mantid/files/Nightly/mantidnightly-4.2.20191114.1820-win64.exe">Windows 10</a>: 2019-11-14</li>
         </ul>
         <p>View <a href="https://github.com/mantidproject/mantid/commits/">recent changes</a> on GitHub.</p>
