@@ -2,4 +2,4 @@ mantid-4.2.20191203.1249-HighSierra.dmg
 mantidnightly-4.2.20191203.1249-win64.exe
 mantidnightly-4.2.20191204.1154-1.el7.x86_64.rpm
 mantidnightly-4.2.20191204.1154-Source.tar.xz
-mantidnightly_4.2.20191203.1249-0ubuntu1~bionic1_amd64.deb
+mantidnightly_4.2.20191204.1154-0ubuntu1~bionic1_amd64.deb
