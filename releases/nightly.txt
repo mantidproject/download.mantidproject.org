@@ -1,4 +1,4 @@
-mantid-4.2.20191210.1611-HighSierra.dmg
+mantid-4.2.20191211.1150-HighSierra.dmg
 mantidnightly-4.2.20191210.1611-win64.exe
 mantidnightly-4.2.20191211.1150-1.el7.x86_64.rpm
 mantidnightly-4.2.20191211.1150-Source.tar.xz
