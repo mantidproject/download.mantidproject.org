@@ -1,5 +1,5 @@
-mantid-4.2.20200131.1325-HighSierra.dmg
-mantidnightly-4.2.20200131.1325-1.el7.x86_64.rpm
-mantidnightly-4.2.20200131.1325-Source.tar.xz
+mantid-4.2.20200203.1614-HighSierra.dmg
 mantidnightly-4.2.20200131.1325-win64.exe
-mantidnightly_4.2.20200131.1325-0ubuntu1~bionic1_amd64.deb
+mantidnightly-4.2.20200203.1614-1.el7.x86_64.rpm
+mantidnightly-4.2.20200203.1614-Source.tar.xz
+mantidnightly_4.2.20200203.1614-0ubuntu1~bionic1_amd64.deb
