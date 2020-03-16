@@ -1,0 +1,7 @@
+2020-03-16
+
+mantid-5.0.0-win64.exe
+mantid-5.0.0-HighSierra.dmg
+mantid-5.0.0-1.el7.x86_64.rpm
+mantid_5.0.0-0ubuntu1~bionic1_amd64.deb
+mantid-5.0.0-Source.tar.xz

@@ -12,6 +12,7 @@
     <ul class="instructions">{% for instruction in instructions %}
       <li><a href="{{instruction.replace("-", "").lower() ~ '.html' }}">{{ instruction.replace("-", " ") }}</a></li>{% endfor %}
     </ul>
+    <p><b>This version now uses Python 3</b></p>
     <div class="windows admonition warning">
       <p>Windows users: We currently have an issue with our signing certificate.
         When running the installer you will first see the Windows Defender image on the left below.
@@ -51,7 +52,6 @@
       <article id="nightly" class="column">
         <h2>Nightly Development Builds</h2>
         <p><i>Minimally tested and <b>not</b> recommended for general use.</i></p>
-        <p><b>These versions now use Python 3.</b></p>
         <!-- <p><i>Build date: {{ nightly_release['date'] }}</i></p> -->
         <!-- <a href="#" class="button">Download Mantid for </a> -->
         <!-- <p>Alternative downloads:</p> -->
