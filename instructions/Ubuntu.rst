@@ -2,7 +2,8 @@
 Installing Mantid via Apt
 =========================
 
-The debian packages for the current release are built for both Ubuntu 16.04 (Xenial Xerus) and Ubuntu 18.04 (Bionic Beaver). Ubuntu 14.04 is no longer supported.
+The debian packages for the current release are built for Ubuntu 18.04 (Bionic Beaver). 
+Ubuntu 20.04 is not yet supported, so on this platform Mantid can be built from source (Links to: `Get source code <index.html>`_, `Set-up dependencies <http://developer.mantidproject.org/GettingStarted.html>`_, `Build with cmake <http://developer.mantidproject.org/BuildingWithCMake.html>`_ )
 
 Stable Release
 --------------
@@ -40,7 +41,7 @@ and then install package with: ::
 
 This will install Mantid into ``/opt/mantidnightly``. It does **not** update the environment so you must type the following to start it: ::
 
-    /opt/mantidnightly/bin/MantidPlot
+    /opt/mantidnightly/bin/mantidworkbench
 
 This is to avoid users accidentally running the nightly development build.
 
