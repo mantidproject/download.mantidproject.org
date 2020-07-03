@@ -1,5 +1,5 @@
 mantid-5.0.20200619.1254-HighSierra.dmg
-mantidnightly-5.0.20200701.1500-1.el7.x86_64.rpm
 mantidnightly-5.0.20200701.1500-Source.tar.xz
 mantidnightly-5.0.20200701.1500-win64.exe
+mantidnightly-5.0.20200702.755-1.el7.x86_64.rpm
 mantidnightly_5.0.20200701.1500-0ubuntu1~bionic1_amd64.deb
