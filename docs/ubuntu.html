@@ -16,7 +16,8 @@
 <div class="document">
 <div class="section" id="installing-mantid-via-apt">
 <h1>Installing Mantid via Apt</h1>
-<p>The debian packages for the current release are built for both Ubuntu 16.04 (Xenial Xerus) and Ubuntu 18.04 (Bionic Beaver). Ubuntu 14.04 is no longer supported.</p>
+<p>The debian packages for the current release are built for Ubuntu 18.04 (Bionic Beaver).
+Ubuntu 20.04 is not yet supported, so on this platform Mantid can be built from source (Links to: <a class="reference external" href="index.html">Get source code</a>, <a class="reference external" href="http://developer.mantidproject.org/GettingStarted.html">Set-up dependencies</a>, <a class="reference external" href="http://developer.mantidproject.org/BuildingWithCMake.html">Build with cmake</a> )</p>
 <div class="section" id="stable-release">
 <h2>Stable Release</h2>
 <p>To install the current release via apt, first add the required repositories and keys to the <cite>sources.list</cite>. This only needs to be done once.
@@ -51,7 +52,7 @@ sudo apt-get install mantidnightly
 </pre>
 <p>This will install Mantid into <tt class="docutils literal">/opt/mantidnightly</tt>. It does <strong>not</strong> update the environment so you must type the following to start it:</p>
 <pre class="literal-block">
-/opt/mantidnightly/bin/MantidPlot
+/opt/mantidnightly/bin/mantidworkbench
 </pre>
 <p>This is to avoid users accidentally running the nightly development build.</p>
 </div>
