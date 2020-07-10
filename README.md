@@ -1,9 +1,17 @@
 Mantid downloads
 ================
 
-[Scripts](/tools/) for building the Mantid [download page](http://download.mantidproject.org).
+## Download Docs
+
+The [html pages](/docs/) for the [download pages](http://download.mantidproject.org) are built from the related [rst files](/instructions/), apart from [index.html](/docs/index.html). The index page is built from (downloads.html)[/templates/downloads.html].
+
+The index page has links, that are held in text files, for the current [release](/releases/) and most recent [nightly](/releases/nightly.txt). These can be updated manually, or in the case of the Nightly builds, they are updated by @mantid-builder. If any download pages wish to point users towards a download link, they should just be pointed towards the relevant part of the [index of the downloads website](http://download.mantidproject.org).
+
+Links to past [releases](/releases/) are referenced [here](/templates/archives.html).
 
 ## Building locally
+
+[Scripts](/tools/) for building the Mantid [download page](http://download.mantidproject.org).
 
 To build locally run the `build-site.py` script located in the `tools` folder:
 
