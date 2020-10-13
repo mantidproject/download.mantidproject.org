@@ -1,4 +1,4 @@
-mantid-5.1.20201009.1950-HighSierra.dmg
+mantid-5.1.20201012.1632-HighSierra.dmg
 mantidnightly-5.1.20201008.1741-win64.exe
 mantidnightly-5.1.20201009.1950-Source.tar.xz
 mantidnightly-5.1.20201012.1632-1.el7.x86_64.rpm
