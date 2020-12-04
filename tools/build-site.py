@@ -283,10 +283,10 @@ def get_download_url(build_name, version, build_option):
   Returns:
     str: The download url for a given build.
   """
-    if build_option is NIGHTLY_NAME_SUFFIX:
+    if build_option == NIGHTLY_NAME_SUFFIX:
         build_name = build_name.rstrip()
         return SOURCEFORGE_NIGHTLY + build_name
-    elif build_option is "paraview":
+    elif build_option == "paraview":
         build_name = build_name.rstrip() + "/download"
         return SOURCEFORGE_PARAVIEW + version + "/" + build_name
     else:
