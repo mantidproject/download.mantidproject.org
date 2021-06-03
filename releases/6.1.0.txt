@@ -1,0 +1,7 @@
+2021-06-03
+
+mantid-6.1.0-win64.exe
+mantid-6.1.0-HighSierra.dmg
+mantid-6.1.0-1.el7.x86_64.rpm
+mantid_6.1.0-0ubuntu1~bionic1_amd64.deb
+mantid-6.1.0-Source.tar.xz
