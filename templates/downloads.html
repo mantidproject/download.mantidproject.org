@@ -12,7 +12,7 @@
     <ul class="instructions">{% for instruction in instructions %}
       <li><a href="{{instruction.replace("-", "").lower() ~ '.html' }}">{{ instruction.replace("-", " ") }}</a></li>{% endfor %}
     </ul>
-    <p><b>This version now uses Python 3, and no longer includes MantidPlot.</b></p>
+    <p><b>This version no longer includes MantidPlot.</b></p>
     <div class="windows admonition warning">
       <p>Windows users: We currently have an issue with our signing certificate.
         When running the installer you will first see the Windows Defender image on the left below.
