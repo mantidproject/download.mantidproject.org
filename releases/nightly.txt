@@ -1,6 +1,6 @@
 mantid-5.1.20210106.1811-HighSierra.dmg
 mantidnightly-6.1.20210906.1201-1.el7.x86_64.rpm
 mantidnightly-6.1.20210906.1201-Source.tar.xz
-mantidnightly-6.1.20210906.1201-win64.exe
 mantidnightly-6.1.20210907.1447-HighSierra.dmg
+mantidnightly-6.1.20210907.1447-win64.exe
 mantidnightly_6.1.20210906.1201-0ubuntu1~bionic1_amd64.deb
