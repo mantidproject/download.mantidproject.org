@@ -22,12 +22,13 @@ NIGHTLY_DATE_RE = re.compile(
     r'^(?:mantidnightly|mantid)(?:-|_)(?:\d+)\.(?:\d+)\.(\d{8})\.(?:\d{3,4})-.*$')
 
 # General globals
-MANTID_NEWS = "http://developer.mantidproject.org/"
-RELEASE_NOTES_PRE_37 = "http://www.mantidproject.org/Release_Notes_"
-RELEASE_NOTES = "http://docs.mantidproject.org/{version}/release/{version}/index.html"
+MANTID_NEWS = "https://developer.mantidproject.org/"
+RELEASE_NOTES_SPHINX_MIN = "3.8.0"
+RELEASE_NOTES_PRE_38 = "https://www.mantidproject.org/Category:Release_Notes"
+RELEASE_NOTES = "https://docs.mantidproject.org/{version}/release/{version}/index.html"
 
 # Download specific variables
-SOURCEFORGE_FILES = "http://sourceforge.net/projects/mantid/files/"
+SOURCEFORGE_FILES = "https://sourceforge.net/projects/mantid/files/"
 # The sourceforge upload is down so use our server for now
 SOURCEFORGE_NIGHTLY = SOURCEFORGE_FILES + "Nightly/"
 
@@ -97,6 +98,7 @@ def mantid_releases() -> Sequence:
         date, mantid_builds = parse_build_names(os.path.join(RELEASE_DIR, file_name),
                                                 release['mantid_version'], "release")
         release['date'] = date
+        release['release_notes_url'] = release_notes_url(release['mantid_version'])
         pv_version = release['paraview_version']
         paraview_builds = paraview_build_names(pv_version) if pv_version is not None else {}
         if len(paraview_builds) > 0:
@@ -303,7 +305,7 @@ def date_from_nightly(filename: str) -> str:
     match = NIGHTLY_DATE_RE.match(filename)
     if match:
         date = match.group(1)
-        formatted_date = f"{date[:4]}-{date[:6]}-{date[:6]}"
+        formatted_date = f"{date[:4]}-{date[4:5]}-{date[6:]}"
     else:
         raise RuntimeError(f"Unable to extract date from nightly build '{filename}'")
 
@@ -327,6 +329,14 @@ def format_release_str(release_str: str) -> str:
     return release_str
 
 
+def release_notes_url(version: str) -> str:
+    """Return the release notes URL for the given version"""
+    if version >= LooseVersion(RELEASE_NOTES_SPHINX_MIN):
+        return RELEASE_NOTES.format(version=('v' + version))
+    else:
+        return RELEASE_NOTES_PRE_38.format(version=version)
+
+
 # ========================================================================================================
 
 if __name__ == "__main__":
@@ -337,12 +347,11 @@ if __name__ == "__main__":
     archive_vars = {
         "title": "Mantid - Previous Releases",
         "description": "Downloads for current and previous releases of Mantid.",
-        "release_notes": RELEASE_NOTES_PRE_37,
         "releases": release_info[1:]
     }
 
     latest_version = release_info[0]
-    release_notes = RELEASE_NOTES.format(version=('v' + latest_version['mantid_version']))
+    release_notes = release_info[0]['release_notes_url']
     paraview_version = release_info[0]['paraview_version']
     download_vars = {
         "title": "Mantid - Downloads",
