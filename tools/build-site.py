@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from __future__ import (absolute_import, print_function)
 
 import datetime
 from distutils.version import LooseVersion
@@ -8,8 +7,7 @@ import docutils.core
 import jinja2
 import os
 import re
-
-from six import iteritems
+from typing import Mapping, Optional, Sequence, Tuple
 
 # Repo folder structure
 ROOT_DIR = os.path.join(os.path.dirname(__file__), "..")
@@ -63,29 +61,29 @@ OSX_CODENAME_VERSIONS = {
 }
 
 
-def mantid_releases():
+def mantid_releases() -> Sequence:
     """
-  Reads and stores release information for each release file in the releases folder. This does not include the nightly build.
+    Reads and stores release information for each release file in the releases folder. This does not include the nightly build.
 
-  Returns:
-    list: A list that contains dictionaries of release information for each release. The list is sorted by release date.
+    Returns:
+      list: A list that contains dictionaries of release information for each release. The list is sorted by release date.
 
-    Example of list structure:
+      Example of list structure:
 
-    [
-      {
-        "date" : "2014-02-28",
-        "mantid_version" : "3.1.1",
-        "paraview_version" : "3.98.1",
-        "build_info" : {
-          # (key) operating system name : (value) [mantid_download_url, paraview_download_url]
-          "windows" : ["http://...mantid-3.1.1-win64.exe/download", "http://...paraview-win64.exe/download"],
-          "..." : "...", # Shortened for simplicity
+      [
+        {
+          "date" : "2014-02-28",
+          "mantid_version" : "3.1.1",
+          "paraview_version" : "3.98.1",
+          "build_info" : {
+            # (key) operating system name : (value) [mantid_download_url, paraview_download_url]
+            "windows" : ["http://...mantid-3.1.1-win64.exe/download", "http://...paraview-win64.exe/download"],
+            "..." : "...", # Shortened for simplicity
+          }
         }
-      }
-      ...
-    ]
-  """
+        ...
+      ]
+    """
     releases = []
     release_files = [
         name for name in os.listdir(RELEASE_DIR)
@@ -102,7 +100,7 @@ def mantid_releases():
         pv_version = release['paraview_version']
         paraview_builds = paraview_build_names(pv_version) if pv_version is not None else {}
         if len(paraview_builds) > 0:
-            for osname, info in iteritems(paraview_builds):
+            for osname, _ in paraview_builds.items():
                 try:
                     mantid_builds[osname]['paraview_url'] = paraview_builds[osname]
                 except KeyError:
@@ -113,23 +111,23 @@ def mantid_releases():
     return sorted(releases, key=lambda k: k['date'], reverse=True)
 
 
-def parse_build_names(file_location, version, build_option):
+def parse_build_names(file_location: str, version: str, build_option: str) -> Tuple[str, Mapping]:
     """
-  Parses a file that contains build names (e.g. those in /releases/) and stores the contents in a dictionary.
-  The key of the dictionary is the operating system, which is obtained based on the build's file extension.
-  The date on the first line is optional, if it is not present the date is extracted from the first filename if
-  possible, else it raises an error.
+    Parses a file that contains build names (e.g. those in /releases/) and stores the contents in a dictionary.
+    The key of the dictionary is the operating system, which is obtained based on the build's file extension.
+    The date on the first line is optional, if it is not present the date is extracted from the first filename if
+    possible, else it raises an error.
 
-  Args:
-    file_location (str): The location of the release file to parse.
-    version (str): Used when building the URL.
-    build_option (str): The name of the build, which is used when building the URL, e.g. "release", "nightly" or "paraview".
+    Args:
+      file_location (str): The location of the release file to parse.
+      version (str): Used when building the URL.
+      build_option (str): The name of the build, which is used when building the URL, e.g. "release", "nightly" or "paraview".
 
-  Returns:
-    dict: A dictionary containing OS names as keys, and the related download url as a value.
-           Key : Obtained from get_os, and is output on the downloads page as CSS classes.
-           Value : The download url for that specific operating system.
-  """
+    Returns:
+      2-tuple: (date, A dictionary containing OS names as keys, and the related download url as a value.
+            Key : Obtained from get_os, and is output on the downloads page as CSS classes.
+            Value : The download url for that specific operating system.)
+    """
     manifest = open(file_location, 'r')
     date = None
     if build_option is not NIGHTLY_NAME_SUFFIX:
@@ -150,11 +148,11 @@ def parse_build_names(file_location, version, build_option):
 
         os_info = get_os(build)
         if date is None:
-            build_date = get_date_from_nightly(build)
+            build_date = date_from_nightly(build)
         else:
             build_date = date
         builds[os_info[0]] = {
-            'url': get_download_url(build, version, build_option),
+            'url': download_url(build, version, build_option),
             'type': os_info[1],
             'date': build_date
         }
@@ -162,16 +160,16 @@ def parse_build_names(file_location, version, build_option):
     return (date, builds)
 
 
-def paraview_version(mantid_version):
+def paraview_version(mantid_version: str) -> Optional[str]:
     """
-  Obtains the paraview version for a specific mantid release from the paraview versions file.
+    Obtains the paraview version for a specific mantid release from the paraview versions file.
 
-  Args:
-    mantid_version (str): The version of Mantid to search for in the paraview versions file.
+    Args:
+      mantid_version (str): The version of Mantid to search for in the paraview versions file.
 
-  Returns:
-    str: The paraview version that the given release of mantid requires.
-  """
+    Returns:
+      str: The paraview version that the given release of mantid requires.
+    """
     with open(os.path.join(PARAVIEW_DIR, "paraviewVersions.txt"), "r") as paraviewReleases:
         for line in paraviewReleases:
             m_version, paraview_version = line.rstrip("\n").split(",")
@@ -181,29 +179,29 @@ def paraview_version(mantid_version):
                 return None
 
 
-def paraview_build_names(paraview_version):
+def paraview_build_names(paraview_version: str) -> Mapping:
     """
-  Reads and stores paraview build names from the paraview release file, which is parsed based on version.
+    Reads and stores paraview build names from the paraview release file, which is parsed based on version.
 
-  Args:
-    paraview_version (str): The paraview version
+    Args:
+      paraview_version (str): The paraview version
 
-  Returns:
-    dict: The paraview build names for the given version.
-  """
+    Returns:
+      dict: The paraview build names for the given version.
+    """
     file_location = os.path.join(PARAVIEW_DIR, "paraview-" + paraview_version + ".txt")
     return parse_build_names(file_location, paraview_version, "paraview")[1]
 
 
-def nightly_release():
+def nightly_release() -> Mapping:
     """
-  Reads and stores release information for the nightly build from the nightly text file in the releases folder.
-  The date on the first line is optional, if it is not present the date is extracted from the first filename.
+    Reads and stores release information for the nightly build from the nightly text file in the releases folder.
+    The date on the first line is optional, if it is not present the date is extracted from the first filename.
 
-  Return:
-    dict: A dictionary containing release information for the nightly build.
-    A similar format (see inner dict) of mantid_releases above is returned.
-  """
+    Return:
+      dict: A dictionary containing release information for the nightly build.
+      A similar format (see inner dict) of mantid_releases above is returned.
+    """
     release_info = {}
     filename = [name for name in os.listdir(RELEASE_DIR) if NIGHTLY_NAME_SUFFIX in name]
     release_info['version'] = os.path.splitext(filename[0])[0]
@@ -215,19 +213,19 @@ def nightly_release():
     return release_info
 
 
-def get_os(build_name):
+def get_os(build_name: str) -> Tuple[str, str]:
     """
-  Obtains the operating system name from a given build name.
-  The osnames output as CSS classes in the 'alternative downloads' <li> in the jinja template (They are the key in the 'build_names' dict).
-  This is required to allow switching of the href from the download button and the users os via JavaScript.
+    Obtains the operating system name from a given build name.
+    The osnames output as CSS classes in the 'alternative downloads' <li> in the jinja template (They are the key in the 'build_names' dict).
+    This is required to allow switching of the href from the download button and the users os via JavaScript.
 
-  Args:
-    build_name (str): The name of the Mantid build for a given operating system, e.g. "mantid-2.3.2-SnowLeopard.dmg"
+    Args:
+      build_name (str): The name of the Mantid build for a given operating system, e.g. "mantid-2.3.2-SnowLeopard.dmg"
 
-  Returns:
-    (str,str): The name of the operating system and its type that the Mantid build will run on. Type={Linux,Windows,OSX}
-    If no os can be detected (build_name,None) is returned.
-  """
+    Returns:
+      (str,str): The name of the operating system and its type that the Mantid build will run on. Type={Linux,Windows,OSX}
+      If no os can be detected (build_name,None) is returned.
+    """
     if build_name.endswith('.tar.gz') or build_name.endswith('.tar.xz'):
         osname = "Source code"
         ostype = "Source"
@@ -244,11 +242,11 @@ def get_os(build_name):
         filename_parts = build_name.split("-")
         if len(filename_parts) < 3 or len(filename_parts) > 4:
             raise RuntimeError(
-                "Expected OSX filename to contain 2 ornl 3 dashes. Found {}".format(build_name))
+                f"Expected OSX filename to contain 2 ornl 3 dashes. Found {build_name}")
         else:
             # old filenames can have a -64bit suffix
             codename = filename_parts[-1][:-4] if len(filename_parts) == 3 else filename_parts[-2]
-            osname = "OSX ({})".format(OSX_CODENAME_VERSIONS[codename])
+            osname = f"OSX ({OSX_CODENAME_VERSIONS[codename]})"
     else:
         ostype = "Linux"
         if "el7" in build_name:
@@ -270,19 +268,19 @@ def get_os(build_name):
     return osname, ostype
 
 
-def get_download_url(build_name, version, build_option):
+def download_url(build_name: str, version: str, build_option: str) -> str:
     """
-  Builds a download url for a given mantid buildname.
-  This is used as the value in the 'build_names' dictionary, which is output in the jinja template.
+    Builds a download url for a given mantid buildname.
+    This is used as the value in the 'build_names' dictionary, which is output in the jinja template.
 
-  Args:
-    buildname (str): The Mantid build name from a release file, e.g. mantid-3.1.1-win64.exe
-    version (str): The version of the release, e.g. 3.1.1
-    build_option (str): Used to determine the type of URL to build.
+    Args:
+      buildname (str): The Mantid build name from a release file, e.g. mantid-3.1.1-win64.exe
+      version (str): The version of the release, e.g. 3.1.1
+      build_option (str): Used to determine the type of URL to build.
 
-  Returns:
-    str: The download url for a given build.
-  """
+    Returns:
+      str: The download url for a given build.
+    """
     if build_option == NIGHTLY_NAME_SUFFIX:
         build_name = build_name.rstrip()
         return SOURCEFORGE_NIGHTLY + build_name
@@ -296,34 +294,34 @@ def get_download_url(build_name, version, build_option):
         return SOURCEFORGE_FILES + found.group(0) + "/" + build_name
 
 
-def get_date_from_nightly(filename):
+def date_from_nightly(filename: str) -> str:
     """Attempts to parse a date from a nightly build file
 
-  Args:
-    filename (str): A string giving a filename
-  """
+    Args:
+      filename (str): A string giving a filename
+    """
     match = NIGHTLY_DATE_RE.match(filename)
     if match:
         date = match.group(1)
-        formatted_date = "%s-%s-%s" % (date[:4], date[4:6], date[6:])
+        formatted_date = f"{date[:4]}-{date[:6]}-{date[:6]}"
     else:
-        raise RuntimeError("Unable to extract date from nightly build '%s'" % filename)
+        raise RuntimeError(f"Unable to extract date from nightly build '{filename}'")
 
     return formatted_date
 
 
-def format_release_str(release_str):
+def format_release_str(release_str: str) -> str:
     """
-  Takes a release string, and formats it using the convention we use elsewhere
-  in Mantid, for example DOI's.  Essentially, the patch number is removed if
-  it is zero.  I.e. 2.1.0 becomes 2.1, 3.0.0 becomes 3.0, but 3.0 is left alone.
+    Takes a release string, and formats it using the convention we use elsewhere
+    in Mantid, for example DOI's.  Essentially, the patch number is removed if
+    it is zero.  I.e. 2.1.0 becomes 2.1, 3.0.0 becomes 3.0, but 3.0 is left alone.
 
-  Args:
-    release_str (str) :: the release string to format.
+    Args:
+      release_str (str) :: the release string to format.
 
-  Returns:
-    str: the formatted release string
-  """
+    Returns:
+      str: the formatted release string
+    """
     if re.match("\d\.\d\.0", release_str):
         return release_str[:-2]
     return release_str
@@ -333,19 +331,19 @@ def format_release_str(release_str):
 
 if __name__ == "__main__":
     # Build information for each release file in the "releases" folder
-    mantid_releases = mantid_releases()
+    release_info = mantid_releases()
 
     # Variables to output on the archives page
     archive_vars = {
         "title": "Mantid - Previous Releases",
         "description": "Downloads for current and previous releases of Mantid.",
         "release_notes": RELEASE_NOTES_PRE_37,
-        "releases": mantid_releases[1:]
+        "releases": release_info[1:]
     }
 
-    latest_version = mantid_releases[0]
+    latest_version = release_info[0]
     release_notes = RELEASE_NOTES.format(version=('v' + latest_version['mantid_version']))
-    paraview_version = mantid_releases[0]['paraview_version']
+    paraview_version = release_info[0]['paraview_version']
     download_vars = {
         "title": "Mantid - Downloads",
         "description": "Download the latest release of Mantid.",
