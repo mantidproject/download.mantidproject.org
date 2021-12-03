@@ -3,21 +3,21 @@ Mantid downloads
 
 ## Download Docs
 
-The [html pages](/docs/) for the [download pages](http://download.mantidproject.org) are built from the related [rst files](/instructions/), apart from [index.html](/docs/index.html). The index page is built from (downloads.html)[/templates/downloads.html].
+The [html pages](/docs/) for the [download pages](https://download.mantidproject.org) are built from the related [rst files](/instructions/), apart from [index.html](/docs/index.html). The index page is built from [downloads.html](/templates/downloads.html)
 
-The index page has links, that are held in text files, for the current [release](/releases/) and most recent [nightly](/releases/nightly.txt). These can be updated manually, or in the case of the Nightly builds, they are updated by @mantid-builder. If any download pages wish to point users towards a download link, they should just be pointed towards the relevant part of the [index of the downloads website](http://download.mantidproject.org).
+The index page has links, that are held in text files, for the current [release](/releases/) and most recent [nightly](/releases/nightly.txt). These can be updated manually, or in the case of the Nightly builds, they are updated by @mantid-builder. If any download pages wish to point users towards a download link, they should just be pointed towards the relevant part of the [index of the downloads website](https://download.mantidproject.org).
 
 Links to past [releases](/releases/) are referenced [here](/templates/archives.html).
 
 ## Building locally
 
-[Scripts](/tools/) for building the Mantid [download page](http://download.mantidproject.org).
+[Scripts](/tools/) for building the Mantid [download page](https://download.mantidproject.org).
 
 To build locally run the `build-site.py` script located in the `tools` folder:
 
     python tools/build-site.py
 
-When finished the final HTML files will be output to the `static` directory.
+When finished the final HTML files will be output to the `docs` directory.
 
 ## Workflow
 
@@ -39,4 +39,3 @@ By default, the previous version of ParaView is assigned to the release. This ca
 ## Requirements:
 
 - [jinja2](http://jinja.pocoo.org/) Python templating package.
-- Python 2.7 or greater is required to make use of [argparse](https://pypi.python.org/pypi/argparse).
