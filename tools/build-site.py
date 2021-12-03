@@ -305,7 +305,7 @@ def date_from_nightly(filename: str) -> str:
     match = NIGHTLY_DATE_RE.match(filename)
     if match:
         date = match.group(1)
-        formatted_date = f"{date[:4]}-{date[4:5]}-{date[6:]}"
+        formatted_date = f"{date[:4]}-{date[4:6]}-{date[6:]}"
     else:
         raise RuntimeError(f"Unable to extract date from nightly build '{filename}'")
 
