@@ -1,0 +1,4 @@
+docutils
+gitpython
+jinja2
+python-dateutil
