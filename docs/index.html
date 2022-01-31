@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Mantid - Downloads</title>
+  <link rel="shortcut icon" href="./img/mantidplot.ico"/>
+  <meta name="description" content="Download the latest release of Mantid.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Inconsolata'>
+  <link rel="stylesheet" href="./css/main.css">
+  <script src="./js/pack.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="./js/main.js"></script>
+</head>
+<body>
+  <header class="banner">
+  <h1>Download Mantid</h1>
+  </header>
+  <section id="latest" class="wrapper">
+    <h2>Latest release: 6.2 (2021-09-29)</h2>
+    <p id="release_notes">View changes made in <a href="None">this release</a>.</p>
+    <p class="instructions">Installation instructions:</p>
+    <ul class="instructions">
+      <li><a href="docker.html">Docker</a></li>
+      <li><a href="osx.html">OSX</a></li>
+      <li><a href="redhat.html">Red Hat</a></li>
+      <li><a href="ubuntu.html">Ubuntu</a></li>
+      <li><a href="windows.html">Windows</a></li>
+      <li><a href="conda.html">conda</a></li>
+    </ul>
+    <p><b>This version no longer includes MantidPlot.</b></p>
+    <div class="windows admonition warning">
+      <p>Windows users: We currently have an issue with our signing certificate.
+        When running the installer you will first see the Windows Defender image on the left below.
+        Click <i>More Info</i> and then <i>Run anyway</i> on the next screen to continue with the installation.</p>
+      <div class="row">
+        <div class="container">
+          <img src="img/windows-defender-more-info.png" style="width:100%;">
+        </div>
+        <div class="container">
+          <img src="img/windows-defender-run-anyway.png" style="width:100%;">
+        </div>
+      </div>
+    </div>
+    <a href="#" class="button">Download Mantid for </a>
+    <p>Alternative downloads:</p>
+    <ul class="alternatives">
+      <li><a class="Windows" href="https://sourceforge.net/projects/mantid/files/6.2/mantid-6.2.0-win64.exe/download">Windows 10</a></li>
+      <li><a class="OSX" href="https://sourceforge.net/projects/mantid/files/6.2/mantid-6.2.0-HighSierra.dmg/download">OSX (10.13)</a></li>
+      <li><a class="Linux" href="https://sourceforge.net/projects/mantid/files/6.2/mantid-6.2.0-1.el7.x86_64.rpm/download">Red Hat 7</a></li>
+      <li><a class="Linux" href="https://sourceforge.net/projects/mantid/files/6.2/mantid_6.2.0-0ubuntu1~bionic1_amd64.deb/download">Ubuntu 18.04</a></li>
+      <li><a class="Source" href="https://sourceforge.net/projects/mantid/files/6.2/mantid-6.2.0-Source.tar.xz/download">Source code</a></li>
+    </ul>
+    <a href="./archives.html" id="previous">Previous releases</a>
+  </section>
+    <section id="gridcontainer">
+      <article id="samples" class="column">
+        <h2>Sample Datasets</h2>
+        <p>Sample datasets for use in Mantid:</p>
+        <ul> 
+          <li><a href="https://sourceforge.net/projects/mantid/files/Sample%20Data/UsageData.zip/download">Usage Examples</a></li>
+          <li><a href="https://sourceforge.net/projects/mantid/files/Sample%20Data/SampleData-ISIS.zip/download">ISIS</a></li>
+          <li><a href="https://sourceforge.net/projects/mantid/files/Sample%20Data/SampleData-ORNL.zip/download">ORNL</a></li>
+          <li><a href="https://sourceforge.net/projects/mantid/files/Sample%20Data/SampleData-Muon.zip/download">Muon</a></li>
+          <li><a href="https://sourceforge.net/projects/mantid/files/Sample%20Data/TrainingCourseData.zip/download">Training</a></li>
+        </ul>
+      </article>
+      <article id="examples" class="column">
+        <h2>Additional Examples</h2>
+        <p>Help documentation and examples can be found <a href="http://www.mantidproject.org/Documentation">here</a> </p>
+        <p>The IPython notebook is not officially supported for use with Mantid, but an example notebook is provided below. </p>
+        <ul> 
+            <li><a href="https://sourceforge.net/projects/mantid/files/IPython%20Notebook/Introduction%20to%20using%20Mantid%20with%20IPython%20Notebook.ipynb/download">IPython Notebook Example</a></li>
+        </ul>
+      </article>
+      <article id="nightly" class="column">
+        <h2>Nightly Development Builds</h2>
+        <p><i>Minimally tested and <b>not</b> recommended for general use.<br>
+        MantidPlot is no longer included in these builds.</i></p>
+        <!-- <p><i>Build date: 2022-01-27</i></p> -->
+        <!-- <a href="#" class="button">Download Mantid for </a> -->
+        <!-- <p>Alternative downloads:</p> -->
+        <ul class="alternatives">
+          <li><a class="Windows" href="https://sourceforge.net/projects/mantid/files/Nightly/mantidnightly-6.2.20220127.1718-win64.exe">Windows 10</a>: 2022-01-27</li>
+          <li><a class="Linux" href="https://sourceforge.net/projects/mantid/files/Nightly/mantidnightly-6.2.20220128.1758-1.el7.x86_64.rpm">Red Hat 7</a>: 2022-01-27</li>
+          <li><a class="OSX" href="https://sourceforge.net/projects/mantid/files/Nightly/mantidnightly-6.2.20220128.1758-HighSierra.dmg">OSX (10.13)</a>: 2022-01-27</li>
+          <li><a class="Source" href="https://sourceforge.net/projects/mantid/files/Nightly/mantidnightly-6.2.20220128.1758-Source.tar.xz">Source code</a>: 2022-01-27</li>
+          <li><a class="Linux" href="https://sourceforge.net/projects/mantid/files/Nightly/mantidnightly_6.2.20220128.1758-0ubuntu1~bionic1_amd64.deb">Ubuntu 18.04</a>: 2022-01-27</li>
+        </ul>
+        <p>View <a href="https://github.com/mantidproject/mantid/commits/">recent changes</a> on GitHub.</p>
+        <p>Previous nightly builds can be found <a href="https://sourceforge.net/projects/mantid/files/Nightly/">here</a>.</p>
+      </article>
+    </section>
+    <section id="gridcontainer">
+      <article id="blank1" class="column"></article>
+      <article id="blank2" class="column"></article>	
+      <article id="other-software" class="column">
+        <h2>Other Software</h2>
+        <p>Other software relating to neutron data reduction/analysis:</p>
+        <ul>
+          <li><a href="https://mantidproject.github.io/mantidimaging/installation.html">Mantid Imaging</a></li>
+        </ul>
+      </article>
+    </section>
+
+</body>
+</html>
