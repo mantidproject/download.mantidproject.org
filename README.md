@@ -13,6 +13,13 @@ Links to past [releases](/releases/) are referenced [here](/templates/archives.h
 
 [Scripts](/tools/) for building the Mantid [download page](https://download.mantidproject.org).
 
+Install a venv to grab the correct dependencies:
+
+
+    mamba env create --name download --file tools/requirements.txt
+    mamba activate download
+
+
 To build locally run the `build-site.py` script located in the `tools` folder:
 
     python tools/build-site.py
