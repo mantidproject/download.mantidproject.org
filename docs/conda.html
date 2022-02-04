@@ -22,9 +22,12 @@
 <li>Mac OS X: available for all MacOS versions 10.10 and higher.</li>
 <li>Windows: available for windows 10 and higher.</li>
 </ul>
-<p>You need to have a version of conda already installed, we recommend using <a class="reference external" href="https://github.com/conda-forge/miniforge/releases">mambaforge</a>. As it adds support for <a class="reference external" href="https://conda-forge.org/">conda-forge</a>
-channels by default, and allows users to by default, use mamba (replace <cite>conda</cite> with <cite>mamba</cite> in commands to use it), which is a faster version of conda for creating
-<a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html">conda environments</a>.</p>
+<p>You need to have Conda, via either miniconda, mambaforge, or miniforge. You can easily check by typing <cite>conda --help</cite> in the terminal.
+We recommend using <a class="reference external" href="https://github.com/conda-forge/miniforge/releases">mambaforge</a>. It adds support for <a class="reference external" href="https://conda-forge.org/">conda-forge</a>
+channels by default, comes with mamba pre-installed (replace <cite>conda</cite> with <cite>mamba</cite> in commands to use it), which is a faster version of Conda for creating
+<a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html">conda environments</a>, and it doesn't include the channels with
+license restrictions by default.</p>
+<p>The default channels on miniconda come with license agreements which you may need to be aware of.</p>
 <p>If not using mambaforge, add conda-forge to your channels:</p>
 <pre class="literal-block">
 $ conda config --add channels conda-forge
