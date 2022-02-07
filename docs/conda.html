@@ -14,34 +14,48 @@
 <body>
 
 <div class="document">
-<div class="section" id="install-mantid-framework-only-using-conda">
-<h1>Install mantid (framework-only) using conda</h1>
-<p>Note that this is an unofficial distribution channel and not suitable for production use.
-It may not work as described and may disappear with little notice.</p>
+<div class="section" id="install-mantid-mantidqt-or-mantidworkbench-using-conda">
+<h1>Install mantid, mantidqt, or mantidworkbench using conda</h1>
 <p>Supported platforms:</p>
 <ul class="simple">
-<li>Linux-64: latest ubuntu/fedora/redhat (see below for distribution-specific instructions)</li>
-<li>Mac OS X: experimental</li>
+<li>Linux-64: available for 64-bit Linux distributions (tested for Ubuntu and CentOS/RHEL).</li>
+<li>Mac OS X: available for all MacOS versions 10.10 and higher.</li>
+<li>Windows: available for windows 10 and higher.</li>
 </ul>
-<p>Installation:</p>
+<p>You need to have Conda, via either miniconda, mambaforge, or miniforge. You can easily check by typing <cite>conda --help</cite> in the terminal.
+We recommend using <a class="reference external" href="https://github.com/conda-forge/miniforge/releases">mambaforge</a>. It adds support for <a class="reference external" href="https://conda-forge.org/">conda-forge</a>
+channels by default, comes with mamba pre-installed (replace <cite>conda</cite> with <cite>mamba</cite> in commands to use it), which is a faster version of Conda for creating
+<a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html">conda environments</a>, and it doesn't include the channels with
+license restrictions by default.</p>
+<p>The default channels on miniconda come with license agreements which you may need to be aware of.</p>
+<p>If not using mambaforge, add conda-forge to your channels:</p>
 <pre class="literal-block">
-$ conda config --add channels conda-forge      # add conda-forge channel
-$ conda install -c mantid mantid-framework     # install
+$ conda config --add channels conda-forge
 </pre>
-<p>To install the nightly build:</p>
+<p>Installing latest release version of mantid:</p>
 <pre class="literal-block">
-$ conda install -c mantid/label/nightly mantid-framework
+$ conda install mantid -c mantid
 </pre>
-<div class="section" id="ubuntu">
-<h2>Ubuntu</h2>
-<p>A caveat for using conda build of mantid-framework at an ubuntu distribution is
-that you will need to import matplotlib before mantid to get the correct backend
-initialized:</p>
+<p>Installing latest release version of mantidqt:</p>
 <pre class="literal-block">
-import matplotlib
-import mantid
+$ conda install mantidqt -c mantid
 </pre>
-</div>
+<p>Installing latest release version of mantidworkbench:</p>
+<pre class="literal-block">
+$ conda install mantidworkbench -c mantid
+</pre>
+<p>To install the nightly build of mantid:</p>
+<pre class="literal-block">
+$ conda install mantid -c mantid/label/nightly
+</pre>
+<p>To install the nightly build of mantidqt:</p>
+<pre class="literal-block">
+$ conda install mantidqt -c mantid/label/nightly
+</pre>
+<p>To install the nightly build of mantidworkbench:</p>
+<pre class="literal-block">
+$ conda install mantidworkbench -c mantid/label/nightly
+</pre>
 </div>
 </div>
 
