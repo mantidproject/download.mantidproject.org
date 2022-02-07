@@ -24,14 +24,6 @@ Installing latest release version of mantid::
 
   $ conda install mantid -c mantid
 
-Installing latest release version of mantidqt::
-
-  $ conda install mantidqt -c mantid 
-
-Installing latest release version of mantidworkbench::
-
-  $ conda install mantidworkbench -c mantid
-
 To install the nightly build of mantid::
 
   $ conda install mantid -c mantid/label/nightly
