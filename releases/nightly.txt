@@ -1,5 +1,5 @@
-mantidnightly-6.2.20220204.1616-win64.exe
 mantidnightly-6.3.20220207.1630-Source.tar.xz
 mantidnightly-6.3.20220208.2323-1.el7.x86_64.rpm
 mantidnightly-6.3.20220208.2323-HighSierra.dmg
+mantidnightly-6.3.20220208.2323-win64.exe
 mantidnightly_6.3.20220207.1630-0ubuntu1~bionic1_amd64.deb
