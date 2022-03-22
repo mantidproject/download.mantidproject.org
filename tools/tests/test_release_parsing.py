@@ -35,11 +35,12 @@ def test_without_date_time(filename):
 
 
 def test_mantid_nightly():
-    found = release_parsing.get_nightly_release()
-    assert isinstance(found, ReleaseInfo)
-    assert found.version == "nightly"
-    assert all("Nightly" in i.download_url for i in found.package_details)
-    assert found.release_notes_url is None
+    nightlies = release_parsing.get_nightly_releases()
+    for found in nightlies:
+        assert isinstance(found, ReleaseInfo)
+        assert found.version == "nightly"
+        assert all("Nightly" in i.download_url for i in found.package_details)
+        assert found.release_notes_url is None
 
 
 def test_mantid_releases():

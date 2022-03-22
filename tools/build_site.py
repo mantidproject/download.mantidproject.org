@@ -9,7 +9,7 @@ import jinja2
 
 # General globals
 from impl import url_handling
-from impl.release_parsing import get_mantid_releases, get_nightly_release
+from impl.release_parsing import get_mantid_releases, get_nightly_releases
 from impl.static_vars import INSTRUCTIONS_DIR, ROOT_DIR
 
 MANTID_NEWS = "https://developer.mantidproject.org/"
@@ -33,7 +33,7 @@ if __name__ == "__main__":
         "mantid_news": MANTID_NEWS,
         "release_notes": latest_version.release_notes_url,
         "latest_release": latest_version,
-        "nightly_release": get_nightly_release(),
+        "nightly_releases": get_nightly_releases(),
         "instructions": [
             os.path.splitext(filename)[0] for filename in sorted(os.listdir(INSTRUCTIONS_DIR))
         ],

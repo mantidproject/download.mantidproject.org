@@ -39,7 +39,7 @@ def format_release_str(release_str: str) -> str:
     return release_str
 
 
-def _parse_build_names(file_path: Path) -> ReleaseInfo:
+def _parse_build_names(file_path: Path) -> List[ReleaseInfo]:
     """
     Parses a file that contains build names (e.g. those in /releases/) and stores the contents in a dictionary.
     The key of the dictionary is the operating system, which is obtained based on the build's file extension.
@@ -50,7 +50,7 @@ def _parse_build_names(file_path: Path) -> ReleaseInfo:
       file_path (str): The location of the release file to parse.
 
     Returns:
-      ReleaseInfo object containing details about a release
+      List[ReleaseInfo] object containing details about a release
     """
     file_name = file_path.name
     is_nightly = NIGHTLY_NAME_SUFFIX.casefold() in file_name.casefold()
@@ -66,32 +66,43 @@ def _parse_build_names(file_path: Path) -> ReleaseInfo:
         # Strip and get non-empty lines
         parsed_file_names = [line.strip() for line in handle if line.strip()]
 
-    # All non-nightly files have the date as their first line
+    # All non-nightly files have the date as their first line and they will all be on the same date
     if not is_nightly:
         release_date = datetime.date.fromisoformat(parsed_file_names.pop(0))
+        # For an official release we have a single ReleaseInfo and multiple packages
+        package_details: List[PackageDetails] = []
+        for executable_name in parsed_file_names:
+            package_details.append(
+                PackageDetails(os_details=get_os(executable_name, version),
+                               download_url=get_download_url(executable_name, version, is_nightly)))
+        releases = [
+            ReleaseInfo(date=release_date,
+                        version=version,
+                        formatted_version=formatted_version,
+                        package_details=package_details)
+        ]
     else:
-        release_date = get_nightly_date(parsed_file_names[0])
+        # For nightlies we have separate releases per file as sometimes not all builds complete
+        releases: List[ReleaseInfo] = []
+        for filename in parsed_file_names:
+            releases.append(
+                ReleaseInfo(date=get_nightly_date(filename),
+                            version=version,
+                            package_details=[
+                                PackageDetails(os_details=get_os(filename, version),
+                                               download_url=get_download_url(
+                                                   filename, version, is_nightly))
+                            ]))
 
-    package_details: List[PackageDetails] = []
-
-    for executable_name in parsed_file_names:
-        package_details.append(
-            PackageDetails(os_details=get_os(executable_name, version),
-                           download_url=get_download_url(executable_name, version, is_nightly))
-        )
-
-    return ReleaseInfo(date=release_date, version=version,
-                       formatted_version=formatted_version, package_details=package_details)
+    return releases
 
 
-def get_nightly_release() -> ReleaseInfo:
+def get_nightly_releases() -> List[ReleaseInfo]:
     """
     Reads and stores release information for the nightly build from the nightly text file in the releases folder.
-    The date on the first line is optional, if it is not present the date is extracted from the first filename.
 
-    Return:
-      dict: A dictionary containing release information for the nightly build.
-      A similar format (see inner dict) of get_mantid_releases above is returned.
+    Returns:
+      list: A list that contains release information for each release. The list is sorted by release date.
     """
     filename = [name for name in RELEASE_DIR.iterdir() if NIGHTLY_NAME_SUFFIX in str(name)]
     assert len(filename) == 1
@@ -109,6 +120,6 @@ def get_mantid_releases() -> List[ReleaseInfo]:
     releases: List[ReleaseInfo] = []
     release_files = [path for path in RELEASE_DIR.iterdir() if NIGHTLY_NAME_SUFFIX not in str(path)]
     for release_txt_file in release_files:
-        releases.append(_parse_build_names(release_txt_file))
+        releases.extend(_parse_build_names(release_txt_file))
 
     return sorted(releases, key=lambda k: k.date, reverse=True)
