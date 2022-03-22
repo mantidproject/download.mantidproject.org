@@ -1,88 +1,99 @@
 {% extends "base.html" %}
 {% block javascript %}
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script src="./js/main.js"></script>{% endblock %}
-{% block content %}  <header class="banner">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="./js/main.js"></script>{% endblock %}
+{% block content %} <header class="banner">
   <h1>Download Mantid</h1>
-  </header>
-  <section id="latest" class="wrapper">
-    <h2>Latest release: {{ latest_release.formatted_version }} ({{ latest_release.date }})</h2>
-    <p id="release_notes">View changes made in <a href="{{ release_notes }}">this release</a>.</p>
-    <p class="instructions">Installation instructions:</p>
-    <ul class="instructions">{% for instruction in instructions %}
-      <li><a href="{{instruction.replace("-", "").lower() ~ '.html' }}">{{ instruction.replace("-", " ") }}</a></li>{% endfor %}
-    </ul>
-    <p><b>This version no longer includes MantidPlot.</b></p>
-    <div class="windows admonition warning">
-      <p>Windows users: We currently have an issue with our signing certificate.
-        When running the installer you will first see the Windows Defender image on the left below.
-        Click <i>More Info</i> and then <i>Run anyway</i> on the next screen to continue with the installation.</p>
-      <div class="row">
-        <div class="container">
-          <img src="img/windows-defender-more-info.png" style="width:100%;">
-        </div>
-        <div class="container">
-          <img src="img/windows-defender-run-anyway.png" style="width:100%;">
-        </div>
+</header>
+<section id="latest" class="wrapper">
+  <h2>Latest release: {{ latest_release.formatted_version }} ({{ latest_release.date }})</h2>
+  <p id="release_notes">View changes made in <a href="{{ release_notes }}">this release</a>.</p>
+  <p class="instructions">Installation instructions:</p>
+  <ul class="instructions">{% for instruction in instructions %}
+    <li><a href="{{instruction.replace(" -", "" ).lower() ~ '.html' }}">{{ instruction.replace("-", " ") }}</a></li>{%
+    endfor %}
+  </ul>
+  <p><b>This version no longer includes MantidPlot.</b></p>
+  <div class="windows admonition warning">
+    <p>Windows users: We currently have an issue with our signing certificate.
+      When running the installer you will first see the Windows Defender image on the left below.
+      Click <i>More Info</i> and then <i>Run anyway</i> on the next screen to continue with the installation.</p>
+    <div class="row">
+      <div class="container">
+        <img src="img/windows-defender-more-info.png" style="width:100%;">
+      </div>
+      <div class="container">
+        <img src="img/windows-defender-run-anyway.png" style="width:100%;">
       </div>
     </div>
-    <a href="#" class="button">Download Mantid for </a>
-    <p>Alternative downloads:</p>
-    <ul class="alternatives">{% for package in latest_release.package_details %}
-      <li><a class="{{ package.os_details.type }}" href="{{ package.download_url }}">{{ package.os_details.name }}</a></li>{% endfor %}
+  </div>
+  <a href="#" class="button">Download Mantid for </a>
+  <p>Alternative downloads:</p>
+  <ul class="alternatives">{% for package in latest_release.package_details %}
+    <li><a class="{{ package.os_details.type }}" href="{{ package.download_url }}">{{ package.os_details.name }}</a>
+    </li>{% endfor %}
+  </ul>
+  <a href="./archives.html" id="previous">Previous releases</a>
+</section>
+<section id="conda" class="wrapper">
+  <h2>Conda packages</h2>
+  <p>Mantid is available in a number of <a
+      href="https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html">conda</a> packages via
+    anaconda.org on the <a href="https://anaconda.org/mantid">mantid channel</a>.</p>
+  <p>The following packages are available:</p>
+  <ul>
+    <li><a href="https://anaconda.org/mantid/mantid">mantid</a>: This package includes the core capabilities, including
+      algorithms and workspaces, availiable via python</li>
+    <li><a href="https://anaconda.org/mantid/mantidqt">mantidqt</a>: Currently a work in progress, nightly only package,
+      this includes the core Python library and scientific interfaces without the Workbench interface.</li>
+    <li><a href="https://anaconda.org/mantid/mantidworkbench">mantidworkbench</a>: Currently a work in progress, nightly
+      only package, this is the full Mantid suite, including the workbench GUI. This should be used if you're unsure
+      what Mantid is, or which package you need.</li>
+  </ul>
+  <p><a href="./conda.html">Conda installation guide</a></p>
+</section>
+<section id="gridcontainer">
+  <article id="samples" class="column">
+    <h2>Sample Datasets</h2>
+    <p>Sample datasets for use in Mantid:</p>
+    <ul> {% for name,downloadurl in sample_datasets %}
+      <li><a href="{{ downloadurl }}">{{ name }}</a></li>{% endfor %}
     </ul>
-    <a href="./archives.html" id="previous">Previous releases</a>
-  </section>
-  <section id="conda" class="wrapper">
-    <h2>Conda packages</h2>
-    <p>Mantid is available in a number of <a href="https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html">conda</a> packages via anaconda.org on the <a href="https://anaconda.org/mantid">mantid channel</a>.</p>
-    <p>The following packages are available:</p>
-    <ul>
-      <li><a href="https://anaconda.org/mantid/mantid">mantid</a>: This package includes the core capabilities, including algorithms and workspaces, availiable via python</li>
-      <li><a href="https://anaconda.org/mantid/mantidqt">mantidqt</a>: Currently a work in progress, nightly only package, this includes the core Python library and scientific interfaces without the Workbench interface.</li>
-      <li><a href="https://anaconda.org/mantid/mantidworkbench">mantidworkbench</a>: Currently a work in progress, nightly only package, this is the full Mantid suite, including the workbench GUI. This should be used if you're unsure what Mantid is, or which package you need.</li>
+  </article>
+  <article id="examples" class="column">
+    <h2>Additional Examples</h2>
+    <p>Help documentation and examples can be found <a href="http://www.mantidproject.org/Documentation">here</a> </p>
+    <p>The IPython notebook is not officially supported for use with Mantid, but an example notebook is provided below.
+    </p>
+    <ul> {% for name,downloadurl in ipython_notebook %}
+      <li><a href="{{ downloadurl }}">{{ name }}</a></li>{% endfor %}
     </ul>
-    <p><a href="./conda.html">Conda installation guide</a></p>
-  </section>
-    <section id="gridcontainer">
-      <article id="samples" class="column">
-        <h2>Sample Datasets</h2>
-        <p>Sample datasets for use in Mantid:</p>
-        <ul> {% for name,downloadurl in sample_datasets %}
-          <li><a href="{{ downloadurl }}">{{ name }}</a></li>{% endfor %}
-        </ul>
-      </article>
-      <article id="examples" class="column">
-        <h2>Additional Examples</h2>
-        <p>Help documentation and examples can be found <a href="http://www.mantidproject.org/Documentation">here</a> </p>
-        <p>The IPython notebook is not officially supported for use with Mantid, but an example notebook is provided below. </p>
-        <ul> {% for name,downloadurl in ipython_notebook %}
-            <li><a href="{{ downloadurl }}">{{ name }}</a></li>{% endfor %}
-        </ul>
-      </article>
-      <article id="nightly" class="column">
-        <h2>Nightly Development Builds</h2>
-        <p><i>Minimally tested and <b>not</b> recommended for general use.<br>
+  </article>
+  <article id="nightly" class="column">
+    <h2>Nightly Development Builds</h2>
+    <p><i>Minimally tested and <b>not</b> recommended for general use.<br>
         MantidPlot is no longer included in these builds.</i></p>
-        <!-- <p><i>Build date: {{ nightly_release.date }}</i></p> -->
-        <!-- <a href="#" class="button">Download Mantid for </a> -->
-        <!-- <p>Alternative downloads:</p> -->
-        <ul class="alternatives">{% for package in nightly_release.package_details %}
-          <li><a class="{{ package.os_details.type }}" href="{{ package.download_url }}">{{ package.os_details.name }}</a>: {{ nightly_release.date }}</li>{% endfor %}
-        </ul>
-        <p>View <a href="https://github.com/mantidproject/mantid/commits/">recent changes</a> on GitHub.</p>
-        <p>Previous nightly builds can be found <a href="https://sourceforge.net/projects/mantid/files/Nightly/">here</a>.</p>
-      </article>
-    </section>
-    <section id="gridcontainer">
-      <article id="blank1" class="column"></article>
-      <article id="blank2" class="column"></article>	
-      <article id="other-software" class="column">
-        <h2>Other Software</h2>
-        <p>Other software relating to neutron data reduction/analysis:</p>
-        <ul>
-          <li><a href="https://mantidproject.github.io/mantidimaging/installation.html">Mantid Imaging</a></li>
-        </ul>
-      </article>
-    </section>
+    <ul class="alternatives">
+      {% for release in nightly_releases %}
+      {% set package = release.package_details[0] %}
+      <li><a class="{{ package.os_details.type }}" href="{{ package.download_url }}">{{ package.os_details.name }}</a>:
+        {{ release.date }}</li>
+      {% endfor %}
+    </ul>
+    <p>View <a href="https://github.com/mantidproject/mantid/commits/">recent changes</a> on GitHub.</p>
+    <p>Previous nightly builds can be found <a href="https://sourceforge.net/projects/mantid/files/Nightly/">here</a>.
+    </p>
+  </article>
+</section>
+<section id="gridcontainer">
+  <article id="blank1" class="column"></article>
+  <article id="blank2" class="column"></article>
+  <article id="other-software" class="column">
+    <h2>Other Software</h2>
+    <p>Other software relating to neutron data reduction/analysis:</p>
+    <ul>
+      <li><a href="https://mantidproject.github.io/mantidimaging/installation.html">Mantid Imaging</a></li>
+    </ul>
+  </article>
+</section>
 {% endblock %}
