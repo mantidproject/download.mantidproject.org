@@ -10,110 +10,136 @@
   <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Inconsolata'>
   <link rel="stylesheet" href="./css/main.css">
   <script src="./js/pack.js"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script src="./js/main.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="./js/main.js"></script>
 </head>
 <body>
-  <header class="banner">
+ <header class="banner">
   <h1>Download Mantid</h1>
-  </header>
-  <section id="latest" class="wrapper">
-    <h2>Latest release: 6.3 (2022-02-08)</h2>
-    <p id="release_notes">View changes made in <a href="None">this release</a>.</p>
-    <p class="instructions">Installation instructions:</p>
-    <ul class="instructions">
-      <li><a href="docker.html">Docker</a></li>
-      <li><a href="osx.html">OSX</a></li>
-      <li><a href="redhat.html">Red Hat</a></li>
-      <li><a href="ubuntu.html">Ubuntu</a></li>
-      <li><a href="windows.html">Windows</a></li>
-      <li><a href="conda.html">conda</a></li>
-    </ul>
-    <p><b>This version no longer includes MantidPlot.</b></p>
-    <div class="windows admonition warning">
-      <p>Windows users: We currently have an issue with our signing certificate.
-        When running the installer you will first see the Windows Defender image on the left below.
-        Click <i>More Info</i> and then <i>Run anyway</i> on the next screen to continue with the installation.</p>
-      <div class="row">
-        <div class="container">
-          <img src="img/windows-defender-more-info.png" style="width:100%;">
-        </div>
-        <div class="container">
-          <img src="img/windows-defender-run-anyway.png" style="width:100%;">
-        </div>
+</header>
+<section id="latest" class="wrapper">
+  <h2>Latest release: 6.3 (2022-02-08)</h2>
+  <p id="release_notes">View changes made in <a href="None">this release</a>.</p>
+  <p class="instructions">Installation instructions:</p>
+  <ul class="instructions">
+    <li><a href="docker.html">Docker</a></li>
+    <li><a href="osx.html">OSX</a></li>
+    <li><a href="red-hat.html">Red Hat</a></li>
+    <li><a href="ubuntu.html">Ubuntu</a></li>
+    <li><a href="windows.html">Windows</a></li>
+    <li><a href="conda.html">conda</a></li>
+  </ul>
+  <p><b>This version no longer includes MantidPlot.</b></p>
+  <div class="windows admonition warning">
+    <p>Windows users: We currently have an issue with our signing certificate.
+      When running the installer you will first see the Windows Defender image on the left below.
+      Click <i>More Info</i> and then <i>Run anyway</i> on the next screen to continue with the installation.</p>
+    <div class="row">
+      <div class="container">
+        <img src="img/windows-defender-more-info.png" style="width:100%;">
+      </div>
+      <div class="container">
+        <img src="img/windows-defender-run-anyway.png" style="width:100%;">
       </div>
     </div>
-    <a href="#" class="button">Download Mantid for </a>
-    <p>Alternative downloads:</p>
-    <ul class="alternatives">
-      <li><a class="Windows" href="https://sourceforge.net/projects/mantid/files/6.3/mantid-6.3.0-win64.exe/download">Windows 10</a></li>
-      <li><a class="OSX" href="https://sourceforge.net/projects/mantid/files/6.3/mantid-6.3.0-HighSierra.dmg/download">OSX (10.13)</a></li>
-      <li><a class="Linux" href="https://sourceforge.net/projects/mantid/files/6.3/mantid-6.3.0-1.el7.x86_64.rpm/download">Red Hat 7</a></li>
-      <li><a class="Linux" href="https://sourceforge.net/projects/mantid/files/6.3/mantid_6.3.0-0ubuntu1~bionic1_amd64.deb/download">Ubuntu 18.04</a></li>
-      <li><a class="Source" href="https://sourceforge.net/projects/mantid/files/6.3/mantid-6.3.0-Source.tar.xz/download">Source code</a></li>
+  </div>
+  <a href="#" class="button">Download Mantid for </a>
+  <p>Alternative downloads:</p>
+  <ul class="alternatives">
+    <li><a class="Windows" href="https://sourceforge.net/projects/mantid/files/6.3/mantid-6.3.0-win64.exe/download">Windows 10</a>
+    </li>
+    <li><a class="OSX" href="https://sourceforge.net/projects/mantid/files/6.3/mantid-6.3.0-HighSierra.dmg/download">OSX (10.13)</a>
+    </li>
+    <li><a class="Linux" href="https://sourceforge.net/projects/mantid/files/6.3/mantid-6.3.0-1.el7.x86_64.rpm/download">Red Hat 7</a>
+    </li>
+    <li><a class="Linux" href="https://sourceforge.net/projects/mantid/files/6.3/mantid_6.3.0-0ubuntu1~bionic1_amd64.deb/download">Ubuntu 18.04</a>
+    </li>
+    <li><a class="Source" href="https://sourceforge.net/projects/mantid/files/6.3/mantid-6.3.0-Source.tar.xz/download">Source code</a>
+    </li>
+  </ul>
+  <a href="./archives.html" id="previous">Previous releases</a>
+</section>
+<section id="conda" class="wrapper">
+  <h2>Conda packages</h2>
+  <p>Mantid is available in a number of <a
+      href="https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html">conda</a> packages via
+    anaconda.org on the <a href="https://anaconda.org/mantid">mantid channel</a>.</p>
+  <p>The following packages are available:</p>
+  <ul>
+    <li><a href="https://anaconda.org/mantid/mantid">mantid</a>: This package includes the core capabilities, including
+      algorithms and workspaces, availiable via python</li>
+    <li><a href="https://anaconda.org/mantid/mantidqt">mantidqt</a>: Currently a work in progress, nightly only package,
+      this includes the core Python library and scientific interfaces without the Workbench interface.</li>
+    <li><a href="https://anaconda.org/mantid/mantidworkbench">mantidworkbench</a>: Currently a work in progress, nightly
+      only package, this is the full Mantid suite, including the workbench GUI. This should be used if you're unsure
+      what Mantid is, or which package you need.</li>
+  </ul>
+  <p><a href="./conda.html">Conda installation guide</a></p>
+</section>
+<section id="gridcontainer">
+  <article id="samples" class="column">
+    <h2>Sample Datasets</h2>
+    <p>Sample datasets for use in Mantid:</p>
+    <ul> 
+      <li><a href="https://sourceforge.net/projects/mantid/files/Sample%20Data/UsageData.zip/download">Usage Examples</a></li>
+      <li><a href="https://sourceforge.net/projects/mantid/files/Sample%20Data/SampleData-ISIS.zip/download">ISIS</a></li>
+      <li><a href="https://sourceforge.net/projects/mantid/files/Sample%20Data/SampleData-ORNL.zip/download">ORNL</a></li>
+      <li><a href="https://sourceforge.net/projects/mantid/files/Sample%20Data/SampleData-Muon.zip/download">Muon</a></li>
+      <li><a href="https://sourceforge.net/projects/mantid/files/Sample%20Data/TrainingCourseData.zip/download">Training</a></li>
     </ul>
-    <a href="./archives.html" id="previous">Previous releases</a>
-  </section>
-  <section id="conda" class="wrapper">
-    <h2>Conda packages</h2>
-    <p>Mantid is available in a number of <a href="https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html">conda</a> packages via anaconda.org on the <a href="https://anaconda.org/mantid">mantid channel</a>.</p>
-    <p>The following packages are available:</p>
-    <ul>
-      <li><a href="https://anaconda.org/mantid/mantid">mantid</a>: This package includes the core capabilities, including algorithms and workspaces, availiable via python</li>
-      <li><a href="https://anaconda.org/mantid/mantidqt">mantidqt</a>: Currently a work in progress, nightly only package, this includes the core Python library and scientific interfaces without the Workbench interface.</li>
-      <li><a href="https://anaconda.org/mantid/mantidworkbench">mantidworkbench</a>: Currently a work in progress, nightly only package, this is the full Mantid suite, including the workbench GUI. This should be used if you're unsure what Mantid is, or which package you need.</li>
+  </article>
+  <article id="examples" class="column">
+    <h2>Additional Examples</h2>
+    <p>Help documentation and examples can be found <a href="http://www.mantidproject.org/Documentation">here</a> </p>
+    <p>The IPython notebook is not officially supported for use with Mantid, but an example notebook is provided below.
+    </p>
+    <ul> 
+      <li><a href="https://sourceforge.net/projects/mantid/files/IPython%20Notebook/Introduction%20to%20using%20Mantid%20with%20IPython%20Notebook.ipynb/download">IPython Notebook Example</a></li>
     </ul>
-    <p><a href="./conda.html">Conda installation guide</a></p>
-  </section>
-    <section id="gridcontainer">
-      <article id="samples" class="column">
-        <h2>Sample Datasets</h2>
-        <p>Sample datasets for use in Mantid:</p>
-        <ul> 
-          <li><a href="https://sourceforge.net/projects/mantid/files/Sample%20Data/UsageData.zip/download">Usage Examples</a></li>
-          <li><a href="https://sourceforge.net/projects/mantid/files/Sample%20Data/SampleData-ISIS.zip/download">ISIS</a></li>
-          <li><a href="https://sourceforge.net/projects/mantid/files/Sample%20Data/SampleData-ORNL.zip/download">ORNL</a></li>
-          <li><a href="https://sourceforge.net/projects/mantid/files/Sample%20Data/SampleData-Muon.zip/download">Muon</a></li>
-          <li><a href="https://sourceforge.net/projects/mantid/files/Sample%20Data/TrainingCourseData.zip/download">Training</a></li>
-        </ul>
-      </article>
-      <article id="examples" class="column">
-        <h2>Additional Examples</h2>
-        <p>Help documentation and examples can be found <a href="http://www.mantidproject.org/Documentation">here</a> </p>
-        <p>The IPython notebook is not officially supported for use with Mantid, but an example notebook is provided below. </p>
-        <ul> 
-            <li><a href="https://sourceforge.net/projects/mantid/files/IPython%20Notebook/Introduction%20to%20using%20Mantid%20with%20IPython%20Notebook.ipynb/download">IPython Notebook Example</a></li>
-        </ul>
-      </article>
-      <article id="nightly" class="column">
-        <h2>Nightly Development Builds</h2>
-        <p><i>Minimally tested and <b>not</b> recommended for general use.<br>
+  </article>
+  <article id="nightly" class="column">
+    <h2>Nightly Development Builds</h2>
+    <p><i>Minimally tested and <b>not</b> recommended for general use.<br>
         MantidPlot is no longer included in these builds.</i></p>
-        <!-- <p><i>Build date: 2022-03-17</i></p> -->
-        <!-- <a href="#" class="button">Download Mantid for </a> -->
-        <!-- <p>Alternative downloads:</p> -->
-        <ul class="alternatives">
-          <li><a class="OSX" href="https://sourceforge.net/projects/mantid/files/Nightly/mantidnightly-6.3.20220317.1422-HighSierra.dmg">OSX (10.13)</a>: 2022-03-17</li>
-          <li><a class="Windows" href="https://sourceforge.net/projects/mantid/files/Nightly/mantidnightly-6.3.20220318.1434-win64.exe">Windows 10</a>: 2022-03-17</li>
-          <li><a class="Linux" href="https://sourceforge.net/projects/mantid/files/Nightly/mantidnightly-6.3.20220321.1654-1.el7.x86_64.rpm">Red Hat 7</a>: 2022-03-17</li>
-          <li><a class="Source" href="https://sourceforge.net/projects/mantid/files/Nightly/mantidnightly-6.3.20220321.1654-Source.tar.xz">Source code</a>: 2022-03-17</li>
-          <li><a class="Linux" href="https://sourceforge.net/projects/mantid/files/Nightly/mantidnightly_6.3.20220321.1654-0ubuntu1~bionic1_amd64.deb">Ubuntu 18.04</a>: 2022-03-17</li>
-        </ul>
-        <p>View <a href="https://github.com/mantidproject/mantid/commits/">recent changes</a> on GitHub.</p>
-        <p>Previous nightly builds can be found <a href="https://sourceforge.net/projects/mantid/files/Nightly/">here</a>.</p>
-      </article>
-    </section>
-    <section id="gridcontainer">
-      <article id="blank1" class="column"></article>
-      <article id="blank2" class="column"></article>	
-      <article id="other-software" class="column">
-        <h2>Other Software</h2>
-        <p>Other software relating to neutron data reduction/analysis:</p>
-        <ul>
-          <li><a href="https://mantidproject.github.io/mantidimaging/installation.html">Mantid Imaging</a></li>
-        </ul>
-      </article>
-    </section>
+    <ul class="alternatives">
+      
+      
+      <li><a class="OSX" href="https://sourceforge.net/projects/mantid/files/Nightly/mantidnightly-6.3.20220317.1422-HighSierra.dmg">OSX (10.13)</a>:
+        2022-03-17</li>
+      
+      
+      <li><a class="Windows" href="https://sourceforge.net/projects/mantid/files/Nightly/mantidnightly-6.3.20220318.1434-win64.exe">Windows 10</a>:
+        2022-03-18</li>
+      
+      
+      <li><a class="Linux" href="https://sourceforge.net/projects/mantid/files/Nightly/mantidnightly-6.3.20220321.1654-1.el7.x86_64.rpm">Red Hat 7</a>:
+        2022-03-21</li>
+      
+      
+      <li><a class="Source" href="https://sourceforge.net/projects/mantid/files/Nightly/mantidnightly-6.3.20220321.1654-Source.tar.xz">Source code</a>:
+        2022-03-21</li>
+      
+      
+      <li><a class="Linux" href="https://sourceforge.net/projects/mantid/files/Nightly/mantidnightly_6.3.20220321.1654-0ubuntu1~bionic1_amd64.deb">Ubuntu 18.04</a>:
+        2022-03-21</li>
+      
+    </ul>
+    <p>View <a href="https://github.com/mantidproject/mantid/commits/">recent changes</a> on GitHub.</p>
+    <p>Previous nightly builds can be found <a href="https://sourceforge.net/projects/mantid/files/Nightly/">here</a>.
+    </p>
+  </article>
+</section>
+<section id="gridcontainer">
+  <article id="blank1" class="column"></article>
+  <article id="blank2" class="column"></article>
+  <article id="other-software" class="column">
+    <h2>Other Software</h2>
+    <p>Other software relating to neutron data reduction/analysis:</p>
+    <ul>
+      <li><a href="https://mantidproject.github.io/mantidimaging/installation.html">Mantid Imaging</a></li>
+    </ul>
+  </article>
+</section>
 
 </body>
 </html>
