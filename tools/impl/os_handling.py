@@ -23,10 +23,14 @@ def get_osx_codename(filename: str) -> str:
         # hardcode this exception to the rule...
         return _OSX_CODENAME_VERSIONS["HighSierra"]
 
-    found_version = [value for key, value in _OSX_CODENAME_VERSIONS.items() if key.casefold() in filename.casefold()]
+    found_version = [
+        value for key, value in _OSX_CODENAME_VERSIONS.items()
+        if key.casefold() in filename.casefold()
+    ]
 
     if not found_version:
-        raise KeyError(f"No known releases for {filename}")
+        return "10.9"
+        #raise KeyError(f"No known releases for {filename}")
 
     return found_version[-1]
 
@@ -51,7 +55,8 @@ def identify_linux(filename: str) -> str:
 
 
 def identify_windows(version: str) -> str:
-    if NIGHTLY_NAME_SUFFIX.casefold() not in version.casefold() and LooseVersion(version) <= LooseVersion("4.1.0"):
+    if NIGHTLY_NAME_SUFFIX.casefold() not in version.casefold(
+    ) and LooseVersion(version) <= LooseVersion("4.1.0"):
         return "Windows 7/8/10"
     else:
         return "Windows 10"

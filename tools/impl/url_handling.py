@@ -6,11 +6,11 @@ from impl.static_vars import NIGHTLY_NAME_SUFFIX
 
 # URLS
 SOURCEFORGE_FILES = "https://sourceforge.net/projects/mantid/files/"
+GITHUB_RELEASE_FILES = "https://github.com/mantidproject/mantid/releases/download/"
 
 SOURCEFORGE_SAMPLES = SOURCEFORGE_FILES + "Sample%20Data/"
 SOURCEFORGE_PARAVIEW = SOURCEFORGE_FILES + "ParaView/"
 SOURCEFORGE_IPYTHON_NOTEBOOK = SOURCEFORGE_FILES + "IPython%20Notebook/"
-
 
 # Must be in the name : downloadurl format.
 SAMPLES_DATASETS = [["Usage Examples", SOURCEFORGE_SAMPLES + "UsageData.zip/download"],
@@ -21,7 +21,7 @@ SAMPLES_DATASETS = [["Usage Examples", SOURCEFORGE_SAMPLES + "UsageData.zip/down
 
 IPYTHON_NOTEBOOK = [[
     "IPython Notebook Example", SOURCEFORGE_IPYTHON_NOTEBOOK +
-                                "Introduction%20to%20using%20Mantid%20with%20IPython%20Notebook.ipynb/download"
+    "Introduction%20to%20using%20Mantid%20with%20IPython%20Notebook.ipynb/download"
 ]]
 
 RELEASE_NOTES_SPHINX_MIN = "3.8.0"
@@ -41,7 +41,10 @@ def get_download_url(file_name: str, version: str, is_nightly: bool) -> str:
       str: The download url for a given build.
     """
     if is_nightly:
-        return SOURCEFORGE_FILES + "Nightly/" + file_name
+        if file_name.endswith(".dmg") or file_name.endswith(".exe"):
+            return GITHUB_RELEASE_FILES + "nightly/" + file_name
+        else:
+            return SOURCEFORGE_FILES + "Nightly/" + file_name
     else:
         download_url = file_name + "/download"
         pattern = r"^\d\.\d+"
