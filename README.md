@@ -30,18 +30,18 @@ When finished the final HTML files will be output to the `docs` directory.
 
 ### Adding a new release
 
-To add a new release run the `create-manifest` script with the release __version__. This generates a new release file in the [releases](/releases/) folder, and relevant paraview file if desired:
+To add a new release run the `create_manifest` script with the release __version__. This generates a new release file in the [releases](/releases/) folder, and relevant paraview file if desired:
 
     # Generates a file in /releases/ with the release version and todays date as the name.
-    python tools/create-manifest.py 3.2.0
+    python tools/create_manifest.py 3.2.0
 
 It is possible to override the date using the `date` option, for example:
 
-    python tools/create-manifest.py 3.2.0 --date=25/12/2000
+    python tools/create_manifest.py 3.2.0 --date=25/12/2000
 
 By default, the previous version of ParaView is assigned to the release. This can be overriden using the `paraview` option. Once overriden an additonal paraview file is created in the [paraview folder](/releases/paraview/), which is used as the _latest_ version on the downloads page, for example:
 
-    python tools/create-manifest.py 3.2.0 --paraview=3.4.0
+    python tools/create_manifest.py 3.2.0 --paraview=3.4.0
 
 ## Requirements:
 
