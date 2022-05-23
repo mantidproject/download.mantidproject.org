@@ -17,12 +17,12 @@ Install a venv to grab the correct dependencies:
 
 
     mamba env create --name download --file tools/requirements.txt
-    mamba activate download
+    conda activate download
 
 
-To build locally run the `build-site.py` script located in the `tools` folder:
+To build locally run the `build_site.py` script located in the `tools` folder:
 
-    python tools/build-site.py
+    python tools/build_site.py
 
 When finished the final HTML files will be output to the `docs` directory.
 
