@@ -17,9 +17,8 @@ def test_between_high_sierra_and_sierra():
     assert os_handling.get_osx_codename("HighSierra") == "10.13"
 
 
-def test_invalid_codename_throws():
-    with pytest.raises(KeyError):
-        os_handling.get_osx_codename("Unknown")
+def test_missing_codename_returns_10_9():
+    assert os_handling.get_osx_codename("Unknown") == "10.9"
 
 
 @pytest.mark.parametrize("filename, expected",
