@@ -29,8 +29,8 @@ def get_osx_codename(filename: str) -> str:
     ]
 
     if not found_version:
+        # Assume that this is a conda-build that supports 10.9+
         return "10.9"
-        #raise KeyError(f"No known releases for {filename}")
 
     return found_version[-1]
 
