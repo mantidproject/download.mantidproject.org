@@ -1,5 +1,5 @@
 MantidWorkbenchNightly-6.3.20220530.1123.dmg
 MantidWorkbenchNightly-6.3.20220530.1123.exe 
-mantidnightly-6.3.20220530.1023-1.el7.x86_64.rpm
+mantidnightly-6.3.20220531.1603-1.el7.x86_64.rpm
 mantidnightly-6.3.20220531.1603-Source.tar.xz
 mantidnightly_6.3.20220531.1603-0ubuntu1~bionic1_amd64.deb
