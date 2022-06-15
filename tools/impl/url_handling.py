@@ -25,6 +25,7 @@ IPYTHON_NOTEBOOK = [[
 ]]
 
 RELEASE_NOTES_SPHINX_MIN = "3.8.0"
+DOWNLOADS_ON_GITHUB_MIN = "6.4.0"
 
 
 def get_download_url(file_name: str, version: str, is_nightly: bool) -> str:
@@ -46,10 +47,13 @@ def get_download_url(file_name: str, version: str, is_nightly: bool) -> str:
         else:
             return SOURCEFORGE_FILES + "Nightly/" + file_name
     else:
-        download_url = file_name + "/download"
-        pattern = r"^\d\.\d+"
-        found = re.search(pattern, version)
-        return SOURCEFORGE_FILES + found.group(0) + "/" + download_url
+        if version >= LooseVersion(DOWNLOADS_ON_GITHUB_MIN):
+            return GITHUB_RELEASE_FILES + f"v{version}/{file_name}"
+        else:
+            download_url = file_name + "/download"
+            pattern = r"^\d\.\d+"
+            found = re.search(pattern, version)
+            return SOURCEFORGE_FILES + found.group(0) + "/" + download_url
 
 
 def release_notes_url(version: str) -> Optional[str]:
