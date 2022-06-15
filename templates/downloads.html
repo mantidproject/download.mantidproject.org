@@ -10,7 +10,7 @@
   <p id="release_notes">View changes made in <a href="{{ release_notes }}">this release</a>.</p>
   <p class="instructions">Installation instructions:</p>
   <ul class="instructions">{% for instruction in instructions %}
-    <li><a href="{{instruction.replace(" -", "" ).lower() ~ '.html' }}">{{ instruction.replace("-", " ") }}</a></li>{%
+    <li><a href="{{ instruction.replace('-', '').lower() ~ '.html' }}">{{ instruction.replace("-", " ") }}</a></li>{%
     endfor %}
   </ul>
   <p><b>This version no longer includes MantidPlot.</b></p>
@@ -73,7 +73,9 @@
     <h2><a href="https://github.com/mantidproject/mantid/releases/tag/nightly">Nightly Development Builds</a></h2>
     <p><i>Minimally tested and <b>not</b> recommended for general use.</i></p>
     <p>To improve download speeds these packages are now stored on GitHub. Please follow the relevant link at
-      <a href="https://github.com/mantidproject/mantid/releases/tag/nightly">https://github.com/mantidproject/mantid/releases/tag/nightly</a>.</p>
+      <a
+        href="https://github.com/mantidproject/mantid/releases/tag/nightly">https://github.com/mantidproject/mantid/releases/tag/nightly</a>.
+    </p>
     <p>Nightly .rpm/.deb files are no longer here and should be installed from the usual repositories.</p>
     <p>View <a href="https://github.com/mantidproject/mantid/commits/">recent changes</a> on GitHub.</p>
     <p>Previous nightly builds can be found <a href="https://sourceforge.net/projects/mantid/files/Nightly/">here</a>.
