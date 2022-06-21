@@ -1,0 +1,6 @@
+2022-06-21
+
+MantidWorkbench-6.4.0.exe
+MantidWorkbench-6.4.0.dmg
+mantid-6.4.0-1.el7.x86_64.rpm
+mantid_6.4.0-0ubuntu1.bionic1_amd64.deb
